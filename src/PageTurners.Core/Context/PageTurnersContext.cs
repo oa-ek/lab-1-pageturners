@@ -9,5 +9,11 @@ namespace PageTurners.Core.Context
             : base(options)
         {
         }
+
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=.;Database=PageTurners;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+            base.OnConfiguring(optionsBuilder);
+        }*/
     }
 }
