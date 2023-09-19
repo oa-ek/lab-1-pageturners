@@ -21,8 +21,10 @@ namespace PageTurners.Core.Entities
         public double? AverageRating { get; set; }
         public DateTime? DatePubl { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comments> Comments { get; set; }
         public virtual ICollection<User> ReadBooks { get; set; }
         public virtual ICollection<User> ToReadList { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<Comments> Comment { get; set; }
     }
 }

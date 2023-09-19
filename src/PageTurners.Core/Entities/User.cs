@@ -17,6 +17,7 @@ namespace PageTurners.Core.Entities
         public string? Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        /*public User_Role Role { get; set; }*/
 
         [InverseProperty("ReadBooks")]
         public virtual ICollection<Book> ReadBooks { get; set; }
