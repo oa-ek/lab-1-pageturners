@@ -12,12 +12,14 @@ namespace PageTurners.Core.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Book_Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
+        public string? Author { get; set; }
         public string Genre { get; set; }
-        public string Description { get; set; }
-        public double? Average_Rating { get; set; }
+        public string? Desc { get; set; }
+        public string Edition { get; set; }
+        public double? AverageRating { get; set; }
+        public DateTime? DatePubl { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<User> Readers { get; set; }

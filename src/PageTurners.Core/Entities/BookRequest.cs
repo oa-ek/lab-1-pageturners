@@ -12,7 +12,7 @@ namespace PageTurners.Core.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Request_Id { get; set; }
+        public int Id { get; set; }
         public int User_Id { get; set; }
         public string Book_Title { get; set; }
         public string Book_Author { get; set; }
