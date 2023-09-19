@@ -8,16 +8,14 @@ using System.Threading.Tasks;
 
 namespace PageTurners.Core.Entities
 {
-    public class ModeratorReview
+    public class Comments
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public User User { get; set; }
-        public BookRequest BookRequest { get; set; }
-        //public int Moderator_Id { get; set; }
-        public string ReviewComment { get; set; }
-        public string Status { get; set; }
+        public virtual User User { get; set; }
+        public virtual Book Book { get; set; }
+        public string Comment { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
     }
-
 }

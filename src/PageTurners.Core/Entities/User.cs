@@ -18,9 +18,15 @@ namespace PageTurners.Core.Entities
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public virtual ICollection<Book> Read_Books { get; set; }
-        public virtual ICollection<Book> To_Read_List { get; set; }
+        [InverseProperty("ReadBooks")]
+        public virtual ICollection<Book> ReadBooks { get; set; }
+
+        [InverseProperty("ToReadList")]
+        public virtual ICollection<Book> ToReadList { get; set; }
+
+        public virtual ICollection<BookRequest> BookRequests { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<Comments> Comments { get; set; }
     }
 
 }

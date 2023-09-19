@@ -11,6 +11,8 @@ namespace PageTurners.Core.Context
         public DbSet<ModeratorReview> Reviews => Set<ModeratorReview>();
         public DbSet<Rating> Ratings => Set<Rating>();
         public DbSet<User> Users => Set<User>();
+        public DbSet<Comments> Comment => Set<Comments>();
+
         public PageTurnersContext(DbContextOptions<PageTurnersContext> options)
             : base(options)
         {

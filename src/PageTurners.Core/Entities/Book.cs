@@ -22,7 +22,7 @@ namespace PageTurners.Core.Entities
         public DateTime? DatePubl { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<User> Readers { get; set; }
-        public virtual ICollection<User> To_Read { get; set; }
+        public virtual ICollection<User> ReadBooks { get; set; }
+        public virtual ICollection<User> ToReadList { get; set; }
     }
 }
