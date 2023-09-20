@@ -19,15 +19,15 @@ namespace PageTurners.Core.Entities
         public string Password { get; set; }
         /*public User_Role Role { get; set; }*/
 
-        [InverseProperty("ReadBooks")]
+        [InverseProperty("UsersReadBooks")]
         public virtual ICollection<Book> ReadBooks { get; set; }
 
-        [InverseProperty("ToReadList")]
+        [InverseProperty("UsersReadLater")]
         public virtual ICollection<Book> ToReadList { get; set; }
 
         public virtual ICollection<BookRequest> BookRequests { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
-        public virtual ICollection<Comments> Comments { get; set; }
+        public virtual ICollection<Comments> Comment { get; set; }
     }
 
 }

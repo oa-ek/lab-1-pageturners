@@ -22,8 +22,8 @@ namespace PageTurners.Core.Entities
         public DateTime? DatePubl { get; set; }
 
         public virtual ICollection<Comments> Comment { get; set; }
-        public virtual ICollection<User> ReadBooks { get; set; }
-        public virtual ICollection<User> ToReadList { get; set; }
+        public virtual ICollection<User> UsersReadBooks { get; set; }
+        public virtual ICollection<User> UsersReadLater { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
     }
 }
