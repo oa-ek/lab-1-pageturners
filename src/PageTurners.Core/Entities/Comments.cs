@@ -13,8 +13,14 @@ namespace PageTurners.Core.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public virtual User User { get; set; }
-        public virtual Book Book { get; set; }
+        public User User { get; set; }
+        [ForeignKey(nameof(User))]
+        public int UserId { get; set; }
+
+        public Book Book { get; set; }
+        [ForeignKey(nameof(Book))]
+        public int BookId { get; set; }
+
         public string Comment { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
     }

@@ -13,7 +13,7 @@ namespace PageTurners.Core.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public virtual User User { get; set; }
+        public User User { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public DateTime? DatePubl { get; set; }
