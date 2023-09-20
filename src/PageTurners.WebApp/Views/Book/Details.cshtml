@@ -1,0 +1,66 @@
+﻿@*@using PageTurners.Core.Entities
+
+@model Book
+
+@{
+    ViewData["Title"] = "Детальніше про книгу";
+}
+
+<div class="container">
+    <h1 class="display-4">Деталі про книгу</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Назва:</dt>
+                <dd class="col-sm-8">@Model.Title</dd>
+
+                <dt class="col-sm-4">Автор:</dt>
+                <dd class="col-sm-8">@Model.Author</dd>
+
+                <dt class="col-sm-4">Жанр:</dt>
+                <dd class="col-sm-8">@Model.Genre</dd>
+
+                <dt class="col-sm-4">Опис:</dt>
+                <dd class="col-sm-8">@Model.Desc</dd>
+
+                <dt class="col-sm-4">Видання:</dt>
+                <dd class="col-sm-8">@Model.Edition</dd>
+
+                <dt class="col-sm-4">Дата публікації:</dt>
+                <dd class="col-sm-8">@Model.DatePubl</dd>
+            </dl>
+        </div>
+    </div>
+
+    <h4>Коментарі</h4>
+<hr />
+
+@if (Model.Comment != null && Model.Comment.Any())
+{
+    <ul class="list-group">
+        @foreach (var comment in Model.Comment)
+        {
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <strong>@comment.User.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
+                    </div>
+                    <div>
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#comment-@comment.Id">Деталі</button>
+                    </div>
+                </div>
+                <div id="comment-@comment.Id" class="collapse">
+                    @comment.Comment
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Коментарі відсутні.</p>
+}
+
+</div>*@
