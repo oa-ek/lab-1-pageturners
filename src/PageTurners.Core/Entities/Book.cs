@@ -20,7 +20,7 @@ namespace PageTurners.Core.Entities
         public string Edition { get; set; }
         public double? AverageRating { get; set; }
         public int DatePubl { get; set; }
-        public virtual ICollection<Comments>? Comment { get; set; }
+        public virtual ICollection<Comments> Comment { get; set; }
         public virtual ICollection<User> UsersReadBooks { get; set; }
         public virtual ICollection<User> UsersReadLater { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }

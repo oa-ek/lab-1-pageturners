@@ -14,6 +14,8 @@ namespace PageTurners.Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public User User { get; set; }
+        [ForeignKey(nameof(User))]
+        public int UserId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public DateTime? DatePubl { get; set; }
