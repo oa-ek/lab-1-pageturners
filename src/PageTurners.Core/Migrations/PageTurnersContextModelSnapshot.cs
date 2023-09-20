@@ -268,8 +268,8 @@ namespace PageTurners.Core.Migrations
                     b.Property<double?>("AverageRating")
                         .HasColumnType("float");
 
-                    b.Property<DateTime?>("DatePubl")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("DatePubl")
+                        .HasColumnType("int");
 
                     b.Property<string>("Desc")
                         .HasColumnType("nvarchar(max)");
@@ -289,6 +289,48 @@ namespace PageTurners.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "Роберт Грін",
+                            DatePubl = 1998,
+                            Desc = "Ця книга розглядає стратегії та тактики влади, використовуючи приклади з історії та сучасного бізнесу.",
+                            Edition = "Viking Press",
+                            Genre = "Психологія, бізнес",
+                            Title = "Ігри влади"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Френсіс Скотт Фіцджеральд",
+                            DatePubl = 1925,
+                            Desc = "Цей роман розповідає історію багатого і таємничого Джей Гетсбі та його пристрасті до недосяжної коханої Дейзі.",
+                            Edition = "Charles Scribner's Sons",
+                            Genre = "Класика, роман",
+                            Title = "Великий Гетсбі"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Author = "Анна Тодд",
+                            DatePubl = 2014,
+                            Desc = "Ця книга розповідає про складність переходу від підліткового життя до дорослого, з фокусом на романтичних відносинах.",
+                            Edition = "Gallery Books",
+                            Genre = "Роман, молодіжна література",
+                            Title = "Після"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Author = "Джордж Р. Р. Мартін",
+                            DatePubl = 1996,
+                            Desc = "Перша книга серії `Пісня льоду і полум'я` розповідає про боротьбу різних родів за трон Залізного Трону у міфічному світі Вестерос.",
+                            Edition = "Bantam Spectra",
+                            Genre = "Фентезі, пригоди",
+                            Title = "Гра престолів"
+                        });
                 });
 
             modelBuilder.Entity("PageTurners.Core.Entities.BookRequest", b =>
@@ -327,6 +369,23 @@ namespace PageTurners.Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Requests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "Юлія Лабурнум",
+                            Title = "Лабіринт часу",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Андрій Землянський",
+                            Desc = "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.",
+                            Title = "Спадщина Марса",
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("PageTurners.Core.Entities.Comments", b =>
@@ -357,6 +416,16 @@ namespace PageTurners.Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BookId = 3,
+                            Comment = "Дуже цікава історія!",
+                            Date = new DateTime(2023, 9, 20, 20, 6, 33, 545, DateTimeKind.Local).AddTicks(2163),
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("PageTurners.Core.Entities.Rating", b =>
@@ -404,13 +473,32 @@ namespace PageTurners.Core.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "dariya89@email.com",
+                            Login = "dariya89",
+                            Name = "Дарія Петрівна"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "ivan123@mail.net",
+                            Login = "ivan123",
+                            Name = "Іван Сергійович"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "anna456@gmail.com",
+                            Login = "anna456",
+                            Name = "Анна Олександрівна"
+                        });
                 });
 
             modelBuilder.Entity("BookUser", b =>

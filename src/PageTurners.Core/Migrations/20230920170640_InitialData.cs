@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PageTurners.Core.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitialData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,7 +60,7 @@ namespace PageTurners.Core.Migrations
                     Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Edition = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AverageRating = table.Column<double>(type: "float", nullable: true),
-                    DatePubl = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DatePubl = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,8 +75,7 @@ namespace PageTurners.Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -316,6 +315,42 @@ namespace PageTurners.Core.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "Author", "AverageRating", "DatePubl", "Desc", "Edition", "Genre", "Title" },
+                values: new object[,]
+                {
+                    { 1, "Роберт Грін", null, 1998, "Ця книга розглядає стратегії та тактики влади, використовуючи приклади з історії та сучасного бізнесу.", "Viking Press", "Психологія, бізнес", "Ігри влади" },
+                    { 2, "Френсіс Скотт Фіцджеральд", null, 1925, "Цей роман розповідає історію багатого і таємничого Джей Гетсбі та його пристрасті до недосяжної коханої Дейзі.", "Charles Scribner's Sons", "Класика, роман", "Великий Гетсбі" },
+                    { 3, "Анна Тодд", null, 2014, "Ця книга розповідає про складність переходу від підліткового життя до дорослого, з фокусом на романтичних відносинах.", "Gallery Books", "Роман, молодіжна література", "Після" },
+                    { 4, "Джордж Р. Р. Мартін", null, 1996, "Перша книга серії `Пісня льоду і полум'я` розповідає про боротьбу різних родів за трон Залізного Трону у міфічному світі Вестерос.", "Bantam Spectra", "Фентезі, пригоди", "Гра престолів" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "Login", "Name" },
+                values: new object[,]
+                {
+                    { 1, "dariya89@email.com", "dariya89", "Дарія Петрівна" },
+                    { 2, "ivan123@mail.net", "ivan123", "Іван Сергійович" },
+                    { 3, "anna456@gmail.com", "anna456", "Анна Олександрівна" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Comment",
+                columns: new[] { "Id", "BookId", "Comment", "Date", "UserId" },
+                values: new object[] { 1, 3, "Дуже цікава історія!", new DateTime(2023, 9, 20, 20, 6, 33, 545, DateTimeKind.Local).AddTicks(2163), 1 });
+
+            migrationBuilder.InsertData(
+                table: "Requests",
+                columns: new[] { "Id", "Author", "DatePubl", "Desc", "Edition", "Genre", "Title", "UserId" },
+                values: new object[] { 1, "Юлія Лабурнум", null, null, null, null, "Лабіринт часу", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Requests",
+                columns: new[] { "Id", "Author", "DatePubl", "Desc", "Edition", "Genre", "Title", "UserId" },
+                values: new object[] { 2, "Андрій Землянський", null, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "Спадщина Марса", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

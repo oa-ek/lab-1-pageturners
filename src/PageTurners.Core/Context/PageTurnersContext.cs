@@ -19,12 +19,13 @@ namespace PageTurners.Core.Context
         public PageTurnersContext(DbContextOptions<PageTurnersContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=PageTurners;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
-            base.OnConfiguring(optionsBuilder);
-        }*/
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Seed();
+        }
     }
 }
