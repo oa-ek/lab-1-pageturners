@@ -1,0 +1,39 @@
+﻿@model PageTurners.Core.Entities.BookRequest
+
+@{
+    ViewData["Title"] = "Додати книгу";
+}
+
+<h1>Додати книгу</h1>
+
+<form asp-controller="BookRequest" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title">Назва:</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Author">Автор:</label>
+        <input asp-for="Author" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DatePubl">Рік публікації:</label>
+        <input asp-for="DatePubl" class="form-control" type="number" min="0" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Genre">Жанр:</label>
+        <input asp-for="Genre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Desc">Опис:</label>
+        <input asp-for="Desc" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Edition">Видавництво:</label>
+        <input asp-for="Edition" class="form-control" />
+    </div>
+
+    <!-- Додайте інші поля, які вам потрібні -->
+
+    <button type="submit" class="btn btn-primary">Відправити книгу на модерацію та повернутись на сторінку зі списком книг</button>
+</form>
