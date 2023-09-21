@@ -64,5 +64,24 @@ app.UseEndpoints(endpoints =>
     endpoints.MapRazorPages();
 });
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "bookManagement",
+        pattern: "book/manage/{action=Index}/{id?}",
+        defaults: new { controller = "BookManagement" }
+    );
+
+    endpoints.MapControllerRoute(
+        name: "bookEdit",
+        pattern: "Book/Edit/{id?}",
+        defaults: new { controller = "Book", action = "Edit" }
+    );
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapRazorPages();
+});
 
 app.Run();

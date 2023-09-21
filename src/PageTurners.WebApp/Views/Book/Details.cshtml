@@ -6,6 +6,10 @@
     ViewData["Title"] = "Детальніше про книгу";
 }
 
+@{
+    <a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати цю книгу</a>
+}
+
 <div class="container">
     <h1 class="display-4">Деталі про книгу</h1>
     <hr />

@@ -60,6 +60,49 @@ namespace PageTurners.WebApp.Controllers
             return RedirectToAction("Details", new { id });
         }
 
+        public IActionResult Edit(int id)
+        {
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Book editedBook)
+        {
+            if (ModelState.IsValid)
+            {
+                // Завантажте книгу з бази даних за її Id
+                var book = _dbContext.Books.FirstOrDefault(b => b.Id == editedBook.Id);
+
+                if (book != null)
+                {
+                    // Оновіть дані книги з форми редагування
+                    book.Title = editedBook.Title;
+                    book.Author = editedBook.Author;
+                    book.Genre = editedBook.Genre;
+                    book.Edition = editedBook.Edition;
+                    book.DatePubl = editedBook.DatePubl;
+                    book.Desc = editedBook.Desc;
+
+                    // Збережіть зміни у базі даних
+                    _dbContext.SaveChanges();
+
+                    return RedirectToAction("Details", new { id = book.Id });
+                }
+            }
+
+            // Якщо дані не є дійсними, поверніть сторінку редагування з повідомленнями про помилки
+            return View(editedBook);
+        }
+
+
+           
 
     }
 }
