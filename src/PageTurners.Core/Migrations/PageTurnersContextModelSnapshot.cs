@@ -423,7 +423,7 @@ namespace PageTurners.Core.Migrations
                             Id = 1,
                             BookId = 3,
                             Comment = "Дуже цікава історія!",
-                            Date = new DateTime(2023, 9, 21, 8, 30, 40, 16, DateTimeKind.Local).AddTicks(4944),
+                            Date = new DateTime(2023, 9, 21, 8, 44, 30, 255, DateTimeKind.Local).AddTicks(2322),
                             UserId = 1
                         });
                 });

@@ -1,0 +1,51 @@
+﻿@using PageTurners.Core.Entities;
+
+@model Book
+
+@{
+    ViewData["Title"] = "Додати книгу";
+}
+
+<h1>Додати нову книгу</h1>
+
+<form asp-action="AddBook" method="post">
+    <div class="form-group">
+        <label asp-for="Title">Назва</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Author">Автор</label>
+        <input asp-for="Author" class="form-control" />
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Genre">Жанр</label>
+        <input asp-for="Genre" class="form-control" />
+        <span asp-validation-for="Genre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Desc">Опис</label>
+        <textarea asp-for="Desc" class="form-control"></textarea>
+        <span asp-validation-for="Desc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Edition">Видання</label>
+        <input asp-for="Edition" class="form-control" />
+        <span asp-validation-for="Edition" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DatePubl">Дата публікації</label>
+        <input asp-for="DatePubl" class="form-control" />
+        <span asp-validation-for="DatePubl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Додати</button>
+    </div>
+</form>
