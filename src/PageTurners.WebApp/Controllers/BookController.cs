@@ -24,7 +24,7 @@ namespace PageTurners.WebApp.Controllers
             return View(bookRepository.GetAll());
         }
 
-        /*public IActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             var book = _dbContext.Books
                .Include(b => b.Comment)
@@ -36,6 +36,6 @@ namespace PageTurners.WebApp.Controllers
                 return NotFound();
             }
             return View(bookRepository.GetById(id));
-        }*/
+        }
     }
 }

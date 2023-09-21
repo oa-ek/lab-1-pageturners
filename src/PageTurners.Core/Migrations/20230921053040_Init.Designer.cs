@@ -12,8 +12,8 @@ using PageTurners.Core.Context;
 namespace PageTurners.Core.Migrations
 {
     [DbContext(typeof(PageTurnersContext))]
-    [Migration("20230920170640_InitialData")]
-    partial class InitialData
+    [Migration("20230921053040_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -425,7 +425,7 @@ namespace PageTurners.Core.Migrations
                             Id = 1,
                             BookId = 3,
                             Comment = "Дуже цікава історія!",
-                            Date = new DateTime(2023, 9, 20, 20, 6, 33, 545, DateTimeKind.Local).AddTicks(2163),
+                            Date = new DateTime(2023, 9, 21, 8, 30, 40, 16, DateTimeKind.Local).AddTicks(4944),
                             UserId = 1
                         });
                 });

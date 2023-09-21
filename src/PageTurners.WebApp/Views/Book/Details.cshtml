@@ -1,4 +1,4 @@
-﻿@*@using PageTurners.Core.Entities
+﻿@using PageTurners.Core.Entities
 
 @model Book
 
@@ -43,15 +43,10 @@
         @foreach (var comment in Model.Comment)
         {
             <li class="list-group-item">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <strong>@comment.User.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
-                    </div>
-                    <div>
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#comment-@comment.Id">Деталі</button>
-                    </div>
+                <div>
+                    <strong>@comment.User.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
                 </div>
-                <div id="comment-@comment.Id" class="collapse">
+                <div>
                     @comment.Comment
                 </div>
             </li>
@@ -63,4 +58,4 @@ else
     <p>Коментарі відсутні.</p>
 }
 
-</div>*@
+</div>

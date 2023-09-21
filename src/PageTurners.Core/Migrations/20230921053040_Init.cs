@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PageTurners.Core.Migrations
 {
-    public partial class InitialData : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -340,7 +340,7 @@ namespace PageTurners.Core.Migrations
             migrationBuilder.InsertData(
                 table: "Comment",
                 columns: new[] { "Id", "BookId", "Comment", "Date", "UserId" },
-                values: new object[] { 1, 3, "Дуже цікава історія!", new DateTime(2023, 9, 20, 20, 6, 33, 545, DateTimeKind.Local).AddTicks(2163), 1 });
+                values: new object[] { 1, 3, "Дуже цікава історія!", new DateTime(2023, 9, 21, 8, 30, 40, 16, DateTimeKind.Local).AddTicks(4944), 1 });
 
             migrationBuilder.InsertData(
                 table: "Requests",
