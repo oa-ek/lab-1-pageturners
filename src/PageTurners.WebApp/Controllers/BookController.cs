@@ -63,8 +63,7 @@ namespace PageTurners.WebApp.Controllers
 
         public IActionResult Edit(int id)
         {
-            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
-
+            var book = bookRepository.GetById(id);
             if (book == null)
             {
                 return NotFound();
@@ -74,34 +73,29 @@ namespace PageTurners.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Book editedBook)
+        public IActionResult Edit(Book model)
         {
             if (ModelState.IsValid)
             {
-                // Завантажте книгу з бази даних за її Id
-                var book = _dbContext.Books.FirstOrDefault(b => b.Id == editedBook.Id);
-
-                if (book != null)
+                var existingBook = bookRepository.GetById(model.Id);
+                if (existingBook == null)
                 {
-                    // Оновіть дані книги з форми редагування
-                    book.Title = editedBook.Title;
-                    book.Author = editedBook.Author;
-                    book.Genre = editedBook.Genre;
-                    book.Edition = editedBook.Edition;
-                    book.DatePubl = editedBook.DatePubl;
-                    book.Desc = editedBook.Desc;
-
-                    // Збережіть зміни у базі даних
-                    _dbContext.SaveChanges();
-
-                    return RedirectToAction("Details", new { id = book.Id });
+                    return NotFound();
                 }
+
+                // Оновіть дані книги з моделі
+                existingBook.Title = model.Title;
+                existingBook.Author = model.Author;
+                // Оновіть інші поля за необхідністю
+
+                // Збереження змін до бази даних
+                bookRepository.Update(existingBook);
+
+                return RedirectToAction("Index");
             }
 
-            // Якщо дані не є дійсними, поверніть сторінку редагування з повідомленнями про помилки
-            return View(editedBook);
+            return View(model);
         }
-
 
         public IActionResult Delete(int id)
         {
@@ -115,6 +109,19 @@ namespace PageTurners.WebApp.Controllers
             bookRepository.Delete(id);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult DeleteComment(int commentId)
+        {
+            var comment = _dbContext.Comment.FirstOrDefault(c => c.Id == commentId);
+            if (comment != null)
+            {
+                _dbContext.Comment.Remove(comment);
+                _dbContext.SaveChanges();
+            }
+            return RedirectToAction("Details", new { id = comment.BookId });
+        }
+
     }
 }
 

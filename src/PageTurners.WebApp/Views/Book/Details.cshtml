@@ -64,6 +64,28 @@ else
 {
     <p>Коментарі відсутні.</p>
 }
+    @if (Model.Comment != null && Model.Comment.Any())
+    {
+        <ul class="list-group">
+            @foreach (var comment in Model.Comment)
+            {
+                <li class="list-group-item">
+                    <div>
+                        <strong>@comment.User.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
+                    </div>
+                    <div>
+                        @comment.Comment
+                    </div>
+                    <div>
+                        <form asp-action="DeleteComment" method="post">
+                            <input type="hidden" name="commentId" value="@comment.Id" />
+                            <button type="submit" class="btn btn-danger">Видалити коментар</button>
+                        </form>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
 
     
     <h4>Додати коментар</h4>
