@@ -42,7 +42,17 @@
     </div>
   
 
-    
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Решта деталей про книгу -->
+            <dl class="row">
+                <!-- ... -->
+                <dt class="col-sm-4">Середній рейтинг:</dt>
+                <dd class="col-sm-8">@Model.AverageRating</dd>
+            </dl>
+        </div>
+    </div>
+
     
     <form asp-controller="Book" asp-action="RateBook" method="post">
         <input type="hidden" asp-for="Id" value="@Model.Id" />

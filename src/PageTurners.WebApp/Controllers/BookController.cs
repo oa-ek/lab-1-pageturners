@@ -30,23 +30,32 @@ namespace PageTurners.WebApp.Controllers
         public IActionResult Details(int id)
         {
             var book = _dbContext.Books
-               .Include(b => b.Comment) 
-                   .ThenInclude(c => c.User)
-               .FirstOrDefault(b => b.Id == id);
+                .Include(b => b.Comment)
+                .Include(b => b.Ratings)
+                .ThenInclude(r => r.User)
+                .FirstOrDefault(b => b.Id == id);
 
             if (book == null)
             {
                 return NotFound();
             }
+
+            double? averageRating = book.Ratings?.Any() == true ? book.Ratings.Average(r => r.Value) : null;
+
+            book.AverageRating = averageRating;
+
+            _dbContext.SaveChanges();
+
             return View(book);
         }
+
 
         [HttpPost]
         public IActionResult AddComment(int id, string newComment)
         {
-            int userId = 1; // Встановити UserId = 1 для неаутентифікованих користувачів
+            int userId = 1; 
 
-            // Збережіть коментар у базі даних
+           
             var comment = new Comments
             {
                 BookId = id,
@@ -84,12 +93,13 @@ namespace PageTurners.WebApp.Controllers
                     return NotFound();
                 }
 
-                
                 existingBook.Title = model.Title;
                 existingBook.Author = model.Author;
-               
+                existingBook.Genre = model.Genre;
+                existingBook.Edition = model.Edition;
+                existingBook.Desc = model.Desc;
+                existingBook.DatePubl = model.DatePubl;
 
-               
                 bookRepository.Update(existingBook);
 
                 return RedirectToAction("Index");
@@ -97,7 +107,6 @@ namespace PageTurners.WebApp.Controllers
 
             return View(model);
         }
-
         public IActionResult Delete(int id)
         {
             var book = bookRepository.GetById(id);
@@ -149,7 +158,7 @@ namespace PageTurners.WebApp.Controllers
             _dbContext.Ratings.Add(rating);
             _dbContext.SaveChanges();
 
-            // Поверніть назад на сторінку деталей книги
+            
             return RedirectToAction("Details", new { id });
         }
 
