@@ -102,33 +102,19 @@ namespace PageTurners.WebApp.Controllers
             return View(editedBook);
         }
 
+
         public IActionResult Delete(int id)
         {
-            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
-
-            if (book == null)
-            {
-                return NotFound();
-            }
-
+            var book = bookRepository.GetById(id);
             return View(book);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
-            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
-
-            if (book != null)
-            {
-                _dbContext.Books.Remove(book);
-                _dbContext.SaveChanges();
-            }
-
+            bookRepository.Delete(id);
             return RedirectToAction("Index");
         }
-
-
     }
 }
+
