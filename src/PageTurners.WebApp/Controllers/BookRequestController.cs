@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PageTurners.Core.Context;
 using PageTurners.Core.Entities;
 using PageTurners.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -7,17 +9,22 @@ using System.IO;
 public class BookRequestController : Controller
 {
     private readonly IBookRequestRepository _bookRequestRepository;
+    private readonly PageTurnersContext _dbContext;
 
-
-    public BookRequestController(IBookRequestRepository bookRequestRepository)
+    public BookRequestController(IBookRequestRepository bookRequestRepository, PageTurnersContext dbContext)
     {
         _bookRequestRepository = bookRequestRepository;
-       
+        _dbContext = dbContext;
+    }
+
+    public IActionResult BookRequests()
+    {
+        var bookRequests = _dbContext.Requests.ToList();
+        return View(bookRequests);
     }
 
     public IActionResult Create()
     {
-       
         return View("Create");
     }
 
@@ -32,16 +39,12 @@ public class BookRequestController : Controller
             Genre = model.Genre,
             Desc = model.Desc,
             Edition = model.Edition,
-            UserId = 1 
+            UserId = 1
         };
 
-        
-
-        // Збереження в базу даних
         _bookRequestRepository.Add(bookRequest);
 
         return RedirectToAction("Index", "Book");
-
     }
-
 }
+

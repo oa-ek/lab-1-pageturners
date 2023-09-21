@@ -21,6 +21,7 @@ namespace PageTurners.WebApp.Controllers
             _dbContext = dbContext;
         }
 
+
         public IActionResult Index()
         {
             return View(bookRepository.GetAll());
@@ -83,12 +84,12 @@ namespace PageTurners.WebApp.Controllers
                     return NotFound();
                 }
 
-                // Оновіть дані книги з моделі
+                
                 existingBook.Title = model.Title;
                 existingBook.Author = model.Author;
-                // Оновіть інші поля за необхідністю
+               
 
-                // Збереження змін до бази даних
+               
                 bookRepository.Update(existingBook);
 
                 return RedirectToAction("Index");
@@ -126,17 +127,17 @@ namespace PageTurners.WebApp.Controllers
         [HttpPost]
         public IActionResult RateBook(int id, int ratingValue)
         {
-            int userId = 1; // Встановіть UserId = 1 для неаутентифікованих користувачів
+            int userId = 1;
 
-            // Отримайте книгу з бази даних за її ідентифікатором
+       
             var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
 
             if (book == null)
             {
-                return NotFound(); // Обробте ситуацію, коли книга не знайдена
+                return NotFound(); 
             }
 
-            // Створіть новий об'єкт Rating і присвойте йому об'єкти користувача та книги
+           
             var rating = new Rating
             {
                 User = _dbContext.Users.FirstOrDefault(u => u.Id == userId),
@@ -144,13 +145,16 @@ namespace PageTurners.WebApp.Controllers
                 Value = ratingValue
             };
 
-            // Додайте об'єкт Rating до контексту даних і збережіть його в базі даних
+          
             _dbContext.Ratings.Add(rating);
             _dbContext.SaveChanges();
 
             // Поверніть назад на сторінку деталей книги
             return RedirectToAction("Details", new { id });
         }
+
+
+      
 
 
     }
