@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using PageTurners.Core.Context;
+using Microsoft.AspNetCore.Identity;
 
 namespace PageTurners.WebApp.Controllers
 {
@@ -13,9 +14,9 @@ namespace PageTurners.WebApp.Controllers
         private readonly IBookRepository bookRepository;
         private readonly PageTurnersContext _dbContext;
 
-        public BookController (IBookRepository bookRepository, PageTurnersContext dbContext)
+        public BookController(IBookRepository bookRepository, PageTurnersContext dbContext)
         {
-            this.bookRepository=bookRepository;
+            this.bookRepository = bookRepository;
             _dbContext = dbContext;
         }
 
@@ -27,7 +28,7 @@ namespace PageTurners.WebApp.Controllers
         public IActionResult Details(int id)
         {
             var book = _dbContext.Books
-               .Include(b => b.Comment)
+               .Include(b => b.Comment) 
                    .ThenInclude(c => c.User)
                .FirstOrDefault(b => b.Id == id);
 
@@ -35,7 +36,30 @@ namespace PageTurners.WebApp.Controllers
             {
                 return NotFound();
             }
-            return View(bookRepository.GetById(id));
+            return View(book);
         }
+
+        [HttpPost]
+        public IActionResult AddComment(int id, string newComment)
+        {
+            int userId = 1; // Встановити UserId = 1 для неаутентифікованих користувачів
+
+            // Збережіть коментар у базі даних
+            var comment = new Comments
+            {
+                BookId = id,
+                UserId = userId,
+                Comment = newComment,
+                Date = DateTime.Now
+            };
+
+            _dbContext.Comment.Add(comment);
+            _dbContext.SaveChanges();
+
+            // Поверніть назад на сторінку деталей книги
+            return RedirectToAction("Details", new { id });
+        }
+
+
     }
 }
