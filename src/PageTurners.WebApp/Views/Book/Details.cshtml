@@ -41,6 +41,14 @@
         </div>
     </div>
 
+    <h4>
+        Середній рейтинг:
+    </h4>
+        <h4>
+        @Model.AverageRating
+    </h4>
+
+    <h4>Виставити рейтинг</h4>
     <form asp-controller="Book" asp-action="RateBook" method="post">
         <input type="hidden" asp-for="Id" value="@Model.Id" />
         <div class="form-group">
@@ -81,6 +89,8 @@ else
     <p>Коментарі відсутні.</p>
 }
   
+
+
 
     
     <h4>Додати коментар</h4>

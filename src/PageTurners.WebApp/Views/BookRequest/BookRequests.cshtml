@@ -1,0 +1,34 @@
+﻿@model List<PageTurners.Core.Entities.BookRequest>
+@using PageTurners.Core.Entities
+
+
+@{
+    ViewData["Title"] = "Книги з запитами";
+}
+
+<h1>Книги з запитами</h1>
+
+@if (Model.Count > 0)
+{
+    <div class="container">
+        <div class="row">
+            @foreach (var bookRequest in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">@bookRequest.Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@bookRequest.Author</h6>
+                            <p class="card-text">@bookRequest.Desc</p>
+                       
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p>На жаль, книги з запитами відсутні.</p>
+}
