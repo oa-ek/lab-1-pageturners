@@ -1,0 +1,16 @@
+﻿@using PageTurners.Core.Entities
+@model Book
+
+@{
+    ViewData["Title"] = "Видалити книгу";
+}
+
+<h1>Видалити книгу</h1>
+
+<p>Ви впевнені, що хочете видалити книгу "@Model.Title"?</p>
+
+<form asp-controller="Book" asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Так, видалити</button>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Ні, повернутися</a>
+</form>

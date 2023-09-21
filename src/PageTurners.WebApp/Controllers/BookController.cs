@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using PageTurners.Core.Context;
 using Microsoft.AspNetCore.Identity;
+using PageTurners.Repositories.Repos;
 
 namespace PageTurners.WebApp.Controllers
 {
@@ -101,8 +102,33 @@ namespace PageTurners.WebApp.Controllers
             return View(editedBook);
         }
 
+        public IActionResult Delete(int id)
+        {
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
 
-           
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
+
+            if (book != null)
+            {
+                _dbContext.Books.Remove(book);
+                _dbContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
