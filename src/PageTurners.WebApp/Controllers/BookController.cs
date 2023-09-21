@@ -122,6 +122,37 @@ namespace PageTurners.WebApp.Controllers
             return RedirectToAction("Details", new { id = comment.BookId });
         }
 
+
+        [HttpPost]
+        public IActionResult RateBook(int id, int ratingValue)
+        {
+            int userId = 1; // Встановіть UserId = 1 для неаутентифікованих користувачів
+
+            // Отримайте книгу з бази даних за її ідентифікатором
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
+
+            if (book == null)
+            {
+                return NotFound(); // Обробте ситуацію, коли книга не знайдена
+            }
+
+            // Створіть новий об'єкт Rating і присвойте йому об'єкти користувача та книги
+            var rating = new Rating
+            {
+                User = _dbContext.Users.FirstOrDefault(u => u.Id == userId),
+                Book = book,
+                Value = ratingValue
+            };
+
+            // Додайте об'єкт Rating до контексту даних і збережіть його в базі даних
+            _dbContext.Ratings.Add(rating);
+            _dbContext.SaveChanges();
+
+            // Поверніть назад на сторінку деталей книги
+            return RedirectToAction("Details", new { id });
+        }
+
+
     }
 }
 

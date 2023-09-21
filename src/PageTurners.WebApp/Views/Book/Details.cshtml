@@ -41,29 +41,20 @@
         </div>
     </div>
 
+    <h4>Виставити рейтинг</h4>
+    <form asp-controller="Book" asp-action="RateBook" method="post">
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="form-group">
+            <label for="rating">Рейтинг (від 1 до 5):</label>
+            <input type="number" name="rating" class="form-control" min="1" max="5" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Виставити рейтинг</button>
+    </form>
+
+
     <h4>Коментарі</h4>
 <hr />
 
-@if (Model.Comment != null && Model.Comment.Any())
-{
-    <ul class="list-group">
-        @foreach (var comment in Model.Comment)
-        {
-            <li class="list-group-item">
-                <div>
-                    <strong>@comment.User.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
-                </div>
-                <div>
-                    @comment.Comment
-                </div>
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>Коментарі відсутні.</p>
-}
     @if (Model.Comment != null && Model.Comment.Any())
     {
         <ul class="list-group">
@@ -86,6 +77,11 @@ else
             }
         </ul>
     }
+else
+{
+    <p>Коментарі відсутні.</p>
+}
+  
 
     
     <h4>Додати коментар</h4>

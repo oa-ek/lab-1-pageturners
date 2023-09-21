@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PageTurners.Core.Entities;
 
@@ -26,6 +27,16 @@ namespace PageTurners.Core.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();
+
+            // Вимкнути автоматичну генерацію таблиць Identity
+            modelBuilder.Ignore<IdentityUser>();
+            modelBuilder.Ignore<IdentityRole>();
+            modelBuilder.Ignore<IdentityUserRole<string>>();
+            modelBuilder.Ignore<IdentityUserClaim<string>>();
+            modelBuilder.Ignore<IdentityUserLogin<string>>();
+            modelBuilder.Ignore<IdentityUserToken<string>>();
+            modelBuilder.Ignore<IdentityRoleClaim<string>>();
+
         }
     }
 }

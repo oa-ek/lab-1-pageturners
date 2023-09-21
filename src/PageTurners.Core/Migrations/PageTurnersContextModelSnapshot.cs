@@ -34,7 +34,7 @@ namespace PageTurners.Core.Migrations
 
                     b.HasIndex("UsersReadBooksId");
 
-                    b.ToTable("BookUser");
+                    b.ToTable("BookUser", (string)null);
                 });
 
             modelBuilder.Entity("BookUser1", b =>
@@ -49,7 +49,7 @@ namespace PageTurners.Core.Migrations
 
                     b.HasIndex("UsersReadLaterId");
 
-                    b.ToTable("BookUser1");
+                    b.ToTable("BookUser1", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -288,7 +288,7 @@ namespace PageTurners.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
 
                     b.HasData(
                         new
@@ -368,7 +368,7 @@ namespace PageTurners.Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Requests");
+                    b.ToTable("Requests", (string)null);
 
                     b.HasData(
                         new
@@ -415,7 +415,7 @@ namespace PageTurners.Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comment", (string)null);
 
                     b.HasData(
                         new
@@ -451,7 +451,7 @@ namespace PageTurners.Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("Ratings", (string)null);
                 });
 
             modelBuilder.Entity("PageTurners.Core.Entities.User", b =>
@@ -475,7 +475,7 @@ namespace PageTurners.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
