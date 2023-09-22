@@ -67,7 +67,6 @@ namespace PageTurners.WebApp.Controllers
             _dbContext.Comment.Add(comment);
             _dbContext.SaveChanges();
 
-            // Поверніть назад на сторінку деталей книги
             return RedirectToAction("Details", new { id });
         }
 
