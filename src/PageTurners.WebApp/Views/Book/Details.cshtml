@@ -41,13 +41,13 @@
         </div>
     </div>
 
-    <h4>
+  <h4>
         Середній рейтинг:
     </h4>
         <h4>
         @Model.AverageRating
     </h4>
-
+    <!--
     <h4>Виставити рейтинг</h4>
     <form asp-controller="Book" asp-action="RateBook" method="post">
         <input type="hidden" asp-for="Id" value="@Model.Id" />
@@ -57,7 +57,77 @@
         </div>
         <button type="submit" class="btn btn-primary">Виставити рейтинг</button>
     </form>
+    --->
 
+
+    <h4>Виставити рейтинг</h4>
+    <form asp-controller="Book" asp-action="RateBook" method="post">
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="form-group">
+            <label for="ratingValue">Рейтинг (від 1 до 5):</label>
+            <div id="star-rating">
+                <span class="star" data-value="1">☆</span>
+                <span class="star" data-value="2">☆</span>
+                <span class="star" data-value="3">☆</span>
+                <span class="star" data-value="4">☆</span>
+                <span class="star" data-value="5">☆</span>
+            </div>
+            <input type="hidden" id="selected-rating" name="ratingValue" />
+        </div>
+        <button type="submit" class="btn btn-primary">Виставити рейтинг</button>
+    </form>
+
+  
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const starRating = document.getElementById("star-rating");
+        const selectedRating = document.getElementById("selected-rating");
+
+        starRating.addEventListener("click", function (e) {
+            const star = e.target;
+            if (star.classList.contains("star")) {
+                const value = star.getAttribute("data-value");
+                selectedRating.value = value;
+                updateStarRating(parseInt(value));
+            }
+        });
+
+        starRating.addEventListener("mouseover", function (e) {
+            const star = e.target;
+            if (star.classList.contains("star")) {
+                const value = star.getAttribute("data-value");
+                updateStarRating(parseInt(value));
+            }
+        });
+
+        starRating.addEventListener("mouseout", function () {
+            const value = selectedRating.value;
+            if (value) {
+                updateStarRating(parseInt(value));
+            } else {
+                clearStarRating();
+            }
+        });
+
+        function updateStarRating(value) {
+            clearStarRating();
+            for (let i = 1; i <= value; i++) {
+                const star = starRating.querySelector(`[data-value="${i}"]`);
+                star.textContent = "★";
+            }
+        }
+
+        function clearStarRating() {
+            const stars = starRating.querySelectorAll(".star");
+            stars.forEach((star) => {
+                star.textContent = "☆";
+            });
+        }
+    });
+</script>
 
     <h4>Коментарі</h4>
 <hr />
