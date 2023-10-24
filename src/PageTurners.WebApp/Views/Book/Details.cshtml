@@ -41,10 +41,10 @@
         </div>
     </div>
 
-  <h4>
+    <h4>
         Середній рейтинг:
     </h4>
-        <h4>
+    <h4>
         @Model.AverageRating
     </h4>
     <!--
@@ -77,10 +77,8 @@
         <button type="submit" class="btn btn-primary">Виставити рейтинг</button>
     </form>
 
-  
+
 </div>
-
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const starRating = document.getElementById("star-rating");
@@ -129,48 +127,104 @@
     });
 </script>
 
-    <h4>Коментарі</h4>
+<h4>Коментарі</h4>
 <hr />
 
-    @if (Model.Comment != null && Model.Comment.Any())
-    {
-        <ul class="list-group">
-            @foreach (var comment in Model.Comment)
-            {
-                <li class="list-group-item">
-                    <div>
-                        <strong>@comment.User.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
-                    </div>
-                    <div>
-                        @comment.Comment
-                    </div>
-                    <div>
-                        <form asp-action="DeleteComment" method="post">
-                            <input type="hidden" name="commentId" value="@comment.Id" />
-                            <button type="submit" class="btn btn-danger">Видалити коментар</button>
-                        </form>
-                    </div>
-                </li>
-            }
-        </ul>
-    }
+@if (Model.Comment != null && Model.Comment.Any())
+{
+    <ul class="list-group">
+        @foreach (var comment in Model.Comment)
+        {
+            <li class="list-group-item">
+                <div>
+                    <strong>@comment.User.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
+                </div>
+                <div>
+                    @comment.Comment
+                </div>
+                <div class="comment-star-rating" data-comment-id="@comment.Id">
+                    <span class="star comment-star" data-value="1">☆</span>
+                    <span class="star comment-star" data-value="2">☆</span>
+                    <span class="star comment-star" data-value="3">☆</span>
+                    <span class="star comment-star" data-value="4">☆</span>
+                    <span class="star comment-star" data-value="5">☆</span>
+                    <input type="hidden" class="comment-selected-rating" name="commentRating" />
+                </div>
+                <div>
+                    <form asp-action="DeleteComment" method="post">
+                        <input type="hidden" name="commentId" value="@comment.Id" />
+                        <button type="submit" class="btn btn-danger">Видалити коментар</button>
+                    </form>
+                </div>
+            </li>
+        }
+    </ul>
+}
 else
 {
     <p>Коментарі відсутні.</p>
 }
-  
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const commentStarRatings = document.querySelectorAll(".comment-star-rating");
+
+        commentStarRatings.forEach(function (commentStarRating) {
+            commentStarRating.addEventListener("click", function (e) {
+                const star = e.target;
+                if (star.classList.contains("star")) {
+                    const value = star.getAttribute("data-value");
+                    const commentId = commentStarRating.getAttribute("data-comment-id");
+                    const targetId = `comment-${commentId}`;
+                    const commentSelectedRating = document.querySelector(`.${targetId} .comment-selected-rating`);
+                    commentSelectedRating.value = value;
+                    updateStarRating(parseInt(value), targetId);
+                }
+            });
+
+            commentStarRating.addEventListener("mouseover", function (e) {
+                const star = e.target;
+                if (star.classList.contains("star")) {
+                    const value = star.getAttribute("data-value");
+                    const commentId = commentStarRating.getAttribute("data-comment-id");
+                    const targetId = `comment-${commentId}`;
+                    updateStarRating(parseInt(value), targetId);
+                }
+            });
+
+            commentStarRating.addEventListener("mouseout", function () {
+                const commentId = commentStarRating.getAttribute("data-comment-id");
+                const targetId = `comment-${commentId}`;
+                clearStarRating(targetId);
+            });
+        });
+
+        function updateStarRating(value, targetId) {
+            clearStarRating(targetId);
+            const targetStarRating = document.querySelector(`.${targetId}`);
+            for (let i = 1; i <= value; i++) {
+                const star = targetStarRating.querySelector(`[data-value="${i}"]`);
+                star.textContent = "★";
+            }
+        }
+
+        function clearStarRating(targetId) {
+            const stars = document.querySelectorAll(`.${targetId} .star`);
+            stars.forEach((star) => {
+                star.textContent = "☆";
+            });
+        }
+    });
+</script>
 
 
-
-    
-    <h4>Додати коментар</h4>
-    <form asp-controller="Book" asp-action="AddComment" method="post">
-        <input type="hidden" asp-for="Id" value="@Model.Id" />
-        <div class="form-group">
-            <textarea name="newComment" class="form-control" rows="4"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Додати коментар</button>
-    </form>
+<h4>Додати коментар</h4>
+<form asp-controller="Book" asp-action="AddComment" method="post">
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <div class="form-group">
+        <textarea name="newComment" class="form-control" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Додати коментар</button>
+</form>
 
 
 </div>
