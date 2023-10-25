@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -15,9 +15,10 @@ namespace PageTurners.Core.Entities
         public int Id { get; set; }
         public User User { get; set; }
         public BookRequest BookRequest { get; set; }
-        //public int Moderator_Id { get; set; }
         public string ReviewComment { get; set; }
         public string Status { get; set; }
+
+        public virtual User Moderator { get; set; }
     }
 
-}*/
+}

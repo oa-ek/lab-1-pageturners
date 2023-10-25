@@ -13,16 +13,17 @@ namespace PageTurners.Core.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public User User { get; set; }
-        [ForeignKey(nameof(User))]
-        public int UserId { get; set; }
+        public User Owner { get; set; }
+        [ForeignKey(nameof(Owner))]
+        public string OwnerId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public DateTime? DatePubl { get; set; }
         public string? Genre { get; set; }
         public string? Desc { get; set; }
         public string? Edition { get; set; }
-        /*public virtual ModeratorReview Status { get; set; }*/
+
+        public virtual ICollection<ModeratorReview> Reviews { get; set; }
     }
 
 }

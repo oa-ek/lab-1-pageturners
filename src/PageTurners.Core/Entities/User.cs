@@ -5,19 +5,20 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace PageTurners.Core.Entities
 {
-    public class User
+    public class User : IdentityUser
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Login { get; set; }
         public string? Name { get; set; }
         public string Email { get; set; }
-        /*public string Password { get; set; }*/
-        /*public User_Role Role { get; set; }*/
+        public DateTime DateOfBirth { get; set; }
+        public string? Photo { get; set; }
 
         [InverseProperty("UsersReadBooks")]
         public virtual ICollection<Book> ReadBooks { get; set; }
@@ -28,6 +29,7 @@ namespace PageTurners.Core.Entities
         public virtual ICollection<BookRequest> BookRequests { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Comments> Comment { get; set; }
+        public virtual ICollection<ModeratorReview> Reviews { get; set; }
     }
 
 }
