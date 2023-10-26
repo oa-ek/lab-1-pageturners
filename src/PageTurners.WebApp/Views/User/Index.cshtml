@@ -1,0 +1,50 @@
+﻿@using PageTurners.Core.Entities;
+
+@{
+    ViewData["Title"] = "Користувачі";
+}
+
+@model IEnumerable<User>
+
+<div class="float-end">
+    <a href="/user/create" class="btn btn-warning">Створити користувача</a>
+</div>
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<div class="row">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Confirmed</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.Name</td>
+                    <td>@u.Login</td>
+                    <td>@u.Email</td>
+                    <td>@u.EmailConfirmed</td>
+                    @*<td> <input type="checkbox" checked="@u.IsConfirmed" disabled /></td>*@
+                    <td>
+                        @*@string.Join(", ", u.Roles)*@
+                    </td>
+                    <td>
+                        <a href="/user/edit/@u.Id" class="btn btn-warning">Редагувати</a>
+                        <a href="/user/delete/@u.Id" class="btn btn-danger">Видалити</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

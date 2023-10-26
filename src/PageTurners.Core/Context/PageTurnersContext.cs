@@ -25,13 +25,13 @@ namespace PageTurners.Core.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();
 
+            /*modelBuilder.Ignore<IdentityUserClaim<string>>();
             modelBuilder.Ignore<IdentityUser>();
             modelBuilder.Ignore<IdentityRole>();
             modelBuilder.Ignore<IdentityUserRole<string>>();
-            modelBuilder.Ignore<IdentityUserClaim<string>>();
             modelBuilder.Ignore<IdentityUserLogin<string>>();
             modelBuilder.Ignore<IdentityUserToken<string>>();
-            modelBuilder.Ignore<IdentityRoleClaim<string>>();
+            modelBuilder.Ignore<IdentityRoleClaim<string>>();*/
 
             modelBuilder.Entity<Comments>()
             .HasOne(c => c.Сommentator)
@@ -68,6 +68,8 @@ namespace PageTurners.Core.Context
             .WithMany()
             .HasForeignKey(mr => mr.ModeratorId)
             .OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

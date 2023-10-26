@@ -24,7 +24,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
     }).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<PageTurnersContext>();
 
-builder.Services.AddScoped<UserManager<User>>();
+/*builder.Services.AddScoped<UserManager<User>>();*/
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookRequestRepository, BookRequestRepository>();
 builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();

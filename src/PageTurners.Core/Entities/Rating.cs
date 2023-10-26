@@ -21,5 +21,4 @@ namespace PageTurners.Core.Entities
         public int BookId { get; set; }
         public int Value { get; set; }
     }
-
 }

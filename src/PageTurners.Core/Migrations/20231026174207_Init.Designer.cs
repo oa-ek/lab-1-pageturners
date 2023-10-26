@@ -12,7 +12,7 @@ using PageTurners.Core.Context;
 namespace PageTurners.Core.Migrations
 {
     [DbContext(typeof(PageTurnersContext))]
-    [Migration("20231026094313_Init")]
+    [Migration("20231026174207_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,183 @@ namespace PageTurners.Core.Migrations
                     b.HasIndex("UsersReadLaterId");
 
                     b.ToTable("BookUser1");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8badac42-69eb-41d3-96b7-8a7ef116c566",
+                            ConcurrencyStamp = "24b54164-53b9-45ea-a8f6-0265e7557716",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "38bb0749-e206-497c-974a-0ce947ed11fa",
+                            ConcurrencyStamp = "232097a1-2359-4e4c-a629-fd8b2ead3062",
+                            Name = "Moderator",
+                            NormalizedName = "MODERATOR"
+                        },
+                        new
+                        {
+                            Id = "e90aa59b-0838-4572-86f7-da9679827181",
+                            ConcurrencyStamp = "aba09020-4588-4eb4-a896-3f44e45aa960",
+                            Name = "Reader",
+                            NormalizedName = "READER"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "73ee5842-5475-4c8a-b9c6-bc40b8b74f18",
+                            RoleId = "8badac42-69eb-41d3-96b7-8a7ef116c566"
+                        },
+                        new
+                        {
+                            UserId = "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846",
+                            RoleId = "38bb0749-e206-497c-974a-0ce947ed11fa"
+                        },
+                        new
+                        {
+                            UserId = "e14987de-9d3d-4ab6-87b8-f8e4f30addcc",
+                            RoleId = "e90aa59b-0838-4572-86f7-da9679827181"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("PageTurners.Core.Entities.Book", b =>
@@ -176,7 +353,7 @@ namespace PageTurners.Core.Migrations
                         {
                             Id = 1,
                             Author = "Юлія Лабурнум",
-                            OwnerId = "13b4515e-ba84-4c78-8082-8374d351f1c1",
+                            OwnerId = "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846",
                             Title = "Лабіринт часу"
                         },
                         new
@@ -184,7 +361,7 @@ namespace PageTurners.Core.Migrations
                             Id = 2,
                             Author = "Андрій Землянський",
                             Desc = "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.",
-                            OwnerId = "27ad0df9-1f3d-4714-897b-0faf0a9108e1",
+                            OwnerId = "73ee5842-5475-4c8a-b9c6-bc40b8b74f18",
                             Title = "Спадщина Марса"
                         });
                 });
@@ -225,16 +402,16 @@ namespace PageTurners.Core.Migrations
                             Id = 1,
                             BookId = 3,
                             Comment = "Дуже цікава історія!",
-                            CommentatorId = "27ad0df9-1f3d-4714-897b-0faf0a9108e1",
-                            Date = new DateTime(2023, 10, 26, 12, 43, 12, 864, DateTimeKind.Local).AddTicks(3912)
+                            CommentatorId = "73ee5842-5475-4c8a-b9c6-bc40b8b74f18",
+                            Date = new DateTime(2023, 10, 26, 20, 41, 58, 794, DateTimeKind.Local).AddTicks(36)
                         },
                         new
                         {
                             Id = 2,
                             BookId = 1,
                             Comment = "Трохи нудно...",
-                            CommentatorId = "13b4515e-ba84-4c78-8082-8374d351f1c1",
-                            Date = new DateTime(2023, 10, 26, 12, 43, 12, 864, DateTimeKind.Local).AddTicks(3951)
+                            CommentatorId = "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846",
+                            Date = new DateTime(2023, 10, 26, 20, 41, 58, 794, DateTimeKind.Local).AddTicks(53)
                         });
                 });
 
@@ -385,58 +562,58 @@ namespace PageTurners.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "27ad0df9-1f3d-4714-897b-0faf0a9108e1",
+                            Id = "73ee5842-5475-4c8a-b9c6-bc40b8b74f18",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "50c54be6-67d3-4564-85bc-f846952a6d67",
-                            DateOfBirth = new DateTime(2052, 10, 26, 12, 43, 12, 858, DateTimeKind.Local).AddTicks(7796),
+                            ConcurrencyStamp = "5df7c359-c3ec-4818-8062-ac1c0358be2f",
+                            DateOfBirth = new DateTime(2052, 10, 26, 20, 41, 58, 788, DateTimeKind.Local).AddTicks(2348),
                             Email = "admin@pageturners.com",
-                            EmailConfirmed = false,
+                            EmailConfirmed = true,
                             LockoutEnabled = false,
                             Login = "ivan123",
                             Name = "Іван Сергійович",
                             NormalizedEmail = "ADMIN@PAGETURNERS.COM",
                             NormalizedUserName = "ADMIN@PAGETURNERS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEQrOEIXyxLB5+nvMrjnEvw/5v5pIx0XKHXaaK0bTsY7R60De76g64y0kAuL8x3XUQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGEBbipomf9KOxDGfQyN0WTiEvB/MDP0EBy417tK5KU3gAvWjdRPqtgQNebwvtHyJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a886fa9c-11b4-4b4e-a77f-4a6f956e0409",
+                            SecurityStamp = "f10348b4-8995-47f5-b6a0-ccba549a2ec8",
                             TwoFactorEnabled = false,
                             UserName = "admin@pageturners.com"
                         },
                         new
                         {
-                            Id = "13b4515e-ba84-4c78-8082-8374d351f1c1",
+                            Id = "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e91726a0-a3eb-4069-a924-a8252b36a2e2",
-                            DateOfBirth = new DateTime(2044, 10, 26, 12, 43, 12, 858, DateTimeKind.Local).AddTicks(7846),
+                            ConcurrencyStamp = "8d51545a-2059-48e1-98c9-5a4ffc53e86f",
+                            DateOfBirth = new DateTime(2044, 10, 26, 20, 41, 58, 788, DateTimeKind.Local).AddTicks(2437),
                             Email = "moderator@pageturners.com",
-                            EmailConfirmed = false,
+                            EmailConfirmed = true,
                             LockoutEnabled = false,
                             Login = "daria684",
                             Name = "Дарія Петрівна",
                             NormalizedEmail = "MODERATOR@PAGETURNERS.COM",
                             NormalizedUserName = "MODERATOR@PAGETURNERS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOy90KedOyOSKbwCWIYwtjY4GPh+pOLnVhGJWiqR8z/qWnOxYfm6a0eTe6CtoN8MxA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFaQExYrFCsvpLaojp3XWaqQ+kcOnidf3Iu3FhnZPl09fgnR/qzmcYO84YapkWFwfQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "69c2adde-3f61-4beb-81d8-da748588c2da",
+                            SecurityStamp = "52611960-ea9c-4004-9a4d-ba4f4305379a",
                             TwoFactorEnabled = false,
                             UserName = "moderator@pageturners.com"
                         },
                         new
                         {
-                            Id = "4149dd16-7e55-40dc-b114-6447b33d8f15",
+                            Id = "e14987de-9d3d-4ab6-87b8-f8e4f30addcc",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "82f7d80d-a5f3-4698-953b-1eab82ac8869",
-                            DateOfBirth = new DateTime(2044, 10, 26, 12, 43, 12, 858, DateTimeKind.Local).AddTicks(7856),
+                            ConcurrencyStamp = "2679fb4a-b41d-4a26-8de4-3ec6b122ad24",
+                            DateOfBirth = new DateTime(2044, 10, 26, 20, 41, 58, 788, DateTimeKind.Local).AddTicks(2449),
                             Email = "reader@pageturners.com",
-                            EmailConfirmed = false,
+                            EmailConfirmed = true,
                             LockoutEnabled = false,
                             Login = "anna456",
                             Name = "Анна Олександрівна",
                             NormalizedEmail = "READER@PAGETURNERS.COM",
                             NormalizedUserName = "READER@PAGETURNERS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFHY+WeTTOzkMbEAahkCb9GOzbI++uCliyopnYJLgNOctZufb1cvMVw7ybXqrR71IQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMUiBzZH/e1JCmXZ6VfIIR74YkdZONUlzt334mP1LOQ8U3eBn3J1PeodLxVndEeZEg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8e5b58e7-086e-486e-9a5b-e297caeab521",
+                            SecurityStamp = "d4053d82-0f57-4c35-b01d-14b78cf2ba3b",
                             TwoFactorEnabled = false,
                             UserName = "reader@pageturners.com"
                         });
@@ -468,6 +645,57 @@ namespace PageTurners.Core.Migrations
                     b.HasOne("PageTurners.Core.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UsersReadLaterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("PageTurners.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("PageTurners.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PageTurners.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("PageTurners.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

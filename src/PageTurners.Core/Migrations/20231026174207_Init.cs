@@ -10,6 +10,20 @@ namespace PageTurners.Core.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -55,6 +69,112 @@ namespace PageTurners.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -221,13 +341,23 @@ namespace PageTurners.Core.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "38bb0749-e206-497c-974a-0ce947ed11fa", "232097a1-2359-4e4c-a629-fd8b2ead3062", "Moderator", "MODERATOR" },
+                    { "8badac42-69eb-41d3-96b7-8a7ef116c566", "24b54164-53b9-45ea-a8f6-0265e7557716", "Admin", "ADMIN" },
+                    { "e90aa59b-0838-4572-86f7-da9679827181", "aba09020-4588-4eb4-a896-3f44e45aa960", "Reader", "READER" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Login", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "13b4515e-ba84-4c78-8082-8374d351f1c1", 0, "e91726a0-a3eb-4069-a924-a8252b36a2e2", new DateTime(2044, 10, 26, 12, 43, 12, 858, DateTimeKind.Local).AddTicks(7846), "moderator@pageturners.com", false, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEOy90KedOyOSKbwCWIYwtjY4GPh+pOLnVhGJWiqR8z/qWnOxYfm6a0eTe6CtoN8MxA==", null, false, null, "69c2adde-3f61-4beb-81d8-da748588c2da", false, "moderator@pageturners.com" },
-                    { "27ad0df9-1f3d-4714-897b-0faf0a9108e1", 0, "50c54be6-67d3-4564-85bc-f846952a6d67", new DateTime(2052, 10, 26, 12, 43, 12, 858, DateTimeKind.Local).AddTicks(7796), "admin@pageturners.com", false, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEEQrOEIXyxLB5+nvMrjnEvw/5v5pIx0XKHXaaK0bTsY7R60De76g64y0kAuL8x3XUQ==", null, false, null, "a886fa9c-11b4-4b4e-a77f-4a6f956e0409", false, "admin@pageturners.com" },
-                    { "4149dd16-7e55-40dc-b114-6447b33d8f15", 0, "82f7d80d-a5f3-4698-953b-1eab82ac8869", new DateTime(2044, 10, 26, 12, 43, 12, 858, DateTimeKind.Local).AddTicks(7856), "reader@pageturners.com", false, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEFHY+WeTTOzkMbEAahkCb9GOzbI++uCliyopnYJLgNOctZufb1cvMVw7ybXqrR71IQ==", null, false, null, "8e5b58e7-086e-486e-9a5b-e297caeab521", false, "reader@pageturners.com" }
+                    { "73ee5842-5475-4c8a-b9c6-bc40b8b74f18", 0, "5df7c359-c3ec-4818-8062-ac1c0358be2f", new DateTime(2052, 10, 26, 20, 41, 58, 788, DateTimeKind.Local).AddTicks(2348), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEGEBbipomf9KOxDGfQyN0WTiEvB/MDP0EBy417tK5KU3gAvWjdRPqtgQNebwvtHyJQ==", null, false, null, "f10348b4-8995-47f5-b6a0-ccba549a2ec8", false, "admin@pageturners.com" },
+                    { "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846", 0, "8d51545a-2059-48e1-98c9-5a4ffc53e86f", new DateTime(2044, 10, 26, 20, 41, 58, 788, DateTimeKind.Local).AddTicks(2437), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEFaQExYrFCsvpLaojp3XWaqQ+kcOnidf3Iu3FhnZPl09fgnR/qzmcYO84YapkWFwfQ==", null, false, null, "52611960-ea9c-4004-9a4d-ba4f4305379a", false, "moderator@pageturners.com" },
+                    { "e14987de-9d3d-4ab6-87b8-f8e4f30addcc", 0, "2679fb4a-b41d-4a26-8de4-3ec6b122ad24", new DateTime(2044, 10, 26, 20, 41, 58, 788, DateTimeKind.Local).AddTicks(2449), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEMUiBzZH/e1JCmXZ6VfIIR74YkdZONUlzt334mP1LOQ8U3eBn3J1PeodLxVndEeZEg==", null, false, null, "d4053d82-0f57-4c35-b01d-14b78cf2ba3b", false, "reader@pageturners.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -242,12 +372,22 @@ namespace PageTurners.Core.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "8badac42-69eb-41d3-96b7-8a7ef116c566", "73ee5842-5475-4c8a-b9c6-bc40b8b74f18" },
+                    { "38bb0749-e206-497c-974a-0ce947ed11fa", "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846" },
+                    { "e90aa59b-0838-4572-86f7-da9679827181", "e14987de-9d3d-4ab6-87b8-f8e4f30addcc" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Comment",
                 columns: new[] { "Id", "BookId", "Comment", "CommentatorId", "Date" },
                 values: new object[,]
                 {
-                    { 1, 3, "Дуже цікава історія!", "27ad0df9-1f3d-4714-897b-0faf0a9108e1", new DateTime(2023, 10, 26, 12, 43, 12, 864, DateTimeKind.Local).AddTicks(3912) },
-                    { 2, 1, "Трохи нудно...", "13b4515e-ba84-4c78-8082-8374d351f1c1", new DateTime(2023, 10, 26, 12, 43, 12, 864, DateTimeKind.Local).AddTicks(3951) }
+                    { 1, 3, "Дуже цікава історія!", "73ee5842-5475-4c8a-b9c6-bc40b8b74f18", new DateTime(2023, 10, 26, 20, 41, 58, 794, DateTimeKind.Local).AddTicks(36) },
+                    { 2, 1, "Трохи нудно...", "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846", new DateTime(2023, 10, 26, 20, 41, 58, 794, DateTimeKind.Local).AddTicks(53) }
                 });
 
             migrationBuilder.InsertData(
@@ -255,9 +395,36 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "Author", "DatePubl", "Desc", "Edition", "Genre", "OwnerId", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Юлія Лабурнум", null, null, null, null, "13b4515e-ba84-4c78-8082-8374d351f1c1", "Лабіринт часу" },
-                    { 2, "Андрій Землянський", null, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "27ad0df9-1f3d-4714-897b-0faf0a9108e1", "Спадщина Марса" }
+                    { 1, "Юлія Лабурнум", null, null, null, null, "e0d8c9c3-eec0-4dc7-b2a6-2bd1b09f9846", "Лабіринт часу" },
+                    { 2, "Андрій Землянський", null, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "73ee5842-5475-4c8a-b9c6-bc40b8b74f18", "Спадщина Марса" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -325,6 +492,21 @@ namespace PageTurners.Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
                 name: "BookUser");
 
             migrationBuilder.DropTable(
@@ -338,6 +520,9 @@ namespace PageTurners.Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Books");

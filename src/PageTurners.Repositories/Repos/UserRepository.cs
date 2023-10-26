@@ -1,4 +1,5 @@
-﻿using PageTurners.Core.Context;
+﻿using Microsoft.AspNetCore.Identity;
+using PageTurners.Core.Context;
 using PageTurners.Core.Entities;
 using PageTurners.Repositories.Interfaces;
 using System;
@@ -12,6 +13,8 @@ namespace PageTurners.Repositories.Repos
     public class UserRepository : IUserRepository
     {
         private PageTurnersContext _context;
+        private readonly UserManager<User> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
         public UserRepository(PageTurnersContext context)
         {
@@ -25,7 +28,8 @@ namespace PageTurners.Repositories.Repos
 
         public IEnumerable<User> GetAll()
         {
-            return _context.Users.ToList();
+            var users = _context.Users.ToList();
+            return users;
         }
 
         public void Add(User user)
