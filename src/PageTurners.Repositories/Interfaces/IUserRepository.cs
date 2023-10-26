@@ -1,4 +1,5 @@
 ﻿using PageTurners.Core.Entities;
+using PageTurners.Repositories.DTOs.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace PageTurners.Repositories.Interfaces
     public interface IUserRepository
     {
         User GetById(string id);
-        IEnumerable<User> GetAll();
+        Task<IEnumerable<UserReadDto>> GetAll();
         void Add(User user);
         void Update(User user);
         void Delete(string id);

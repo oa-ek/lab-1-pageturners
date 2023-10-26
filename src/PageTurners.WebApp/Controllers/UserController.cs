@@ -15,9 +15,9 @@ namespace PageTurners.WebApp.Controllers
         }
 
         /*[Authorize(Roles = "Admin")]*/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(userRepository.GetAll());
+            return View(await userRepository.GetAll());
         }
     }
 }

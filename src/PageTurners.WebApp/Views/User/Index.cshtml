@@ -1,10 +1,11 @@
 ﻿@using PageTurners.Core.Entities;
+@using PageTurners.Repositories.DTOs.User;
 
 @{
     ViewData["Title"] = "Користувачі";
 }
 
-@model IEnumerable<User>
+@model IEnumerable<UserReadDto>
 
 <div class="float-end">
     <a href="/user/create" class="btn btn-warning">Створити користувача</a>
@@ -32,10 +33,10 @@
                     <td>@u.Name</td>
                     <td>@u.Login</td>
                     <td>@u.Email</td>
-                    <td>@u.EmailConfirmed</td>
-                    @*<td> <input type="checkbox" checked="@u.IsConfirmed" disabled /></td>*@
+                    <td>@u.IsConfirmed</td>
+                    <td> <input type="checkbox" checked="@u.IsConfirmed" disabled /></td>
                     <td>
-                        @*@string.Join(", ", u.Roles)*@
+                        @string.Join(", ", u.Roles)
                     </td>
                     <td>
                         <a href="/user/edit/@u.Id" class="btn btn-warning">Редагувати</a>

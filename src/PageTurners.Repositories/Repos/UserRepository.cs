@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using PageTurners.Core.Context;
 using PageTurners.Core.Entities;
+using PageTurners.Repositories.DTOs.User;
 using PageTurners.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace PageTurners.Repositories.Repos
 {
@@ -16,8 +19,12 @@ namespace PageTurners.Repositories.Repos
         private readonly UserManager<User> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
 
-        public UserRepository(PageTurnersContext context)
+        public UserRepository(PageTurnersContext context, 
+            UserManager<User> userManager, 
+            RoleManager<IdentityRole> roleManager)
         {
+            this.userManager = userManager;
+            this.roleManager = roleManager;
             _context = context;
         }
 
@@ -26,10 +33,26 @@ namespace PageTurners.Repositories.Repos
             return _context.Users.FirstOrDefault(user => user.Id == id);
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task <IEnumerable<UserReadDto>> GetAll()
         {
             var users = _context.Users.ToList();
-            return users;
+            var usersDto = new List<UserReadDto>();
+
+            foreach (var user in users)
+            {
+                var roles = await userManager.GetRolesAsync(user);
+                usersDto.Add(
+                    new UserReadDto
+                    {
+                        Id = user.Id,
+                        Email = user.Email,
+                        Name = user.Name,
+                        Login = user.Login,
+                        IsConfirmed = user.EmailConfirmed,
+                        Roles = roles.ToList()
+            });
+            }
+            return usersDto;
         }
 
         public void Add(User user)
