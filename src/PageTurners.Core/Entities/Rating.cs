@@ -14,7 +14,11 @@ namespace PageTurners.Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public User User { get; set; }
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
         public Book Book { get; set; }
+        [ForeignKey(nameof(Book))]
+        public int BookId { get; set; }
         public int Value { get; set; }
     }
 

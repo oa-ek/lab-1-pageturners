@@ -18,7 +18,7 @@ namespace PageTurners.Repositories.Repos
             _context = context;
         }
 
-        public User GetById(int id)
+        public User GetById(string id)
         {
             return _context.Users.FirstOrDefault(user => user.Id == id);
         }
@@ -40,7 +40,7 @@ namespace PageTurners.Repositories.Repos
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             var user = GetById(id);
             if (user != null)

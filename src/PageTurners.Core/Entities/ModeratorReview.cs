@@ -13,12 +13,17 @@ namespace PageTurners.Core.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [ForeignKey("UserId")]
         public User User { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey("BookRequestId")]
         public BookRequest BookRequest { get; set; }
+        public int BookRequestId { get; set; }
         public string ReviewComment { get; set; }
         public string Status { get; set; }
-
-        public virtual User Moderator { get; set; }
+        [ForeignKey("ModeratorId")]
+        public User Moderator { get; set; }
+        public string ModeratorId { get; set; }
     }
 
 }

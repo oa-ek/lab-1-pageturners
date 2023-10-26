@@ -39,7 +39,7 @@ public class BookRequestController : Controller
             Genre = model.Genre,
             Desc = model.Desc,
             Edition = model.Edition,
-            UserId = 1
+            OwnerId = "1"
         };
 
         _bookRequestRepository.Add(bookRequest);

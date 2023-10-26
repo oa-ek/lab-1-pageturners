@@ -53,13 +53,13 @@ namespace PageTurners.WebApp.Controllers
         [HttpPost]
         public IActionResult AddComment(int id, string newComment)
         {
-            int userId = 1; 
+            string userId = "1"; 
 
            
             var comment = new Comments
             {
                 BookId = id,
-                UserId = userId,
+                CommentatorId = userId,
                 Comment = newComment,
                 Date = DateTime.Now
             };
@@ -135,7 +135,7 @@ namespace PageTurners.WebApp.Controllers
         [HttpPost]
         public IActionResult RateBook(int id, int ratingValue)
         {
-            int userId = 1;
+            string userId = "1";
 
        
             var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);

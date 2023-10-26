@@ -25,7 +25,6 @@ namespace PageTurners.Core.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();
 
-            // Вимкнути автоматичну генерацію таблиць Identity
             modelBuilder.Ignore<IdentityUser>();
             modelBuilder.Ignore<IdentityRole>();
             modelBuilder.Ignore<IdentityUserRole<string>>();
@@ -34,6 +33,41 @@ namespace PageTurners.Core.Context
             modelBuilder.Ignore<IdentityUserToken<string>>();
             modelBuilder.Ignore<IdentityRoleClaim<string>>();
 
+            modelBuilder.Entity<Comments>()
+            .HasOne(c => c.Сommentator)
+            .WithMany(u => u.Comment)
+            .HasForeignKey(c => c.CommentatorId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Rating>()
+            .HasOne(r => r.User)
+            .WithMany(u => u.Ratings)
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Rating>()
+            .HasOne(r => r.Book)
+            .WithMany(b => b.Ratings)
+            .HasForeignKey(r => r.BookId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<BookRequest>()
+            .HasOne(br => br.Owner)
+            .WithMany(u => u.BookRequests)
+            .HasForeignKey(br => br.OwnerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ModeratorReview>()
+            .HasOne(mr => mr.User)
+            .WithMany(u => u.Reviews)
+            .HasForeignKey(mr => mr.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ModeratorReview>()
+            .HasOne(mr => mr.Moderator)
+            .WithMany()
+            .HasForeignKey(mr => mr.ModeratorId)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -21,8 +21,10 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 4;
-    }).AddEntityFrameworkStores<PageTurnersContext>();
+    }).AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<PageTurnersContext>();
 
+builder.Services.AddScoped<UserManager<User>>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookRequestRepository, BookRequestRepository>();
 builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
