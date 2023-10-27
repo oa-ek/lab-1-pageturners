@@ -10,10 +10,11 @@ namespace PageTurners.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        User GetById(string id);
+        Task<User> Get(string id);
         Task<IEnumerable<UserReadDto>> GetAll();
-        void Add(User user);
-        void Update(User user);
+        Task<string> Create(UserCreateDto user);
+        Task Update(UserUpdateDto user, string[] roles);
+        Task<IEnumerable<string>> GetRoles();
         void Delete(string id);
     }
 }

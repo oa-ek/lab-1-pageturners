@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PageTurners.Core.Context;
 using PageTurners.Core.Entities;
 using PageTurners.Repositories.DTOs.User;
@@ -28,9 +29,9 @@ namespace PageTurners.Repositories.Repos
             _context = context;
         }
 
-        public User GetById(string id)
+        public async Task<User?> Get(string id)
         {
-            return _context.Users.FirstOrDefault(user => user.Id == id);
+            return await _context.Users.FindAsync(id);
         }
 
         public async Task <IEnumerable<UserReadDto>> GetAll()
@@ -55,16 +56,56 @@ namespace PageTurners.Repositories.Repos
             return usersDto;
         }
 
-        public void Add(User user)
+        public async Task<string> Create(UserCreateDto user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            var newUser = new User
+            {
+                Name = user.Name,
+                Email = user.Email,
+                UserName = user.Name,
+                Login = user.Login,
+                NormalizedEmail = user.Email.ToUpper(),
+                NormalizedUserName = user.Email.ToUpper(),
+                EmailConfirmed = true
+            };
+
+            await userManager.CreateAsync(newUser, user.Password);
+
+            return  _context.Users.First(x=> x.Email == user.Email).Id;
         }
 
-        public void Update(User user)
+        public async Task UpdateAsync(UserUpdateDto model, string[] roles)
         {
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+            if (user.Email != model.Email)
+            {
+                user.Email = model.Email;
+                user.UserName = model.Email;
+                user.NormalizedUserName = model.Email.ToUpper();
+                user.NormalizedEmail = model.Email.ToUpper();
+            }
+
+            if (user.Name != model.Name) user.Name = model.Name;
+            if (user.Login != model.Login) user.Login = model.Login;
+            if (user.EmailConfirmed != model.IsConfirmed) user.EmailConfirmed = model.IsConfirmed;
+
+            if ((await userManager.GetRolesAsync(user)).Any())
+            {
+                await userManager.RemoveFromRolesAsync(user, await userManager.GetRolesAsync(user));
+            }
+
+            if (roles.Any())
+            {
+                await userManager.AddToRolesAsync(user, roles.ToList());
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string?>> GetRoles()
+        {
+            return _context.Roles.Select(x => x.Name).ToList();
         }
 
         public void Delete(string id)
