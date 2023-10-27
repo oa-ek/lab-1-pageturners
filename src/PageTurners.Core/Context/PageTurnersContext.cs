@@ -18,6 +18,7 @@ namespace PageTurners.Core.Context
             : base(options)
         {
             Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

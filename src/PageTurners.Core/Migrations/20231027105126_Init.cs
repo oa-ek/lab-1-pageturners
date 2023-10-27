@@ -30,11 +30,11 @@ namespace PageTurners.Core.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -345,9 +345,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "154af4fe-ac56-4abf-8dc1-5ad7757265eb", "90817021-7924-428d-ac67-8de0819158d3", "Admin", "ADMIN" },
-                    { "66d461eb-bf1b-49d8-8052-aff6997ea212", "526b3828-00f0-4abd-a071-c30de21c75af", "Moderator", "MODERATOR" },
-                    { "a106233d-6500-48d0-8b04-59de002a0479", "537b2a09-9859-45f1-8a57-8b1efbb49053", "Reader", "READER" }
+                    { "36833a72-f25c-4bd6-81bf-169c3b0c9f3d", "f56e7f99-c88a-4e96-9b4a-bd2338cc756c", "Moderator", "MODERATOR" },
+                    { "458f5dd2-1bb1-476b-8570-341aa02e174f", "a01da0ad-7609-4c88-992c-f2b9fa0a6ba9", "Admin", "ADMIN" },
+                    { "54efd5ff-1fc7-4772-9430-f3bb56bebe08", "9561f4d7-e6d1-4f5c-93c8-fc64c7180b90", "Reader", "READER" }
                 });
 
             migrationBuilder.InsertData(
@@ -355,9 +355,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Login", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1e929b4a-246c-445d-ac7b-ec79df6a8ddc", 0, "48a6c097-7c67-4d61-b9cd-8a1c9777847e", new DateTime(2052, 10, 27, 11, 33, 45, 661, DateTimeKind.Local).AddTicks(7009), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAEAACcQAAAAECKfnixRMITwQ3pdIBOekIlYZ0PBp9ZdbqNwUuymy+iz2dAir5YhVk8Cg4wl7Ps8ww==", null, false, null, "9f4efa6d-02ee-4b00-abea-b2e9e2e9baa2", false, "admin@pageturners.com" },
-                    { "24fc5e10-0011-4b63-a3a5-0e71184e5575", 0, "a90c9432-0f6b-4aa8-bfc1-272d440527e9", new DateTime(2044, 10, 27, 11, 33, 45, 661, DateTimeKind.Local).AddTicks(7078), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEHTsNEzwGyf1FqWuKca09MFYoZqMWS3mnK+DgA8DRuk99FzDn9nOtYqGAM3yUaeFxA==", null, false, null, "85537e13-3e17-4103-ab81-ebe1ec1951fb", false, "reader@pageturners.com" },
-                    { "a1cae370-a88e-41e9-9fe7-c04d309cd976", 0, "1284bdde-c75e-4cea-b02e-73427b01fbd7", new DateTime(2044, 10, 27, 11, 33, 45, 661, DateTimeKind.Local).AddTicks(7066), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAEAACcQAAAAELo12eLPeZaOhbfzNaPpA0y0u5jICV8piAJ7ISZotVCJtuyQtIcEAn1GaeRIPUOzqg==", null, false, null, "6aeb62aa-6121-4399-b293-f98065458d10", false, "moderator@pageturners.com" }
+                    { "1243de55-f009-443c-8043-0acd37d5524a", 0, "1331c5ae-4bcb-4faa-be03-c1db3a78af61", new DateTime(2044, 10, 27, 13, 51, 26, 517, DateTimeKind.Local).AddTicks(4440), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEJw2JRcElmTURHGPbzQdm28mSQLiXWwpwKDAOHZdp1g6gH11QB/Kz3J12zgaotafTw==", null, false, null, "ee5a7590-1732-4f59-9c0d-e7d188e31626", false, "moderator@pageturners.com" },
+                    { "28898105-c650-41ef-93ed-e3c4eb349558", 0, "1f1d0d19-8412-451e-99db-a67545932cb1", new DateTime(2044, 10, 27, 13, 51, 26, 517, DateTimeKind.Local).AddTicks(4447), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEEhuAWUuk6rB4v2UDX/N1vKMuqlZLggvwFASBzx23zOVBRqBF+i6Z8JCZKFdCjHUrw==", null, false, null, "4344b155-e7a4-4843-9cae-7f4c2867ec2d", false, "reader@pageturners.com" },
+                    { "b6fc3a3e-0111-448f-bad6-f7e149bc0dcb", 0, "a95b1b0c-1a6e-48e7-98af-7b368e4d40fb", new DateTime(2052, 10, 27, 13, 51, 26, 517, DateTimeKind.Local).AddTicks(4401), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAEAACcQAAAAEHpYYgJIazh5wRemxU0CzGzxhULdX9PYkeyANC/ZWv0GVCxv6BBCl2j0REdcoHpnLw==", null, false, null, "c7449108-7771-4d9e-a690-f2fb5a986bfa", false, "admin@pageturners.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -376,12 +376,12 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "154af4fe-ac56-4abf-8dc1-5ad7757265eb", "1e929b4a-246c-445d-ac7b-ec79df6a8ddc" },
-                    { "66d461eb-bf1b-49d8-8052-aff6997ea212", "1e929b4a-246c-445d-ac7b-ec79df6a8ddc" },
-                    { "154af4fe-ac56-4abf-8dc1-5ad7757265eb", "24fc5e10-0011-4b63-a3a5-0e71184e5575" },
-                    { "66d461eb-bf1b-49d8-8052-aff6997ea212", "24fc5e10-0011-4b63-a3a5-0e71184e5575" },
-                    { "a106233d-6500-48d0-8b04-59de002a0479", "24fc5e10-0011-4b63-a3a5-0e71184e5575" },
-                    { "66d461eb-bf1b-49d8-8052-aff6997ea212", "a1cae370-a88e-41e9-9fe7-c04d309cd976" }
+                    { "36833a72-f25c-4bd6-81bf-169c3b0c9f3d", "1243de55-f009-443c-8043-0acd37d5524a" },
+                    { "36833a72-f25c-4bd6-81bf-169c3b0c9f3d", "28898105-c650-41ef-93ed-e3c4eb349558" },
+                    { "458f5dd2-1bb1-476b-8570-341aa02e174f", "28898105-c650-41ef-93ed-e3c4eb349558" },
+                    { "54efd5ff-1fc7-4772-9430-f3bb56bebe08", "28898105-c650-41ef-93ed-e3c4eb349558" },
+                    { "36833a72-f25c-4bd6-81bf-169c3b0c9f3d", "b6fc3a3e-0111-448f-bad6-f7e149bc0dcb" },
+                    { "458f5dd2-1bb1-476b-8570-341aa02e174f", "b6fc3a3e-0111-448f-bad6-f7e149bc0dcb" }
                 });
 
             migrationBuilder.InsertData(
@@ -389,8 +389,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "BookId", "Comment", "CommentatorId", "Date" },
                 values: new object[,]
                 {
-                    { 1, 3, "Дуже цікава історія!", "1e929b4a-246c-445d-ac7b-ec79df6a8ddc", new DateTime(2023, 10, 27, 11, 33, 45, 666, DateTimeKind.Local).AddTicks(6839) },
-                    { 2, 1, "Трохи нудно...", "a1cae370-a88e-41e9-9fe7-c04d309cd976", new DateTime(2023, 10, 27, 11, 33, 45, 666, DateTimeKind.Local).AddTicks(6858) }
+                    { 1, 3, "Дуже цікава історія!", "b6fc3a3e-0111-448f-bad6-f7e149bc0dcb", new DateTime(2023, 10, 27, 13, 51, 26, 521, DateTimeKind.Local).AddTicks(6748) },
+                    { 2, 1, "Трохи нудно...", "1243de55-f009-443c-8043-0acd37d5524a", new DateTime(2023, 10, 27, 13, 51, 26, 521, DateTimeKind.Local).AddTicks(6786) }
                 });
 
             migrationBuilder.InsertData(
@@ -398,8 +398,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "Author", "DatePubl", "Desc", "Edition", "Genre", "OwnerId", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Юлія Лабурнум", null, null, null, null, "a1cae370-a88e-41e9-9fe7-c04d309cd976", "Лабіринт часу" },
-                    { 2, "Андрій Землянський", null, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "1e929b4a-246c-445d-ac7b-ec79df6a8ddc", "Спадщина Марса" }
+                    { 1, "Юлія Лабурнум", null, null, null, null, "1243de55-f009-443c-8043-0acd37d5524a", "Лабіринт часу" },
+                    { 2, "Андрій Землянський", null, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "b6fc3a3e-0111-448f-bad6-f7e149bc0dcb", "Спадщина Марса" }
                 });
 
             migrationBuilder.CreateIndex(
