@@ -91,16 +91,16 @@ namespace PageTurners.Core.Context
                     );
         }
 
-        static (string, string, string) seedUsersAndRoles (ModelBuilder builder)
+        static (string, string, string) seedUsersAndRoles(ModelBuilder builder)
         {
             string ADMIN_ROLE_ID = Guid.NewGuid().ToString();
             string MODERATOR_ROLE_ID = Guid.NewGuid().ToString();
             string READER_ROLE_ID = Guid.NewGuid().ToString();
 
             builder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Id = ADMIN_ROLE_ID, Name= "Admin", NormalizedName = "ADMIN" },
-                new IdentityRole { Id = MODERATOR_ROLE_ID, Name= "Moderator", NormalizedName = "MODERATOR" },
-                new IdentityRole { Id = READER_ROLE_ID, Name= "Reader", NormalizedName = "READER" }
+                new IdentityRole { Id = ADMIN_ROLE_ID, Name = "Admin", NormalizedName = "ADMIN" },
+                new IdentityRole { Id = MODERATOR_ROLE_ID, Name = "Moderator", NormalizedName = "MODERATOR" },
+                new IdentityRole { Id = READER_ROLE_ID, Name = "Reader", NormalizedName = "READER" }
                 );
 
             string ADMIN_ID = Guid.NewGuid().ToString();
@@ -117,7 +117,7 @@ namespace PageTurners.Core.Context
                 Name = "Іван Сергійович",
                 Login = "ivan123",
                 NormalizedEmail = "ADMIN@PAGETURNERS.COM",
-                NormalizedUserName = "ADMIN@PAGETURNERS.COM"
+                NormalizedUserName = "ADMIN@PAGETURNERS.COM",
             };
 
             var moderator = new User
@@ -154,6 +154,7 @@ namespace PageTurners.Core.Context
             builder.Entity<User>().HasData(admin, moderator, reader);
 
             builder.Entity<IdentityUserRole<string>>().HasData(
+
                 new IdentityUserRole<string>
                 {
                     RoleId = ADMIN_ROLE_ID,
@@ -161,8 +162,8 @@ namespace PageTurners.Core.Context
                 },
                 new IdentityUserRole<string>
                 {
-                    RoleId = ADMIN_ROLE_ID,
-                    UserId = MODERATOR_ID
+                    RoleId = MODERATOR_ROLE_ID,
+                    UserId = ADMIN_ID
                 },
                 new IdentityUserRole<string>
                 {
@@ -171,20 +172,19 @@ namespace PageTurners.Core.Context
                 },
                 new IdentityUserRole<string>
                 {
-                    RoleId = READER_ROLE_ID,
+                    RoleId = MODERATOR_ROLE_ID,
+                    UserId = READER_ID
+                },
+                new IdentityUserRole<string>
+                {
+                    RoleId = ADMIN_ROLE_ID,
                     UserId = READER_ID
                 },
                 new IdentityUserRole<string>
                 {
                     RoleId = READER_ROLE_ID,
-                    UserId = MODERATOR_ID
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId = READER_ROLE_ID,
-                    UserId = ADMIN_ID
-                }
-                );
+                    UserId = READER_ID
+                });
             return (ADMIN_ID, MODERATOR_ID, READER_ID);
         }
 

@@ -11,7 +11,7 @@ namespace PageTurners.Core.Context
         public DbSet<BookRequest> Requests => Set<BookRequest>();
         public DbSet<ModeratorReview> Reviews => Set<ModeratorReview>();
         public DbSet<Rating> Ratings => Set<Rating>();
-        public DbSet<User> Users => Set<User>();
+        /*public DbSet<User> Users => Set<User>();*/
         public DbSet<Comments> Comment => Set<Comments>();
 
         public PageTurnersContext(DbContextOptions<PageTurnersContext> options)
@@ -22,8 +22,6 @@ namespace PageTurners.Core.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Seed();
 
             /*modelBuilder.Ignore<IdentityUserClaim<string>>();
             modelBuilder.Ignore<IdentityUser>();
@@ -69,6 +67,7 @@ namespace PageTurners.Core.Context
             .HasForeignKey(mr => mr.ModeratorId)
             .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
     }
