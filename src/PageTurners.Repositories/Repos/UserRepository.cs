@@ -29,34 +29,34 @@ namespace PageTurners.Repositories.Repos
             _context = context;
         }
 
-        public async Task<User?> Get(string id)
+        public async Task<UserReadDto> GetAsync(string id)
         {
-            return await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
+            var roles = await userManager.GetRolesAsync(user);
+            return
+                new UserReadDto
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    Name = user.Name,
+                    Login = user.Login,
+                    IsConfirmed = user.EmailConfirmed,
+                    Roles = roles.ToList()
+                };
         }
 
-        public async Task <IEnumerable<UserReadDto>> GetAll()
+        public async Task <IEnumerable<UserReadDto>> GetAllAsync()
         {
-            var users = _context.Users.ToList();
+            var userIds = _context.Users.Select(x=>x.Id).ToList();
             var usersDto = new List<UserReadDto>();
 
-            foreach (var user in users)
-            {
-                var roles = await userManager.GetRolesAsync(user);
-                usersDto.Add(
-                    new UserReadDto
-                    {
-                        Id = user.Id,
-                        Email = user.Email,
-                        Name = user.Name,
-                        Login = user.Login,
-                        IsConfirmed = user.EmailConfirmed,
-                        Roles = roles.ToList()
-            });
-            }
+            foreach (var id in userIds)
+                usersDto.Add(await GetAsync(id));
+
             return usersDto;
         }
 
-        public async Task<string> Create(UserCreateDto user)
+        public async Task<string> CreateAsync(UserCreateDto user)
         {
             var newUser = new User
             {
@@ -74,7 +74,7 @@ namespace PageTurners.Repositories.Repos
             return  _context.Users.First(x=> x.Email == user.Email).Id;
         }
 
-        public async Task UpdateAsync(UserUpdateDto model, string[] roles)
+        public async Task UpdateAsync(UserReadDto model, string[] roles)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == model.Id);
 
@@ -103,19 +103,19 @@ namespace PageTurners.Repositories.Repos
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<string?>> GetRoles()
+        public async Task<IEnumerable<string?>> GetRolesAsync()
         {
             return _context.Roles.Select(x => x.Name).ToList();
         }
 
-        public void Delete(string id)
+        public async Task DeleteAsync(string id)
         {
-            var user = GetById(id);
-            if (user != null)
+            var user = _context.Users.Find(id);
+            if ((await userManager.GetRolesAsync(user)).Any())
             {
-                _context.Users.Remove(user);
-                _context.SaveChanges();
+                await userManager.RemoveFromRolesAsync(user, await userManager.GetRolesAsync(user));
             }
+            await userManager.DeleteAsync(user);
         }
     }
 

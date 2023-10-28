@@ -19,7 +19,7 @@ namespace PageTurners.WebApp.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            return View(await userRepository.GetAll());
+            return View(await userRepository.GetAllAsync());
         }
 
         [Authorize(Roles = "Admin")]
@@ -35,7 +35,7 @@ namespace PageTurners.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-               var userId = await userRepository.Create(model);
+               var userId = await userRepository.CreateAsync(model);
                return RedirectToAction("Edit", new { id = userId });
             }
            return View(model);
@@ -44,23 +44,14 @@ namespace PageTurners.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var userUpdate = (await userRepository.Get(id);
-            var user = new UserUpdateDto
-            {
-                Email = x.Email,
-                Name = x.Name,
-                Login = x.Login,
-                Id = x.Id,
-                IsConfirmed = x.IsConfirmed,
-                Roles = await userRepository.GetRoles()
-            };
-            return View(user);
+            ViewBag.Roles = await userRepository.GetRolesAsync();
+            var userUpdate = await userRepository.GetAsync(id);
+            return View(userUpdate);
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [AutoValidateAntiforgeryToken]
-
-        public async Task<IActionResult> Edit(UserUpdateDto model, string[] roles)
+        public async Task<IActionResult> Edit(UserReadDto model, string[] roles)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +60,20 @@ namespace PageTurners.WebApp.Controllers
             }
             ViewBag.Roles = await userRepository.GetRolesAsync();
             return View(model);
-        }*/
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            return View(await userRepository.GetAsync(id));
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> ConfirmDelete(string id)
+        {
+            await userRepository.DeleteAsync(id);
+            return RedirectToAction("Index");
+        }
     }
 }

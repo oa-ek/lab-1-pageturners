@@ -1,0 +1,17 @@
+﻿﻿@using PageTurners.Repositories.DTOs.User
+@model UserReadDto
+
+<h1>Видалити користувача?</h1>
+<hr />
+
+<p>@Model.Name</p>
+<p>@Model.Login</p>
+<p>@Model.Email</p>
+
+<hr />
+<form asp-action="ConfirmDelete" class="col-md-4">
+    @Html.AntiForgeryToken()
+    <input asp-for="Id" type="hidden" />
+    <button type="submit" class="btn btn-danger">Видалити користувача!</button>
+    <a href="/user/index" class="btn btn-outline-dark">Повернутися до списку / Відмінити</a>
+</form>
