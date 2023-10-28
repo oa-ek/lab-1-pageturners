@@ -1,7 +1,11 @@
 ﻿﻿@using PageTurners.Repositories.DTOs.User
 @using Microsoft.AspNetCore.Identity
 
-@model UserUpdateDto
+@model UserReadDto
+
+@{
+    var roles = ViewBag.Roles as IEnumerable<string>;
+}
 
 <div class="float-end">
     <a href="/user/index" class="btn btn-outline-dark">Повернутися до списку</a>
@@ -33,7 +37,7 @@
         <div class="mb-3">
             <label asp-for="Roles" class="form-label"></label>
             <select class="form-select" size="3" id="roles" name="roles" multiple>
-                @foreach (var r in Model.Roles)
+                @foreach (var r in roles)
                 {
                     var selected = @Model.Roles.Any(x => x == r) ? true : false;
                     <!option value="@r" @(selected ? "selected" : "")>@r</!option>
