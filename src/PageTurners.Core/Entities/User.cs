@@ -17,10 +17,10 @@ namespace PageTurners.Core.Entities
         public string? Photo { get; set; }
 
       //  [InverseProperty("UsersReadBooks")]
-        public virtual ICollection<Book> ReadBooks { get; set; }
+        public virtual ICollection<UserBook> ReadBooks { get; set; }
 
      //   [InverseProperty("UsersReadLater")]
-        public virtual ICollection<Book> ToReadList { get; set; }
+        public virtual ICollection<UserBook> ToReadList { get; set; }
 
         public virtual ICollection<BookRequest> BookRequests { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }

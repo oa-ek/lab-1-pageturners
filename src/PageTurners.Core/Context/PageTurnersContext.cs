@@ -32,6 +32,27 @@ namespace PageTurners.Core.Context
             modelBuilder.Ignore<IdentityUserToken<string>>();
             modelBuilder.Ignore<IdentityRoleClaim<string>>();*/
 
+            // Ігноруємо відношення User.ReadBooks, якщо воно конфліктує з User.ToReadList
+            modelBuilder.Entity<User>()
+                .Ignore(u => u.ReadBooks);
+
+            // Визначення відносин між таблицями
+            modelBuilder.Entity<UserBook>()
+                .HasKey(ub => new { ub.UserId, ub.BookId });
+
+            modelBuilder.Entity<UserBook>()
+                .HasOne(ub => ub.User)
+                .WithMany(u => u.ToReadList)
+                .HasForeignKey(ub => ub.UserId);
+
+            modelBuilder.Entity<UserBook>()
+                .HasOne(ub => ub.Book)
+                .WithMany(b => b.UsersReadLater)
+                .HasForeignKey(ub => ub.BookId);
+
+
+
+
             modelBuilder.Entity<Comments>()
             .HasOne(c => c.Commentator)
             .WithMany(u => u.Comment)

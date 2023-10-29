@@ -24,9 +24,9 @@ namespace PageTurners.Core.Entities
         
         public virtual ICollection<Comments> Comment { get; set; }
     //    [InverseProperty("UsersReadBooks")]
-        public virtual ICollection<User> UsersReadBooks { get; set; }
+        public virtual ICollection<UserBook> UsersReadBooks { get; set; }
       //  [InverseProperty("UsersReadLater")]
-        public virtual ICollection<User> UsersReadLater { get; set; }
+        public virtual ICollection<UserBook> UsersReadLater { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
     }
 }
