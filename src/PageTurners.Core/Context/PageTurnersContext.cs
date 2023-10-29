@@ -33,7 +33,7 @@ namespace PageTurners.Core.Context
             modelBuilder.Ignore<IdentityRoleClaim<string>>();*/
 
             modelBuilder.Entity<Comments>()
-            .HasOne(c => c.Сommentator)
+            .HasOne(c => c.Commentator)
             .WithMany(u => u.Comment)
             .HasForeignKey(c => c.CommentatorId)
             .OnDelete(DeleteBehavior.Restrict);
