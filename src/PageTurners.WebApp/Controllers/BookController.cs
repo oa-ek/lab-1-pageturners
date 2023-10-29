@@ -13,12 +13,22 @@ namespace PageTurners.WebApp.Controllers
     public class BookController : Controller
     {
         private readonly IBookRepository bookRepository;
-        private readonly PageTurnersContext _dbContext;
+        private readonly ICommentsRepository commentsRepository;
+        private readonly IRatingRepository ratingRepository;
+        private readonly IUserRepository userRepository;
+        /*private readonly PageTurnersContext _dbContext;*/
 
-        public BookController(IBookRepository bookRepository, PageTurnersContext dbContext)
+        public BookController(IBookRepository bookRepository, 
+            ICommentsRepository commentsRepository,
+            IRatingRepository ratingRepository,
+            IUserRepository userRepository
+            /*PageTurnersContext dbContext*/)
         {
             this.bookRepository = bookRepository;
-            _dbContext = dbContext;
+            /*_dbContext = dbContext;*/
+            this.commentsRepository = commentsRepository;
+            this.ratingRepository = ratingRepository;
+            this.userRepository = userRepository;
         }
 
 
@@ -29,22 +39,20 @@ namespace PageTurners.WebApp.Controllers
 
         public IActionResult Details(int id)
         {
-            var book = _dbContext.Books
-                .Include(b => b.Comment)
-                .Include(b => b.Ratings)
-                .ThenInclude(r => r.User)
-                .FirstOrDefault(b => b.Id == id);
-
+            var book = bookRepository.GetById(id);
             if (book == null)
             {
                 return NotFound();
             }
 
+            var comment = commentsRepository.GetAllForBook(id);
+            var rating = ratingRepository.GetAllForBook(id);
+
             double? averageRating = book.Ratings?.Any() == true ? book.Ratings.Average(r => r.Value) : null;
 
             book.AverageRating = averageRating;
 
-            _dbContext.SaveChanges();
+            bookRepository.Update(book);
 
             return View(book);
         }
@@ -64,8 +72,7 @@ namespace PageTurners.WebApp.Controllers
                 Date = DateTime.Now
             };
 
-            _dbContext.Comment.Add(comment);
-            _dbContext.SaveChanges();
+            commentsRepository.Add(comment);
 
             return RedirectToAction("Details", new { id });
         }
@@ -122,49 +129,43 @@ namespace PageTurners.WebApp.Controllers
         [HttpPost]
         public IActionResult DeleteComment(int commentId)
         {
-            var comment = _dbContext.Comment.FirstOrDefault(c => c.Id == commentId);
+            var comment = commentsRepository.GetById(commentId);
             if (comment != null)
             {
-                _dbContext.Comment.Remove(comment);
-                _dbContext.SaveChanges();
+                commentsRepository.Delete(commentId);
             }
             return RedirectToAction("Details", new { id = comment.BookId });
         }
 
 
         [HttpPost]
-        public IActionResult RateBook(int id, int ratingValue)
+        public async Task<IActionResult> RateBook(int id, int ratingValue)
         {
             string userId = "1";
 
-       
-            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
+
+            var book = bookRepository.GetById(id);
 
             if (book == null)
             {
                 return NotFound(); 
             }
 
+            var user = await userRepository.GetAsync(userId);
            
             var rating = new Rating
             {
-                User = _dbContext.Users.FirstOrDefault(u => u.Id == userId),
+                UserId = user.Id,
                 Book = book,
                 Value = ratingValue
             };
 
           
-            _dbContext.Ratings.Add(rating);
-            _dbContext.SaveChanges();
+            ratingRepository.Add(rating);
 
             
             return RedirectToAction("Details", new { id });
         }
-
-
-      
-
-
     }
 }
 

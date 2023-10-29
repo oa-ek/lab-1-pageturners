@@ -11,7 +11,7 @@ namespace PageTurners.Repositories.Repos
 {
     public class RatingRepository : IRatingRepository
     {
-        private PageTurnersContext _context;
+        private readonly PageTurnersContext _context;
 
         public RatingRepository(PageTurnersContext context)
         {
@@ -48,6 +48,13 @@ namespace PageTurners.Repositories.Repos
                 _context.Ratings.Remove(rating);
                 _context.SaveChanges();
             }
+        }
+
+        public IEnumerable<Rating> GetAllForBook(int bookId)
+        {
+            return _context.Ratings
+                .Where(r => r.BookId == bookId)
+                .ToList();
         }
     }
 

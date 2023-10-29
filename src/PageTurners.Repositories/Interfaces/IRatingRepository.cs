@@ -14,5 +14,6 @@ namespace PageTurners.Repositories.Interfaces
         void Add(Rating rating);
         void Update(Rating rating);
         void Delete(int id);
+        IEnumerable<Rating> GetAllForBook(int bookId);
     }
 }

@@ -21,7 +21,9 @@ namespace PageTurners.Core.Entities
         public double? AverageRating { get; set; }
         public int DatePubl { get; set; }
         public virtual ICollection<Comments> Comment { get; set; }
+        [InverseProperty("UsersReadBooks")]
         public virtual ICollection<User> UsersReadBooks { get; set; }
+        [InverseProperty("UsersReadLater")]
         public virtual ICollection<User> UsersReadLater { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
     }

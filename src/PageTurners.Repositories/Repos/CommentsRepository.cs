@@ -11,7 +11,7 @@ namespace PageTurners.Repositories.Repos
 {
     public class CommentsRepository : ICommentsRepository
     {
-        private PageTurnersContext _context;
+        private readonly PageTurnersContext _context;
 
         public CommentsRepository(PageTurnersContext context)
         {
@@ -49,6 +49,14 @@ namespace PageTurners.Repositories.Repos
                 _context.SaveChanges();
             }
         }
+
+        public IEnumerable<Comments> GetAllForBook(int bookId)
+        {
+            return _context.Comment
+                .Where(c => c.BookId == bookId)
+                .ToList();
+        }
+
     }
 
 }

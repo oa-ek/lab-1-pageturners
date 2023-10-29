@@ -11,7 +11,7 @@ namespace PageTurners.Repositories.Repos
 {
     public class BookRequestRepository : IBookRequestRepository
     {
-        private PageTurnersContext _context;
+        private readonly PageTurnersContext _context;
 
         public BookRequestRepository(PageTurnersContext context)
         {

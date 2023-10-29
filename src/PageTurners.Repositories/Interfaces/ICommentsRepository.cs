@@ -14,5 +14,6 @@ namespace PageTurners.Repositories.Interfaces
         void Add(Comments comment);
         void Update(Comments comment);
         void Delete(int id);
+        IEnumerable<Comments> GetAllForBook(int bookId);
     }
 }

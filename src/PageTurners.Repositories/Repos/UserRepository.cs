@@ -16,7 +16,7 @@ namespace PageTurners.Repositories.Repos
 {
     public class UserRepository : IUserRepository
     {
-        private PageTurnersContext _context;
+        private readonly PageTurnersContext _context;
         private readonly UserManager<User> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
 

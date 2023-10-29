@@ -4,23 +4,24 @@ using Microsoft.EntityFrameworkCore;
 using PageTurners.Core.Context;
 using PageTurners.Core.Entities;
 using PageTurners.Repositories.Interfaces;
+using PageTurners.Repositories.Repos;
 using System.Collections.Generic;
 using System.IO;
 
 public class BookRequestController : Controller
 {
-    private readonly IBookRequestRepository _bookRequestRepository;
-    private readonly PageTurnersContext _dbContext;
+    private readonly IBookRequestRepository bookRequestRepository;
+    /*private readonly PageTurnersContext _dbContext;*/
 
-    public BookRequestController(IBookRequestRepository bookRequestRepository, PageTurnersContext dbContext)
+    public BookRequestController(IBookRequestRepository bookRequestRepository /*PageTurnersContext dbContext*/)
     {
-        _bookRequestRepository = bookRequestRepository;
-        _dbContext = dbContext;
+        this.bookRequestRepository = bookRequestRepository;
+        /*_dbContext = dbContext;*/
     }
 
     public IActionResult BookRequests()
     {
-        var bookRequests = _dbContext.Requests.ToList();
+        var bookRequests = bookRequestRepository.GetAll();
         return View(bookRequests);
     }
 
@@ -43,7 +44,7 @@ public class BookRequestController : Controller
             OwnerId = "1"
         };
 
-        _bookRequestRepository.Add(bookRequest);
+        bookRequestRepository.Add(bookRequest);
 
         return RedirectToAction("Index", "Book");
     }
