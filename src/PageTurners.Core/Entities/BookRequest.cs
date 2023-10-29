@@ -22,7 +22,7 @@ namespace PageTurners.Core.Entities
         public string? Genre { get; set; }
         public string? Desc { get; set; }
         public string? Edition { get; set; }
-
+        public string OwnerId { get; set; }
         public virtual ICollection<ModeratorReview> Reviews { get; set; }
         [ForeignKey("OwnerId")]
         public User Owner { get; set; }

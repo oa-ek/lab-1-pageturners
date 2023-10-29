@@ -13,12 +13,10 @@ namespace PageTurners.Core.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        /*public User Сommentator { get; set; }
-        [ForeignKey(nameof(User))]
-        public string CommentatorId { get; set; }*/
-
+       
         [ForeignKey("CommentatorId")]
         public User Commentator { get; set; }
+        public string CommentatorId { get; set; }
 
         /*public Book Book { get; set; }
         [ForeignKey(nameof(Book))]
@@ -26,7 +24,7 @@ namespace PageTurners.Core.Entities
 
         [ForeignKey("BookId")]
         public Book Book { get; set; }
-
+        public int BookId { get; set; }
         public string Comment { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
     }
