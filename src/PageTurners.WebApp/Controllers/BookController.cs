@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using PageTurners.Core.Context;
 using Microsoft.AspNetCore.Identity;
 using PageTurners.Repositories.Repos;
+using System.Security.Claims;
+
 
 namespace PageTurners.WebApp.Controllers
 {
@@ -61,9 +63,20 @@ namespace PageTurners.WebApp.Controllers
         [HttpPost]
         public IActionResult AddComment(int id, string newComment)
         {
-            string userId = "1"; 
+            string userId; // Оголошення змінної userId
 
-           
+            // Перевірка, чи користувач авторизований
+            if (User.Identity.IsAuthenticated)
+            {
+                // Користувач авторизований, використовуйте його ID
+                userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            }
+            else
+            {
+                // Користувач не авторизований, встановіть CommentatorId, наприклад, 100
+                userId = "100"; // або інший ID для гостя
+            }
+
             var comment = new Comments
             {
                 BookId = id,
@@ -76,6 +89,8 @@ namespace PageTurners.WebApp.Controllers
 
             return RedirectToAction("Details", new { id });
         }
+
+
 
         public IActionResult Edit(int id)
         {

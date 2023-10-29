@@ -47,18 +47,7 @@
     <h4>
         @Model.AverageRating
     </h4>
-    <!--
-    <h4>Виставити рейтинг</h4>
-    <form asp-controller="Book" asp-action="RateBook" method="post">
-        <input type="hidden" asp-for="Id" value="@Model.Id" />
-        <div class="form-group">
-            <label for="ratingValue">Рейтинг (від 1 до 5):</label>
-            <input type="number" name="ratingValue" class="form-control" min="1" max="5" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Виставити рейтинг</button>
-    </form>
-    --->
-
+   
 
     <h4>Виставити рейтинг</h4>
     <form asp-controller="Book" asp-action="RateBook" method="post">
@@ -136,9 +125,22 @@
         @foreach (var comment in Model.Comment)
         {
             <li class="list-group-item">
+            <li class="list-group-item">
                 <div>
-                    <strong>@comment.Commentator.Name</strong> (@comment.Date.ToString("dd.MM.yyyy HH:mm")):
+                        @if (comment.Commentator != null)
+                        {
+                        <strong>@comment.Commentator.Name</strong>
+                            @($"({comment.Date.ToString("dd.MM.yyyy HH:mm")})")
+                        }
+                        else
+                        {
+                        <strong>Автор відсутній</strong>
+                        }
                 </div>
+
+            </li>
+
+
                 <div>
                     @comment.Comment
                 </div>
