@@ -74,7 +74,7 @@ namespace PageTurners.WebApp.Controllers
             else
             {
                 // Користувач не авторизований, встановіть CommentatorId, наприклад, 100
-                userId = "100"; // або інший ID для гостя
+                userId = "393763d6-1a19-4c79-ab03-5f6ec6b9b38c"; // або інший ID для гостя
             }
 
             var comment = new Comments
