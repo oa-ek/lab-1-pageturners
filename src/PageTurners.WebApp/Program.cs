@@ -8,10 +8,10 @@ using PageTurners.Repositories.Repos;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<PageTurnersContext>(options =>
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<PageTurnersContext>(options =>
     options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+    builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options =>
 {
@@ -21,10 +21,18 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 4;
-    }).AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<PageTurnersContext>();
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<PageTurnersContext>()
+.AddSignInManager<SignInManager<User>>();
+
+
+
 
 /*builder.Services.AddScoped<UserManager<User>>();*/
+
+
+
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookRequestRepository, BookRequestRepository>();
 builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();

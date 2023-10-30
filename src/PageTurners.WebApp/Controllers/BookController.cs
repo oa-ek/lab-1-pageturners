@@ -63,18 +63,18 @@ namespace PageTurners.WebApp.Controllers
         [HttpPost]
         public IActionResult AddComment(int id, string newComment)
         {
-            string userId; // Оголошення змінної userId
+            string userId;
 
             // Перевірка, чи користувач авторизований
             if (User.Identity.IsAuthenticated)
             {
-                // Користувач авторизований, використовуйте його ID
+               
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             }
             else
             {
-                // Користувач не авторизований, встановіть CommentatorId, наприклад, 100
-                userId = "393763d6-1a19-4c79-ab03-5f6ec6b9b38c"; // або інший ID для гостя
+                // Користувач не авторизований
+                userId = "393763d6-1a19-4c79-ab03-5f6ec6b9b38c"; 
             }
 
             var comment = new Comments
@@ -156,31 +156,38 @@ namespace PageTurners.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> RateBook(int id, int ratingValue)
         {
-            string userId = "1";
-
-
-            var book = bookRepository.GetById(id);
-
-            if (book == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return NotFound(); 
+                // Отримання ідентифікатора користувача
+                string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                var book = bookRepository.GetById(id);
+
+                if (book == null)
+                {
+                    return NotFound();
+                }
+
+                var user = await userRepository.GetAsync(userId);
+
+                var rating = new Rating
+                {
+                    UserId = user.Id,
+                    Book = book,
+                    Value = ratingValue
+                };
+
+                ratingRepository.Add(rating);
+
+                return RedirectToAction("Details", new { id });
             }
-
-            var user = await userRepository.GetAsync(userId);
-           
-            var rating = new Rating
+            else
             {
-                UserId = user.Id,
-                Book = book,
-                Value = ratingValue
-            };
-
-          
-            ratingRepository.Add(rating);
-
-            
-            return RedirectToAction("Details", new { id });
+                // Користувач не авторизований - перенаправлення на сторінку входу
+                return RedirectToAction("Create", "User");
+            }
         }
+
     }
 }
 
