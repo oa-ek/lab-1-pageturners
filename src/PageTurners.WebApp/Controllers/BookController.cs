@@ -8,6 +8,7 @@ using PageTurners.Core.Context;
 using Microsoft.AspNetCore.Identity;
 using PageTurners.Repositories.Repos;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace PageTurners.WebApp.Controllers
@@ -142,6 +143,7 @@ namespace PageTurners.WebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult DeleteComment(int commentId)
         {
             var comment = commentsRepository.GetById(commentId);
@@ -151,6 +153,7 @@ namespace PageTurners.WebApp.Controllers
             }
             return RedirectToAction("Details", new { id = comment.BookId });
         }
+
 
 
         [HttpPost]
