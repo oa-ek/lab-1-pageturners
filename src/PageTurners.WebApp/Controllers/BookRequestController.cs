@@ -10,6 +10,7 @@ using System.IO;
 
 public class BookRequestController : Controller
 {
+    private readonly IBookRepository bookRepository;
     private readonly IBookRequestRepository bookRequestRepository;
     /*private readonly PageTurnersContext _dbContext;*/
 
@@ -30,6 +31,22 @@ public class BookRequestController : Controller
         return View("Create");
     }
 
+   /* [HttpPost]
+    [Authorize(Roles = "Moderator")]
+    public IActionResult PublishBook(int bookId)
+    {
+        var book = bookRepository.GetById(bookId);
+
+        if (book != null)
+        {
+            book.IsPublished = true; // Опублікувати книгу
+            BookRequestRepository.Update(book); // Позначити зміни
+            return RedirectToAction("Index");
+        }
+        return NotFound();
+    }
+   */
+
     [HttpPost]
     public IActionResult Create(BookRequest model, List<int> selectedCategories)
     {
@@ -47,6 +64,8 @@ public class BookRequestController : Controller
         bookRequestRepository.Add(bookRequest);
 
         return RedirectToAction("Index", "Book");
+
+
     }
 }
 
