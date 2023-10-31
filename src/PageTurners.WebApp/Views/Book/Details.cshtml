@@ -9,8 +9,8 @@
 
 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
 {
-    <a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати цю книгу</a>
-    <a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Видалити</a>
+    <a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id" class="btn-custom">Редагувати цю книгу</a>
+    <a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id" class="btn-custom-danger">Видалити</a>
 }
 
 <div class="container">
@@ -63,7 +63,7 @@
             </div>
             <input type="hidden" id="selected-rating" name="ratingValue" />
         </div>
-        <button type="submit" class="btn btn-primary">Виставити рейтинг</button>
+        <button type="submit" class="btn-custom">Виставити рейтинг</button>
     </form>
 
 
@@ -157,7 +157,7 @@
                     {
                     <form asp-action="DeleteComment" method="post">
                         <input type="hidden" name="commentId" value="@comment.Id" />
-                        <button type="submit" class="btn btn-danger">Видалити коментар</button>
+                        <button type="submit" class="btn-custom-danger">Видалити коментар</button>
                     </form>
                     }
 
@@ -229,8 +229,47 @@ else
     <div class="form-group">
         <textarea name="newComment" class="form-control" rows="4"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Додати коментар</button>
+    <button type="submit" class="btn-custom">Додати коментар</button>
 </form>
 
 
 </div>
+
+
+<style>
+    /* Основний стиль кнопок */
+    .btn-custom {
+        background-color: #FFA500; 
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #888888; /* Тінь */
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        /* Стиль кнопок при наведенні */
+        .btn-custom:hover {
+            background-color: #FF6600; 
+            transform: scale(1.05); /* Збільшує розмір кнопки на наведенні */
+        }
+
+    /* DANGER стиль кнопок */
+    .btn-custom-danger {
+        background-color: #bd1d08; 
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #888888; 
+        padding: 10px 20px; 
+        transition: background-color 0.3s, transform 0.2s;
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        .btn-custom-danger:hover {
+            background-color: #851e10; 
+            transform: scale(1.05);
+        }
+
+</style>

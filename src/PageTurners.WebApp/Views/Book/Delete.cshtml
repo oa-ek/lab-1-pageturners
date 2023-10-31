@@ -28,8 +28,48 @@
     <form asp-action="DeleteConfirmed" method="post">
         <input type="hidden" asp-for="Id" />
         <div class="form-group">
-            <input type="submit" value="Delete" class="btn btn-danger" />
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            <input type="submit" value="Delete" class="btn-custom-danger" />
+            <a asp-action="Index" class="btn-custom">Cancel</a>
         </div>
     </form>
 </div>
+
+
+
+<style>
+    /* Основний стиль кнопок */
+    .btn-custom {
+        background-color: #FFA500;
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #888888; /* Тінь */
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        /* Стиль кнопок при наведенні */
+        .btn-custom:hover {
+            background-color: #FF6600;
+            transform: scale(1.05); /* Збільшує розмір кнопки на наведенні */
+        }
+
+    /* DANGER стиль кнопок */
+    .btn-custom-danger {
+        background-color: #bd1d08;
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #888888;
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.2s;
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        .btn-custom-danger:hover {
+            background-color: #851e10;
+            transform: scale(1.05);
+        }
+
+</style>

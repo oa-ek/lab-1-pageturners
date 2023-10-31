@@ -12,8 +12,10 @@
     }
 </style>
 
+
+
 <div class="container">
-    <h1 class="display-4">Книги для обговорення</h1>
+    <h1 class="display-4"><b>Книги для обговорення</b></h1>
     <hr />
 
     <div class="row">
@@ -25,12 +27,67 @@
                         <h5 class="card-title">@book.Title</h5>
                         <h6 class="card-subtitle mb-2 text-muted">@book.Author</h6>
                         <p class="card-text">@book.Desc</p>
-                        <a href="/book/details/@book.Id" class="btn btn-primary btn-sm">Детальніше</a>
+                        <a href="/book/details/@book.Id" class="btn-custom-details">Детальніше</a>
                     </div>
                 </div>
             </div>
         }
-        <a asp-controller="BookRequest" asp-action="Create" class="btn btn-primary">Додати книгу</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            
+            <a asp-controller="BookRequest" asp-action="Create" class="btn-custom">Додати книгу</a>
+
+        }
+
 
     </div>
 </div>
+
+<style>
+
+    body {
+        background-image: url('/images/back.jpg');
+        background-size: cover; /* Масштабування зображення, щоб воно покривало всю сторінку */
+        background-repeat: no-repeat; /* Вимкнення повторення зображення */
+        background-attachment: fixed; /* Фон залишається фіксованим під час прокручування сторінки */
+    }
+
+    /* Основний стиль кнопок */
+    .btn-custom {
+        background-color: #FFA500; /* Оранжевий колір */
+        color: #fff; /* Колір тексту */
+        border: none;
+        box-shadow: 2px 2px 4px #888888; /* Тінь */
+        padding: 10px 20px; /* Відступи */
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        /* Стиль кнопок при наведенні */
+        .btn-custom:hover {
+            background-color: #FF6600; /* Змінений колір при наведенні */
+            transform: scale(1.05); /* Збільшує розмір кнопки на наведенні */
+        }
+
+
+
+   
+    .btn-custom-details {
+        background-color: #ebc334;
+        color: #fff; 
+        border: none;
+        box-shadow: 2px 2px 4px #000000; 
+        padding: 10px 20px; 
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex;
+        align-items: center; 
+    }
+
+      
+        .btn-custom-details:hover {
+        background-color: #c99e00;
+        transform: scale(1.05); 
+        }
+
+</style>
