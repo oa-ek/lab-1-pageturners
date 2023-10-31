@@ -129,11 +129,14 @@ namespace PageTurners.WebApp.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Delete(int id)
         {
             var book = bookRepository.GetById(id);
             return View(book);
         }
+
 
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
@@ -141,6 +144,8 @@ namespace PageTurners.WebApp.Controllers
             bookRepository.Delete(id);
             return RedirectToAction("Index");
         }
+
+
 
         [HttpPost]
         [Authorize(Roles = "Admin,Moderator")]
