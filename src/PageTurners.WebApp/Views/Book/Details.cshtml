@@ -54,7 +54,7 @@
         <input type="hidden" asp-for="Id" value="@Model.Id" />
         <div class="form-group">
             <label for="ratingValue">Рейтинг (від 1 до 5):</label>
-            <div id="star-rating">
+            <div id="star-rating" class="star-rating">
                 <span class="star" data-value="1">☆</span>
                 <span class="star" data-value="2">☆</span>
                 <span class="star" data-value="3">☆</span>
@@ -63,7 +63,7 @@
             </div>
             <input type="hidden" id="selected-rating" name="ratingValue" />
         </div>
-        <button type="submit" class="btn-custom">Виставити рейтинг</button>
+        <button type="submit" class="btn-custom">Виставити</button>
     </form>
 
 
@@ -141,7 +141,7 @@
             </li>
 
 
-                <div>
+            <div class ="comment-text">
                     @comment.Comment
                 </div>
                 <div class="comment-star-rating" data-comment-id="@comment.Id">
@@ -279,5 +279,66 @@ else
             background-color: #851e10; 
             transform: scale(1.05);
         }
+
+    /* Стилі для коментарів */
+    .comment-text {
+        background-color: rgba(255, 255, 255, 0.9); /* Прозорий білий фон для тексту коментарів */
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px; /* Закруглені кути */
+        border: 1px solid #ddd; /* Рамка навколо коментарів */
+    }
+
+    .comment-star-rating {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+    }
+
+    .comment-star {
+        cursor: pointer;
+        font-size: 20px;
+        margin-right: 5px;
+        transition: color 0.3s;
+    }
+
+        .comment-star:hover {
+            color: #FFA500; /* Змінюємо колір при наведенні */
+        }
+
+    .comment-selected-rating {
+        display: none;
+    }
+
+    .comment-star-rating:before {
+        content: "Виставити рейтинг коментатору за відгук: ";
+    }
+
+    /* Стилі для зірочок рейтингу */
+    .star-rating {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .star {
+        cursor: pointer;
+        font-size: 24px;
+        margin-right: 5px;
+        transition: color 0.3s;
+    }
+
+        .star:hover {
+            color: #FFA500; /* Змінюємо колір при наведенні */
+        }
+
+    .selected-rating {
+        display: none;
+    }
+
+    .star-rating:before {
+        content: "Ваш рейтинг для цієї книги: ";
+    }
+
 
 </style>
