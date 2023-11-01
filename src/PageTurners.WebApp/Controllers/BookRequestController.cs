@@ -67,5 +67,50 @@ public class BookRequestController : Controller
 
 
     }
+
+    [Authorize(Roles = "Moderator")]
+    [HttpPost]
+    public async Task<IActionResult> PublishBook(int bookRequestId)
+    {
+        var bookRequest = await bookRequestRepository.GetByIdA(bookRequestId);
+        if (bookRequest != null)
+        {
+            // Створіть новий об'єкт Book з даними з запиту та додайте його до таблиці Books
+            var newBook = new Book
+            {
+                Title = bookRequest.Title,
+                Author = bookRequest.Author,
+                Genre = bookRequest.Genre,
+                Desc = bookRequest.Desc,
+                Edition = bookRequest.Edition,
+                DatePubl = bookRequest.DatePubl,
+                // Додайте інші дані книги за необхідності
+            };
+
+            bookRepository.Add(newBook);
+
+            // Видаліть книгу з таблиці BookRequest
+            bookRequestRepository.Delete(bookRequestId);
+
+            return RedirectToAction("BookRequests");
+        }
+
+        return NotFound();
+    }
+
+
+    // Відхилити книгу
+    [HttpPost]
+    public async Task<IActionResult> RejectBook(int bookRequestId)
+    {
+        var bookRequest = await _context.BookRequests.FindAsync(bookRequestId);
+        if (bookRequest != null)
+        {
+            _context.BookRequests.Remove(bookRequest);
+            await _context.SaveChangesAsync();
+        }
+
+        return RedirectToAction("BookRequests"); // Повернення на головну сторінку BookRequest
+    }
 }
 

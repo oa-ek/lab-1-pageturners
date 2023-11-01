@@ -1,4 +1,5 @@
-﻿using PageTurners.Core.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PageTurners.Core.Context;
 using PageTurners.Core.Entities;
 using PageTurners.Repositories.Interfaces;
 using System;
@@ -13,16 +14,22 @@ namespace PageTurners.Repositories.Repos
     {
         private readonly PageTurnersContext _context;
 
+
         public BookRequestRepository(PageTurnersContext context)
         {
             _context = context;
+        }
+
+        public async Task<BookRequest> GetByIdA(int id)
+        {
+            return await _context.Requests.FirstOrDefaultAsync(request => request.Id == id);
         }
 
         public BookRequest GetById(int id)
         {
             return _context.Requests.FirstOrDefault(request => request.Id == id);
         }
-
+    
         public IEnumerable<BookRequest> GetAll()
         {
             return _context.Requests.ToList();
