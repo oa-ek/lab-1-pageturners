@@ -20,11 +20,11 @@
                             <h5 class="card-title">@book.Title</h5>
                             <h6 class="card-subtitle mb-2 text-muted">@book.Author</h6>
                             <p class="card-text">@book.Desc</p>
-                            <a href="/book/details/@book.Id" class="btn btn-primary btn-sm">Детальніше</a>
+                            <a href="/book/details/@book.Id" class="btn-custom-details">Детальніше</a>
                             @if (User.IsInRole("Moderator"))
                             {
                                 <form asp-controller="Book" asp-action="PublishBook" asp-route-bookId="@book.Id" method="post">
-                                    <button type="submit" class="btn btn-success btn-sm">Опублікувати</button>
+                                    <button type="submit" class="btn-custom">Опублікувати</button>
                                 </form>
                             }
                         </div>
@@ -39,3 +39,67 @@ else
 {
     <p>На жаль, книги з запитами відсутні.</p>
 }
+
+
+
+<style>
+
+    body {
+        background-image: url('/images/back.jpg');
+        background-size: cover; /* Масштабування зображення, щоб воно покривало всю сторінку */
+        background-repeat: no-repeat; /* Вимкнення повторення зображення */
+        background-attachment: fixed; /* Фон залишається фіксованим під час прокручування сторінки */
+    }
+
+    /* Основний стиль кнопок */
+    .btn-custom {
+        background-color: #FFA500;
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #888888; /* Тінь */
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        /* Стиль кнопок при наведенні */
+        .btn-custom:hover {
+            background-color: #FF6600;
+            transform: scale(1.05); /* Збільшує розмір кнопки на наведенні */
+        }
+
+    /* DANGER стиль кнопок */
+    .btn-custom-danger {
+        background-color: #bd1d08;
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #888888;
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.2s;
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        .btn-custom-danger:hover {
+            background-color: #851e10;
+            transform: scale(1.05);
+        }
+
+    .btn-custom-details {
+        background-color: #ebc334;
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #000000;
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex;
+        align-items: center;
+    }
+
+
+        .btn-custom-details:hover {
+            background-color: #c99e00;
+            transform: scale(1.05);
+        }
+</style>
