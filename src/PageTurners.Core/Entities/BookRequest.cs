@@ -18,7 +18,7 @@ namespace PageTurners.Core.Entities
         public string OwnerId { get; set; }*/
         public string Title { get; set; }
         public string Author { get; set; }
-        public DateTime? DatePubl { get; set; }
+        public int DatePubl { get; set; }
         public string? Genre { get; set; }
         public string? Desc { get; set; }
         public string? Edition { get; set; }

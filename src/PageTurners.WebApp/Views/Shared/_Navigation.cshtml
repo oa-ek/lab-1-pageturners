@@ -5,19 +5,23 @@
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Список книг</a>
     </li>
-    @if(User.IsInRole("Moderator") || User.IsInRole("Admin")) {
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Користувачі</a>
+        </li>
+    }
+    @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
+    {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="BookRequest" asp-action="BookRequests">Книги на модерації</a>
         </li>
     }
-    @if(User.IsInRole("Moderator") || User.IsInRole("Admin") || User.IsInRole("Reader")) {
+    @if (User.IsInRole("Moderator") || User.IsInRole("Admin") || User.IsInRole("Reader"))
+    {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="MyBooks" asp-action="Index">Мої книги</a>
         </li>
     }
-       @if (User.IsInRole("Admin")) {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Користувачі</a>
-        </li>
-       }
 </ul>
+

@@ -7,6 +7,7 @@ using PageTurners.Repositories.Interfaces;
 using PageTurners.Repositories.Repos;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Claims;
 
 public class BookRequestController : Controller
 {
@@ -31,44 +32,53 @@ public class BookRequestController : Controller
         return View("Create");
     }
 
-   /* [HttpPost]
-    [Authorize(Roles = "Moderator")]
-    public IActionResult PublishBook(int bookId)
-    {
-        var book = bookRepository.GetById(bookId);
+    /* [HttpPost]
+     [Authorize(Roles = "Moderator")]
+     public IActionResult PublishBook(int bookId)
+     {
+         var book = bookRepository.GetById(bookId);
 
-        if (book != null)
-        {
-            book.IsPublished = true; // Опублікувати книгу
-            BookRequestRepository.Update(book); // Позначити зміни
-            return RedirectToAction("Index");
-        }
-        return NotFound();
-    }
-   */
+         if (book != null)
+         {
+             book.IsPublished = true; // Опублікувати книгу
+             BookRequestRepository.Update(book); // Позначити зміни
+             return RedirectToAction("Index");
+         }
+         return NotFound();
+     }
+    */
 
     [HttpPost]
     public IActionResult Create(BookRequest model, List<int> selectedCategories)
     {
-        var bookRequest = new BookRequest
+        // Отримати ідентифікатор поточного користувача, який ввійшов до системи
+        var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (currentUserId != null)
         {
-            Title = model.Title,
-            Author = model.Author,
-            DatePubl = model.DatePubl,
-            Genre = model.Genre,
-            Desc = model.Desc,
-            Edition = model.Edition,
-            OwnerId = "1"
-        };
+            var bookRequest = new BookRequest
+            {
+                Title = model.Title,
+                Author = model.Author,
+                DatePubl = model.DatePubl,
+                Genre = model.Genre,
+                Desc = model.Desc,
+                Edition = model.Edition,
+                OwnerId = currentUserId 
+            };
 
-        bookRequestRepository.Add(bookRequest);
+            bookRequestRepository.Add(bookRequest);
 
-        return RedirectToAction("Index", "Book");
-
-
+            return RedirectToAction("Index", "Book");
+        }
+        else
+        {
+            // Обробка помилки, якщо користувач не ввійшов до системи
+            return RedirectToAction("Login"); // або інше відповідне дійство
+        }
     }
 
-    [Authorize(Roles = "Moderator")]
+
     [HttpPost]
     public async Task<IActionResult> PublishBook(int bookRequestId)
     {
@@ -98,19 +108,17 @@ public class BookRequestController : Controller
         return NotFound();
     }
 
-
-    // Відхилити книгу
     [HttpPost]
-    public async Task<IActionResult> RejectBook(int bookRequestId)
+    public async Task<IActionResult> DeleteBookRequest(int bookRequestId)
     {
-        var bookRequest = await _context.BookRequests.FindAsync(bookRequestId);
+        var bookRequest = await bookRequestRepository.GetByIdA(bookRequestId);
         if (bookRequest != null)
         {
-            _context.BookRequests.Remove(bookRequest);
-            await _context.SaveChangesAsync();
+            bookRequestRepository.Delete(bookRequestId);
+            return RedirectToAction("BookRequests");
         }
 
-        return RedirectToAction("BookRequests"); // Повернення на головну сторінку BookRequest
+        return NotFound();
     }
 }
 

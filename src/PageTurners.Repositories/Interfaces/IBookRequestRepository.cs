@@ -10,6 +10,7 @@ namespace PageTurners.Repositories.Interfaces
     public interface IBookRequestRepository
     {
         BookRequest GetById(int id);
+        Task<BookRequest> GetByIdA(int id);
         IEnumerable<BookRequest> GetAll();
         void Add(BookRequest request);
         void Update(BookRequest request);
