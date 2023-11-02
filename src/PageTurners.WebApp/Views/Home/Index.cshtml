@@ -14,13 +14,16 @@
                     <img src="/images/books3.jpg" alt="Новина 1" class="img-fluid" />
                     <h3><b>Нова книга від відомого автора</b></h3>
                     <p class="text-justify">Очікується виход нового роману від відомого автора. Захоплююча історія, яка точно зачарує читачів.</p>
+                    <a href="@Url.Action("News1", "News")" class="btn-custom">Читати</a>
                 </div>
                 <div class="news-item">
                     <img src="/images/books2.jpg" alt="Новина 2" class="img-fluid" />
                     <h3><b>Кращі книги цього місяця</b></h3>
                     <p class="text-justify">Дізнайтеся про найкращі книги, які варто прочитати цього місяця. Це істинні шедеври літератури.</p>
+                    <a href="@Url.Action("News2", "News")" class="btn-custom">Читати</a>
                 </div>
             </div>
+
         </div>
         <div class="col-md-4">
             <img src="/images/book.jpg" alt="Книги" class="img-fluid" />
@@ -60,5 +63,23 @@
         .news-item img {
             max-width: 100%;
             height: auto;
+        }
+
+    /* Основний стиль кнопок */
+    .btn-custom {
+        background-color: #FFA500; /* Оранжевий колір */
+        color: #fff; /* Колір тексту */
+        border: none;
+        box-shadow: 2px 2px 4px #888888; /* Тінь */
+        padding: 10px 20px; /* Відступи */
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        /* Стиль кнопок при наведенні */
+        .btn-custom:hover {
+            background-color: #FF6600; /* Змінений колір при наведенні */
+            transform: scale(1.05); /* Збільшує розмір кнопки на наведенні */
         }
 </style>

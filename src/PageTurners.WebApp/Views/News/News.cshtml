@@ -1,0 +1,28 @@
+﻿@model NewsModel
+
+@{
+    ViewData["Title"] = "Новини - " + Model.Title;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="display-4"><b>@Model.Title</b></h1>
+            <hr />
+            <div class="news-block">
+                <div class="news-item">
+                    <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid" />
+                    <p class="text-justify">@Model.Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-image: url('/images/back4.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }</style>

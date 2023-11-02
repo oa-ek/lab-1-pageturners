@@ -13,13 +13,12 @@ public class BookRequestController : Controller
 {
     private readonly IBookRepository bookRepository;
     private readonly IBookRequestRepository bookRequestRepository;
-    /*private readonly PageTurnersContext _dbContext;*/
-
-    public BookRequestController(IBookRequestRepository bookRequestRepository /*PageTurnersContext dbContext*/)
+    public BookRequestController(IBookRepository bookRepository, IBookRequestRepository bookRequestRepository)
     {
+        this.bookRepository = bookRepository;
         this.bookRequestRepository = bookRequestRepository;
-        /*_dbContext = dbContext;*/
     }
+
 
     public IActionResult BookRequests()
     {
@@ -74,7 +73,7 @@ public class BookRequestController : Controller
         else
         {
             // Обробка помилки, якщо користувач не ввійшов до системи
-            return RedirectToAction("Login"); // або інше відповідне дійство
+            return RedirectToAction("Login"); 
         }
     }
 
@@ -85,7 +84,7 @@ public class BookRequestController : Controller
         var bookRequest = await bookRequestRepository.GetByIdA(bookRequestId);
         if (bookRequest != null)
         {
-            // Створіть новий об'єкт Book з даними з запиту та додайте його до таблиці Books
+           
             var newBook = new Book
             {
                 Title = bookRequest.Title,
@@ -94,12 +93,12 @@ public class BookRequestController : Controller
                 Desc = bookRequest.Desc,
                 Edition = bookRequest.Edition,
                 DatePubl = bookRequest.DatePubl,
-                // Додайте інші дані книги за необхідності
+                
             };
 
             bookRepository.Add(newBook);
 
-            // Видаліть книгу з таблиці BookRequest
+            
             bookRequestRepository.Delete(bookRequestId);
 
             return RedirectToAction("BookRequests");

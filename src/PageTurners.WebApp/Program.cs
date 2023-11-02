@@ -13,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
     options.UseSqlServer(connectionString));
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
 builder.Services.AddDefaultIdentity<User>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
