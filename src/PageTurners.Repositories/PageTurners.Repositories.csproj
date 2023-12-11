@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PageTurners.Core\PageTurners.Core.csproj" />
+    <ProjectReference Include="..\PageTurners.Core\PageTurners.Domain.csproj" />
   </ItemGroup>
 
 </Project>

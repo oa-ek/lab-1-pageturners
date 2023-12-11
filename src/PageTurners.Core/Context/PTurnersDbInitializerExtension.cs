@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using PageTurners.Core.Entities;
+using PageTurners.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PageTurners.Core.Context
+namespace PageTurners.Domain.Context
 {
     public static class PTurnersDbInitializerExtension
     {

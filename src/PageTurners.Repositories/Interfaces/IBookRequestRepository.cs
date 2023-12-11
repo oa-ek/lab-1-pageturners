@@ -1,4 +1,4 @@
-﻿using PageTurners.Core.Entities;
+﻿using PageTurners.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

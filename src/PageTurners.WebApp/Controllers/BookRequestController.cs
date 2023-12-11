@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PageTurners.Core.Context;
-using PageTurners.Core.Entities;
+using PageTurners.Domain.Context;
+using PageTurners.Domain.Entities;
 using PageTurners.Repositories.Interfaces;
 using PageTurners.Repositories.Repos;
 using System.Collections.Generic;

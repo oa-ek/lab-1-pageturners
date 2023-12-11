@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PageTurners.Core.Entities;
+using PageTurners.Domain.Entities;
 
-namespace PageTurners.Core.Context
+namespace PageTurners.Domain.Context
 {
     public class PageTurnersContext : IdentityDbContext<User>
     {

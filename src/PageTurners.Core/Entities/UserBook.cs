@@ -1,15 +1,14 @@
-﻿using System;
+﻿using PageTurners.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PageTurners.Core.Entities
+namespace PageTurners.Domain.Entities
 {
-    public class UserBook
+    public class UserBook : BaseEntity
     {
-        public int UserBookId { get; set; }
-
         // Оголошуємо поля для відповідності ключам інших сутностей
         public string UserId { get; set; }
         public int BookId { get; set; }

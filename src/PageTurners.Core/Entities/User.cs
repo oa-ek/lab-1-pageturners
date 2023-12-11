@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace PageTurners.Core.Entities
+namespace PageTurners.Domain.Entities
 {
     public class User : IdentityUser
     {

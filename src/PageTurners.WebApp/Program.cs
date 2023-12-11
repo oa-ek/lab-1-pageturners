@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using PageTurners.Core.Context;
-using PageTurners.Core.Entities;
+using PageTurners.Domain.Context;
+using PageTurners.Domain.Entities;
 using PageTurners.Repositories.Interfaces;
 using PageTurners.Repositories.Repos;
 

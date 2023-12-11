@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PageTurners.Core.Entities;
+using PageTurners.Domain.Entities;
 using PageTurners.Repositories.DTOs.User;
 using PageTurners.Repositories.Interfaces;
 

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PageTurners.Core\PageTurners.Core.csproj" />
+    <ProjectReference Include="..\PageTurners.Core\PageTurners.Domain.csproj" />
     <ProjectReference Include="..\PageTurners.Repositories\PageTurners.Repositories.csproj" />
   </ItemGroup>
 

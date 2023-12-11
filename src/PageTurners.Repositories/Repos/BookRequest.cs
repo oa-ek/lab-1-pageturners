@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PageTurners.Core.Context;
-using PageTurners.Core.Entities;
+using PageTurners.Domain.Context;
+using PageTurners.Domain.Entities;
 using PageTurners.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
