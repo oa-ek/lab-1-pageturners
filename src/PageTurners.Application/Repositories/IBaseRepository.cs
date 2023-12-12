@@ -14,5 +14,6 @@ namespace PageTurners.Application.Repositories
 		Task DeleteAsync (T entity);
 		Task<T> GetAsync (int id);
 		Task<List<T>> GetAllAsync ();
+		Task SaveAsync();
 	}
 }
