@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Features\BookFeatures\CreateBook\" />
+    <Folder Include="Features\BookFeatures\DeleteBook\" />
+    <Folder Include="Features\BookFeatures\DetAllBook\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PageTurners.Core\PageTurners.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
