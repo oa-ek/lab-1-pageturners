@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PageTurners.Domain.Entities;
 
-namespace PageTurners.Domain.Context
+namespace PageTurners.Persistence.Context
 {
     public class PageTurnersContext : IdentityDbContext<User>
     {

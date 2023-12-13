@@ -7,13 +7,14 @@ using PageTurners.Domain.Common;
 
 namespace PageTurners.Application.Repositories
 {
-	public interface IBaseRepository<T> where T : BaseEntity
+	public interface IBaseRepository<TEntity, TKey>
+	   where TEntity : BaseEntity<TKey>
 	{
-		Task CreateAsync (T entity);
-		Task UpdateAsync (T entity);	
-		Task DeleteAsync (T entity);
-		Task<T> GetAsync (int id);
-		Task<List<T>> GetAllAsync ();
+		Task<IEnumerable<TEntity>> GetAllAsync();
+		Task<TEntity> GetAsync(TKey key);
+		Task<TEntity> CreateAsync(TEntity entity);
+		Task UpdateAsync(TEntity entity);
+		Task DeleteAsync(TEntity entity);
 		Task SaveAsync();
 	}
 }

@@ -1,16 +1,19 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PageTurners.Application;
 using PageTurners.Domain.Context;
 using PageTurners.Domain.Entities;
+using PageTurners.Persistence;
+using PageTurners.Application;
 using PageTurners.Repositories.Interfaces;
 using PageTurners.Repositories.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    /*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddDbContext<PageTurnersContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));*/
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
@@ -28,7 +31,8 @@ builder.Services.AddDefaultIdentity<User>(options =>
 .AddEntityFrameworkStores<PageTurnersContext>()
 .AddSignInManager<SignInManager<User>>();
 
-
+builder.Services.AddApplication();
+builder.Services.AddPersistance(builder.Configuration);
 
 
 /*builder.Services.AddScoped<UserManager<User>>();*/
