@@ -14,7 +14,7 @@ namespace PageTurners.Application.Features.BookFeatures.Queries.GetBookQuery
 {
 	public class GetUserQueryHandler : IRequestHandler<GetUserQuery, ReadUserDto>
 	{
-		protected readonly IBaseRepository<User, int>? _userReposiroty;
+		/*protected readonly IBaseRepository<User, int>? _userReposiroty;*/
 		protected readonly IMapper _mapper;
 
 		public GetUserQueryHandler(IBaseRepository<User, int>? userReposiroty, IMapper mapper)
