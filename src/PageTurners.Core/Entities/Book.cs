@@ -20,11 +20,11 @@ namespace PageTurners.Domain.Entities
         public int DatePubl { get; set; }
         
         
-        public virtual ICollection<Comments> Comment { get; set; }
+        public virtual ICollection<Comments> Comment { get; set; } = new List<Comments>();
     //    [InverseProperty("UsersReadBooks")]
-        public virtual ICollection<UserBook> UsersReadBooks { get; set; }
+        public virtual ICollection<UserBook> UsersReadBooks { get; set; } = new List<UserBook>();
       //  [InverseProperty("UsersReadLater")]
-        public virtual ICollection<UserBook> UsersReadLater { get; set; }
-        public virtual ICollection<Rating> Ratings { get; set; }
-    }
+        public virtual ICollection<UserBook> UsersReadLater { get; set; } = new List<UserBook>();
+		public virtual ICollection<Rating> Ratings { get; set; } = new List<Rating>();
+	}
 }
