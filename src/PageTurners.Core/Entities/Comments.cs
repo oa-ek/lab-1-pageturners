@@ -9,8 +9,8 @@ using PageTurners.Domain.Common;
 
 namespace PageTurners.Domain.Entities
 {
-    public class Comments : BaseEntity<int>
-	{
+    public class Comments : BaseEntity
+    {
        
         [ForeignKey("CommentatorId")]
         public User Commentator { get; set; }

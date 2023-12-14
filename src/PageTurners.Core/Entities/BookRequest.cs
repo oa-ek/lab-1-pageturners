@@ -9,8 +9,8 @@ using PageTurners.Domain.Common;
 
 namespace PageTurners.Domain.Entities
 {
-    public class BookRequest : BaseEntity<int>
-	{
+    public class BookRequest : BaseEntity
+    {
         /*public User Owner { get; set; }
         [ForeignKey(nameof(User))]
         public string OwnerId { get; set; }*/

@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace PageTurners.Domain.Entities
 {
-    public class User : IdentityUser<int>
-	{
+    public class User : IdentityUser
+    {
         public string Login { get; set; }
         public string? Name { get; set; }
         public DateTime DateOfBirth { get; set; }
