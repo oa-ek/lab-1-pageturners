@@ -20,9 +20,6 @@ namespace PageTurners.Application.Features.UserFeatures
 			CreateMap<User, ReadUserDto>();
 			CreateMap<ReadUserDto, User>();
 
-			/*(CreateMap<UserBook, ReadBookDto>();
-			CreateMap<Book, ReadBookDto>();*/
-
 		}
 	}
 }
