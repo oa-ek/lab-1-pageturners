@@ -11,6 +11,7 @@ namespace PageTurners.Application.Features.BookFeatures.Commands.CreateBook
 {
 	public class CreateBookCommand : IRequest<CreateBookDto>
 	{
+		public int Id { get; set; }
 		public required string Title { get; set; }
 		public string? Author { get; set; }
 		public required string Genre { get; set; }
