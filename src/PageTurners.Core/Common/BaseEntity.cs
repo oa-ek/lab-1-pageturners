@@ -1,12 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PageTurners.Domain.Common
 {
-	public abstract class BaseEntity<TKey>
+	public abstract class BaseEntity
 	{
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public TKey Id { get; set; }
+		public int Id { get; set; }
+		public DateTime? Created { get; set; } = DateTime.UtcNow;
+		public DateTime? Updated { get; set; } = DateTime.UtcNow;
 	}
 }

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace PageTurners.Domain.Entities
 {
-    public class UserBook : BaseEntity<int>
-	{
+    public class UserBook : BaseEntity
+    {
         // Оголошуємо поля для відповідності ключам інших сутностей
         public string UserId { get; set; }
         public int BookId { get; set; }

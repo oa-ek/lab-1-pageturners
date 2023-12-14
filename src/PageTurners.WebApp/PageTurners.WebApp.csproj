@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PageTurners.Core\PageTurners.Domain.csproj" />
-    <ProjectReference Include="..\PageTurners.Persistence\PageTurners.Persistence.csproj" />
     <ProjectReference Include="..\PageTurners.Repositories\PageTurners.Repositories.csproj" />
   </ItemGroup>
 
