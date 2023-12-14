@@ -5,12 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PageTurners.Domain.Common;
 
-namespace PageTurners.Domain.Entities
+namespace PageTurners.Core.Entities
 {
-    public class Book : BaseEntity
+    public class Book
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public string Title { get; set; }
         public string? Author { get; set; }
         public string Genre { get; set; }

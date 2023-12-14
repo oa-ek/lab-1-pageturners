@@ -3,27 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageTurners.Domain", "PageTurners.Core\PageTurners.Domain.csproj", "{4254E881-77AC-4424-8D91-9477A05818FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageTurners.Core", "PageTurners.Core\PageTurners.Core.csproj", "{4254E881-77AC-4424-8D91-9477A05818FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageTurners.Repositories", "PageTurners.Repositories\PageTurners.Repositories.csproj", "{4AB05298-0396-4C82-BBD9-8FE298B1A4E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageTurners.Repositories", "PageTurners.Repositories\PageTurners.Repositories.csproj", "{4AB05298-0396-4C82-BBD9-8FE298B1A4E0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4254E881-77AC-4424-8D91-9477A05818FA} = {4254E881-77AC-4424-8D91-9477A05818FA}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageTurners.WebApp", "PageTurners.WebApp\PageTurners.WebApp.csproj", "{59DBD3B2-30C9-495C-B538-779991F51CF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageTurners.WebApp", "PageTurners.WebApp\PageTurners.WebApp.csproj", "{59DBD3B2-30C9-495C-B538-779991F51CF5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4AB05298-0396-4C82-BBD9-8FE298B1A4E0} = {4AB05298-0396-4C82-BBD9-8FE298B1A4E0}
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6DDB4984-A38E-48B5-BABD-0EFAAA09A7EE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageTurners.Application", "PageTurners.Application\PageTurners.Application.csproj", "{3DC412EF-2E39-42CE-A781-6C857EE99978}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{33A686D2-9983-4259-9332-8C771585319A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageTurners.Persistence", "PageTurners.Persistence\PageTurners.Persistence.csproj", "{39687648-F884-472A-9B66-617D9195E799}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{73015595-69DF-42C5-AB9F-A78724DA28CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,24 +33,9 @@ Global
 		{59DBD3B2-30C9-495C-B538-779991F51CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59DBD3B2-30C9-495C-B538-779991F51CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59DBD3B2-30C9-495C-B538-779991F51CF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DC412EF-2E39-42CE-A781-6C857EE99978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DC412EF-2E39-42CE-A781-6C857EE99978}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DC412EF-2E39-42CE-A781-6C857EE99978}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DC412EF-2E39-42CE-A781-6C857EE99978}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39687648-F884-472A-9B66-617D9195E799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39687648-F884-472A-9B66-617D9195E799}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39687648-F884-472A-9B66-617D9195E799}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39687648-F884-472A-9B66-617D9195E799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4254E881-77AC-4424-8D91-9477A05818FA} = {6DDB4984-A38E-48B5-BABD-0EFAAA09A7EE}
-		{4AB05298-0396-4C82-BBD9-8FE298B1A4E0} = {33A686D2-9983-4259-9332-8C771585319A}
-		{59DBD3B2-30C9-495C-B538-779991F51CF5} = {73015595-69DF-42C5-AB9F-A78724DA28CB}
-		{3DC412EF-2E39-42CE-A781-6C857EE99978} = {6DDB4984-A38E-48B5-BABD-0EFAAA09A7EE}
-		{39687648-F884-472A-9B66-617D9195E799} = {33A686D2-9983-4259-9332-8C771585319A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6ACC206F-76AC-4353-A969-276057D52EF6}

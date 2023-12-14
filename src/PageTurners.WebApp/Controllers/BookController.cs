@@ -1,10 +1,10 @@
-﻿using PageTurners.Domain.Entities;
+﻿using PageTurners.Core.Entities;
 using PageTurners.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using PageTurners.Domain.Context;
+using PageTurners.Core.Context;
 using Microsoft.AspNetCore.Identity;
 using PageTurners.Repositories.Repos;
 using System.Security.Claims;

@@ -5,12 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PageTurners.Domain.Common;
 
-namespace PageTurners.Domain.Entities
+namespace PageTurners.Core.Entities
 {
-    public class Comments : BaseEntity
+    public class Comments
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
        
         [ForeignKey("CommentatorId")]
         public User Commentator { get; set; }
