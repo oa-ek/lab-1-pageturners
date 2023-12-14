@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿/*using AutoMapper;
 using MediatR;
 using PageTurners.Application.Features.BookFeatures.BookDtos;
 using PageTurners.Application.Repositories;
@@ -28,4 +28,4 @@ namespace PageTurners.Application.Features.BookFeatures.Queries.GetBookQuery
 		}
 	}
 	
-}
+}*/

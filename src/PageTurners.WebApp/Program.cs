@@ -7,6 +7,7 @@ using PageTurners.Persistence;
 using PageTurners.Application;
 using PageTurners.Repositories.Interfaces;
 using PageTurners.Repositories.Repos;
+using PageTurners.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +33,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 .AddSignInManager<SignInManager<User>>();
 
 builder.Services.AddApplication();
-builder.Services.AddPersistance(builder.Configuration);
+builder.Services.AddPersistence(builder.Configuration);
 
 
 /*builder.Services.AddScoped<UserManager<User>>();*/

@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿/*using MediatR;
 using PageTurners.Application.Features.BookFeatures.BookDtos;
 using System;
 using System.Collections.Generic;
@@ -12,4 +12,4 @@ namespace PageTurners.Application.Features.BookFeatures.Queries.GetBookQuery
 	{
 		public int Id { get; set; }
 	}
-}
+}*/

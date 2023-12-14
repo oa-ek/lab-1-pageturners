@@ -6,13 +6,13 @@ using PageTurners.Domain.Entities;
 using PageTurners.Persistence.Repositories;
 using PageTurners.Persistence.Context;
 
-namespace TakeTripAsp.Persistence
+namespace PageTurners.Persistence
 {
 	public static class DependencyInjection
 	{
 		public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
 		{
-			var connectionString = configuration.GetConnectionString("TripConnectionString") ?? throw new InvalidOperationException();
+			var connectionString = configuration.GetConnectionString("PageTurnersConnectionString") ?? throw new InvalidOperationException();
 			services.AddDbContext<PageTurnersContext>(option =>
 			option.UseSqlServer(connectionString));
 		}

@@ -7,7 +7,7 @@ using PageTurners.Domain.Entities;
 
 namespace PageTurners.Application.Features.BookFeatures.Commands.UpdateBook
 {
-	public class UpdateBookCommandHandler : IRequestHandler<UpdateBookCommand, UpdateBookDto>
+	public class UpdateBookCommandHandler : IRequestHandler<UpdateBookCommand, ReadBookDto>
 	{
 		private readonly IBaseRepository<Book, int>? _bookRepository;
 		private readonly IMapper _mapper;
