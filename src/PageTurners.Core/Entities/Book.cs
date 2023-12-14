@@ -9,7 +9,7 @@ using PageTurners.Domain.Common;
 
 namespace PageTurners.Domain.Entities
 {
-    public class Book : BaseEntity
+    public class Book : BaseEntity<int>
     {
         public string Title { get; set; }
         public string? Author { get; set; }

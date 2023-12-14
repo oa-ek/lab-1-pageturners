@@ -9,8 +9,8 @@ using PageTurners.Domain.Common;
 
 namespace PageTurners.Domain.Entities
 {
-    public class ModeratorReview : BaseEntity
-    {
+    public class ModeratorReview : BaseEntity<int>
+	{
         [ForeignKey("User")]
         public string UserId { get; set; }
         public User User { get; set; }

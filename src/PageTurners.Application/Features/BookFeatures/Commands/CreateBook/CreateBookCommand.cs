@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using PageTurners.Application.Features.BookFeatures.BookDtos;
 
-namespace PageTurners.Application.Features.BookFeatures.BookDtos
+namespace PageTurners.Application.Features.BookFeatures.Commands.CreateBook
 {
-	public class UpdateBookDto
+	public class CreateBookCommand : IRequest<CreateBookDto>
 	{
 		public int Id { get; set; }
-		public string Title { get; set; }
+		public required string Title { get; set; }
 		public string? Author { get; set; }
-		public string Genre { get; set; }
+		public required string Genre { get; set; }
 		public string? Desc { get; set; }
 		public string Edition { get; set; }
 		public double? AverageRating { get; set; }
