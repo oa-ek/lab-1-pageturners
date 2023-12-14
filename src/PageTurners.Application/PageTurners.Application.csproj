@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Features\UserFeatures\Commans\" />
+    <Folder Include="Features\UserFeatures\Commands\" />
     <Folder Include="Features\UserFeatures\Queries\" />
   </ItemGroup>
 

@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using PageTurners.Application.Features.CommentsFeatures.CommentsDtos;
 
-namespace PageTurners.Application.Features.BookFeatures.Commands.CreateBook
+namespace PageTurners.Application.Features.CommentsFeatures.Commands.CreateComments
 {
 	public class CreateCommentsCommand : IRequest<CreateCommentsDto>
 	{
