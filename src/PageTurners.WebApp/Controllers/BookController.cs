@@ -195,6 +195,28 @@ namespace PageTurners.WebApp.Controllers
                 return File(pathToPlaceholderImage, "image/jpeg");
             }
         }
+        [HttpPost]
+        public async Task<IActionResult> UploadBookImage(int id, IFormFile bookImage)
+        {
+            // Перевіряємо, чи є файл та чи не є він порожнім
+            if (bookImage != null && bookImage.Length > 0)
+            {
+                // Обробка завантаженого зображення
+                // Збереження файлу на сервері, наприклад, у папці проекту
+                var imagePath = Path.Combine("wwwroot", "images", "bookCovers", $"{id}.jpg");
+
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await bookImage.CopyToAsync(fileStream);
+                }
+
+                // Оновлення шляху до зображення у базі даних або в репозиторії книги
+                // bookRepository.UpdateImagePath(id, imagePath);
+            }
+
+            // Повернення до сторінки з деталями книги чи іншої відповідної сторінки
+            return RedirectToAction("Details", new { id = id });
+        }
 
         [HttpPost]
         public async Task<IActionResult> RateBook(int id, int ratingValue)
