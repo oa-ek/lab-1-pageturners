@@ -167,6 +167,20 @@ namespace PageTurners.WebApp.Controllers
         }
 
 
+        public IActionResult GetBookImage(int id)
+        {
+            var book = bookRepository.GetById(id);
+            if (book != null && book.ImageMimeType != null)
+            {
+                return File(book.ImageMimeType, book.ImageMimeType);
+            }
+            else
+            {
+                // Повернення захищеного або заступного зображення, якщо зображення відсутнє
+                var pathToPlaceholderImage = "/images/book.jpg"; 
+                return File(pathToPlaceholderImage, "image/jpeg");
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> RateBook(int id, int ratingValue)

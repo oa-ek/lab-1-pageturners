@@ -48,9 +48,8 @@ public class BookRequestController : Controller
     */
 
     [HttpPost]
-    public IActionResult Create(BookRequest model, List<int> selectedCategories)
+    public async Task<IActionResult> Create(BookRequest model, List<int> selectedCategories, IFormFile image)
     {
-        // Отримати ідентифікатор поточного користувача, який ввійшов до системи
         var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         if (currentUserId != null)
@@ -63,28 +62,39 @@ public class BookRequestController : Controller
                 Genre = model.Genre,
                 Desc = model.Desc,
                 Edition = model.Edition,
-                OwnerId = currentUserId 
+                OwnerId = currentUserId
             };
 
+            if (image != null && image.Length > 0)
+            {
+                var filePath = Path.GetTempFileName(); // Отримати тимчасовий шлях для зберігання файлу
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream); // Зберегти файл на сервері
+                }
+
+                bookRequest.ImagePath = filePath; // Зберегти шлях до файлу в об'єкті
+                bookRequest.ImageMimeType = image.ContentType;
+            }
             bookRequestRepository.Add(bookRequest);
 
             return RedirectToAction("Index", "Book");
         }
         else
         {
-            // Обробка помилки, якщо користувач не ввійшов до системи
-            return RedirectToAction("Login"); 
+            return RedirectToAction("Login");
         }
     }
 
 
+
     [HttpPost]
-    public async Task<IActionResult> PublishBook(int bookRequestId)
+    public async Task<IActionResult> PublishBook(int bookRequestId, IFormFile image)
     {
         var bookRequest = await bookRequestRepository.GetByIdA(bookRequestId);
         if (bookRequest != null)
         {
-           
             var newBook = new Book
             {
                 Title = bookRequest.Title,
@@ -93,12 +103,22 @@ public class BookRequestController : Controller
                 Desc = bookRequest.Desc,
                 Edition = bookRequest.Edition,
                 DatePubl = bookRequest.DatePubl,
-                
             };
 
-            bookRepository.Add(newBook);
+            if (image != null && image.Length > 0)
+            {
+                var filePath = Path.GetTempFileName(); // Отримати тимчасовий шлях для зберігання файлу
 
-            
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream); // Зберегти файл на сервері
+                }
+
+                bookRequest.ImagePath = filePath; // Зберегти шлях до файлу в об'єкті
+                bookRequest.ImageMimeType = image.ContentType;
+            }
+
+            bookRepository.Add(newBook);
             bookRequestRepository.Delete(bookRequestId);
 
             return RedirectToAction("BookRequests");

@@ -20,8 +20,9 @@ namespace PageTurners.Core.Entities
         public string Edition { get; set; }
         public double? AverageRating { get; set; }
         public int DatePubl { get; set; }
-        
-        
+        public string? ImagePath { get; set; } // Шлях до файлу зображення у файловій системі
+        public string? ImageMimeType { get; set; } // MIME-тип зображення
+
         public virtual ICollection<Comments> Comment { get; set; }
     //    [InverseProperty("UsersReadBooks")]
         public virtual ICollection<UserBook> UsersReadBooks { get; set; }

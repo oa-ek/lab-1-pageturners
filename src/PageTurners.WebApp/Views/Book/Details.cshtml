@@ -17,13 +17,14 @@
     <input type="hidden" asp-for="Id" value="@Model.Id" />
     <button type="submit" class="btn-custom">Лайкнути книгу</button>
 </form>
-
 <div class="container">
     <h1 class="display-4">Деталі про книгу</h1>
     <hr />
 
     <div class="row">
         <div class="col-md-6">
+            <img src="/Book/GetBookImage/@Model.Id" alt="Зображення книги" />
+
             <dl class="row">
                 <dt class="col-sm-4">Назва:</dt>
                 <dd class="col-sm-8">@Model.Title</dd>

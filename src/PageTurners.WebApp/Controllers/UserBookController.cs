@@ -19,16 +19,15 @@ namespace PageTurners.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize] // Дозвіл на лайк тільки для авторизованих користувачів
+        [Authorize] 
         public async Task<IActionResult> LikeBook(int id)
         {
             var currentUser = await _userManager.GetUserAsync(User);
+           
+           _userBookRepository.AddLikedBook(currentUser.Id, id);
 
-            // Додавання лайка на книгу користувачем
-            _userBookRepository.AddLikedBook(currentUser.Id, id);
-
-            // Повернення на попередню сторінку після додавання лайка
-            return RedirectToAction("Index", "Home"); // або "Details", "Book", якщо лайк відбувається на сторінці деталей книги
+            
+            return RedirectToAction("Index", "Home"); 
         }
     }
 }

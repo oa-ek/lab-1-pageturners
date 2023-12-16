@@ -20,7 +20,7 @@
     @if (User.IsInRole("Moderator") || User.IsInRole("Admin") || User.IsInRole("Reader"))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="MyBooks" asp-action="Index">Мої книги</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="LikePage">Мої книги</a>
         </li>
     }
 </ul>
