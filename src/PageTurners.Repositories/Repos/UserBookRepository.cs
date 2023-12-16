@@ -23,6 +23,22 @@ namespace PageTurners.Repositories.Repos
                 .ToList();
         }
 
+        // Реалізація нового методу
+        public IEnumerable<Book> GetLikedBooksForCurrentUser(string username)
+        {
+            var userId = _context.Users.FirstOrDefault(u => u.UserName == username)?.Id;
+
+            if (userId != null)
+            {
+                return _context.UserBooks
+                    .Where(ub => ub.UserId == userId)
+                    .Select(ub => ub.Book)
+                    .ToList();
+            }
+
+            return Enumerable.Empty<Book>();
+        }
+
         public void AddLikedBook(string userId, int bookId)
         {
             var existingUserBook = _context.UserBooks

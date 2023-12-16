@@ -24,7 +24,8 @@ namespace PageTurners.WebApp.Controllers
         public BookController(IBookRepository bookRepository, 
             ICommentsRepository commentsRepository,
             IRatingRepository ratingRepository,
-            IUserRepository userRepository
+            IUserRepository userRepository,
+            IUserBookRepository userBookRepository
             /*PageTurnersContext dbContext*/)
         {
             this.bookRepository = bookRepository;
@@ -32,8 +33,21 @@ namespace PageTurners.WebApp.Controllers
             this.commentsRepository = commentsRepository;
             this.ratingRepository = ratingRepository;
             this.userRepository = userRepository;
+            _userBookRepository = userBookRepository;
         }
+        private readonly IUserBookRepository _userBookRepository;
 
+        
+        // Метод для відображення сторінки з лайкнутими книгами
+        [Authorize]
+        public IActionResult LikePage()
+        {
+            // Отримати дані про лайкнуті книги користувача з репозиторію
+            var likedBooks = _userBookRepository.GetLikedBooksForCurrentUser(User.Identity.Name);
+
+            // Повернути сторінку та передати дані про лайкнуті книги в представлення (View)
+            return View(likedBooks);
+        }
 
         public IActionResult Index()
         {

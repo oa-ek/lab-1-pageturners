@@ -58,6 +58,9 @@ else
     app.UseHsts();
 }
 
+
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -76,6 +79,12 @@ app.MapControllerRoute(
     name: "bookEdit",
     pattern: "Book/Edit/{id?}",
     defaults: new { controller = "Book", action = "Edit" }
+);
+
+app.MapControllerRoute(
+    name: "likePage",
+    pattern: "Book/LikePage",
+    defaults: new { controller = "Book", action = "LikePage" }
 );
 
 app.MapControllerRoute(

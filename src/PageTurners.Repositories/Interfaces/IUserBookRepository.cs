@@ -11,5 +11,6 @@ namespace PageTurners.Repositories.Interfaces
     {
         IEnumerable<Book> GetLikedBooksByUserId(string userId);
         void AddLikedBook(string userId, int bookId);
+        IEnumerable<Book> GetLikedBooksForCurrentUser(string username);
     }
 }
