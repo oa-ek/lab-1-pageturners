@@ -27,6 +27,8 @@
                         <h5 class="card-title">@book.Title</h5>
                         <h6 class="card-subtitle mb-2 text-muted">@book.Author</h6>
                         <p class="card-text">@book.Desc</p>
+                        <img src="/Book/GetBookImage/@book.Id" alt="Зображення книги" />
+
                         <a href="/book/details/@book.Id" class="btn-custom-details">Детальніше</a>
                     </div>
                 </div>
@@ -70,7 +72,12 @@
             transform: scale(1.05); /* Збільшує розмір кнопки на наведенні */
         }
 
-
+    /* CSS для зменшення розміру зображення */
+    img {
+        max-width: 100%; /* Максимальна ширина зображення буде 100% від контейнера */
+        height: auto; /* Автоматична висота, щоб зберегти пропорції */
+        max-height: 100px; /* Максимальна висота зображення */
+    }
 
    
     .btn-custom-details {
