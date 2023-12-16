@@ -18,10 +18,6 @@ namespace PageTurners.Core.Entities
         public User Commentator { get; set; }
         public string CommentatorId { get; set; }
 
-        /*public Book Book { get; set; }
-        [ForeignKey(nameof(Book))]
-        public int BookId { get; set; }*/
-
         [ForeignKey("BookId")]
         public Book Book { get; set; }
         public int BookId { get; set; }

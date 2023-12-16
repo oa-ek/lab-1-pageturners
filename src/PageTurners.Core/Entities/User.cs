@@ -16,10 +16,10 @@ namespace PageTurners.Core.Entities
         public DateTime DateOfBirth { get; set; }
         public string? Photo { get; set; }
 
-      //  [InverseProperty("UsersReadBooks")]
+     
         public virtual ICollection<UserBook> ReadBooks { get; set; }
 
-     //   [InverseProperty("UsersReadLater")]
+     
         public virtual ICollection<UserBook> ToReadList { get; set; }
 
         public virtual ICollection<BookRequest> BookRequests { get; set; }

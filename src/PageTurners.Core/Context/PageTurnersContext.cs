@@ -13,6 +13,8 @@ namespace PageTurners.Core.Context
         public DbSet<Rating> Ratings => Set<Rating>();
         /*public DbSet<User> Users => Set<User>();*/
         public DbSet<Comments> Comment => Set<Comments>();
+        public DbSet<UserBook> UserBooks { get; set; }
+
 
         public PageTurnersContext(DbContextOptions<PageTurnersContext> options)
             : base(options)

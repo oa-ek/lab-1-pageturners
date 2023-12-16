@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PageTurners.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -262,7 +262,7 @@ namespace PageTurners.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserBook",
+                name: "UserBooks",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -272,21 +272,21 @@ namespace PageTurners.Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserBook", x => new { x.UserId, x.BookId });
+                    table.PrimaryKey("PK_UserBooks", x => new { x.UserId, x.BookId });
                     table.ForeignKey(
-                        name: "FK_UserBook_AspNetUsers_UserId",
+                        name: "FK_UserBooks_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserBook_Books_BookId",
+                        name: "FK_UserBooks_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserBook_Books_BookId1",
+                        name: "FK_UserBooks_Books_BookId1",
                         column: x => x.BookId1,
                         principalTable: "Books",
                         principalColumn: "Id");
@@ -332,9 +332,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4404131a-353c-49d5-8d55-d0e8c7124c00", null, "Admin", "ADMIN" },
-                    { "62454f9c-df8f-47b9-ac87-6ff1bb95d3bb", null, "Reader", "READER" },
-                    { "8c40d83a-106b-48da-9085-728bb5ee046a", null, "Moderator", "MODERATOR" }
+                    { "2494108a-38d1-4d5c-a41a-47512a0e4ff1", null, "Reader", "READER" },
+                    { "62a5ba33-da48-4c12-8efd-5f4b23daf7ff", null, "Moderator", "MODERATOR" },
+                    { "b2375ead-04ae-4380-b5a0-178cd649c9bc", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -342,9 +342,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Login", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "2ecc7976-21eb-4ded-86d1-78e28c241088", 0, "b99f875b-4bc8-4948-8ef5-98994c76be06", new DateTime(2052, 11, 2, 17, 18, 40, 334, DateTimeKind.Local).AddTicks(946), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEOrVuZv3iA6yAHR+Gnyk/9hDyCBO7bbf+B6ONSIP+h5XPiEE7WOXxvdKrNhG8nTQEg==", null, false, null, "79c63090-3436-4169-ab90-f31e47cf6f2c", false, "admin@pageturners.com" },
-                    { "88462d39-1e95-43dc-aeef-cb5bca0f59d6", 0, "4a28fc05-18b8-4f2f-8c85-cc79500b7f52", new DateTime(2044, 11, 2, 17, 18, 40, 334, DateTimeKind.Local).AddTicks(1120), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEMZOXcF+Ms0cggyjQUwMEUNJgPJO7FqIjvwZfqXHPaNsCq6k1vVW03HKgEaiFjgOjQ==", null, false, null, "b1df02ef-fc98-44b1-8f5b-1f8f931518db", false, "reader@pageturners.com" },
-                    { "cea8bf62-2d0a-4ba7-b2ad-7ea5d24921f5", 0, "97d24893-de74-4d8f-bd11-5c20fd92212e", new DateTime(2044, 11, 2, 17, 18, 40, 334, DateTimeKind.Local).AddTicks(1091), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEEIVIV70xCy/Z6RASOFnXkHGlRa6GaxmMqWqEJHO9WUK3px5pQpRSJwzQsw41VtZ1w==", null, false, null, "dddbf078-8ccb-4e1e-a02b-bcfecc3bc9d0", false, "moderator@pageturners.com" }
+                    { "4ddff3a6-fcbe-48a2-a275-96d1641e7926", 0, "e4a63745-1787-4c06-a8aa-47b7e26ae47b", new DateTime(2052, 12, 16, 14, 6, 45, 383, DateTimeKind.Local).AddTicks(3005), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEEJk2hiNWul9jB9LuWDJ4MO3YuwnBLmJ/pfhPB2KyY/xgy1XEGvtrPOvbWbe/4sapg==", null, false, null, "cff62971-7764-47bd-a43c-7f06f6d849d8", false, "admin@pageturners.com" },
+                    { "5f440aba-dd59-4f43-acb5-062dfadd7f4b", 0, "ef80de08-98ed-46bc-8618-8369ea061b0a", new DateTime(2044, 12, 16, 14, 6, 45, 383, DateTimeKind.Local).AddTicks(3120), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAECon8neox6Xhqs/OAMUd09m6XIyaX9gX9jkp+S6ZXOFKaz/5E05hz4atjekqnFpgBA==", null, false, null, "baef2c25-0322-4e7f-9fc5-908436478aee", false, "reader@pageturners.com" },
+                    { "70080728-b8bb-4198-86cf-64b9e03df115", 0, "94343e5d-0aa8-4b93-bf89-078c9b51c2e9", new DateTime(2044, 12, 16, 14, 6, 45, 383, DateTimeKind.Local).AddTicks(3095), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEINrL1j9y2uCrLsAiFl8uTFeZgvRAMq0zSiz4knueaLPD5KGEjAZfYI7mX7gOR7WAQ==", null, false, null, "31eb6ba3-c6e3-46c8-9ee8-c32a476f9667", false, "moderator@pageturners.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -363,12 +363,12 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "4404131a-353c-49d5-8d55-d0e8c7124c00", "2ecc7976-21eb-4ded-86d1-78e28c241088" },
-                    { "8c40d83a-106b-48da-9085-728bb5ee046a", "2ecc7976-21eb-4ded-86d1-78e28c241088" },
-                    { "4404131a-353c-49d5-8d55-d0e8c7124c00", "88462d39-1e95-43dc-aeef-cb5bca0f59d6" },
-                    { "62454f9c-df8f-47b9-ac87-6ff1bb95d3bb", "88462d39-1e95-43dc-aeef-cb5bca0f59d6" },
-                    { "8c40d83a-106b-48da-9085-728bb5ee046a", "88462d39-1e95-43dc-aeef-cb5bca0f59d6" },
-                    { "8c40d83a-106b-48da-9085-728bb5ee046a", "cea8bf62-2d0a-4ba7-b2ad-7ea5d24921f5" }
+                    { "62a5ba33-da48-4c12-8efd-5f4b23daf7ff", "4ddff3a6-fcbe-48a2-a275-96d1641e7926" },
+                    { "b2375ead-04ae-4380-b5a0-178cd649c9bc", "4ddff3a6-fcbe-48a2-a275-96d1641e7926" },
+                    { "2494108a-38d1-4d5c-a41a-47512a0e4ff1", "5f440aba-dd59-4f43-acb5-062dfadd7f4b" },
+                    { "62a5ba33-da48-4c12-8efd-5f4b23daf7ff", "5f440aba-dd59-4f43-acb5-062dfadd7f4b" },
+                    { "b2375ead-04ae-4380-b5a0-178cd649c9bc", "5f440aba-dd59-4f43-acb5-062dfadd7f4b" },
+                    { "62a5ba33-da48-4c12-8efd-5f4b23daf7ff", "70080728-b8bb-4198-86cf-64b9e03df115" }
                 });
 
             migrationBuilder.InsertData(
@@ -376,8 +376,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "BookId", "Comment", "CommentatorId", "Date" },
                 values: new object[,]
                 {
-                    { 1, 3, "Дуже цікава історія!", "2ecc7976-21eb-4ded-86d1-78e28c241088", new DateTime(2023, 11, 2, 17, 18, 41, 49, DateTimeKind.Local).AddTicks(6045) },
-                    { 2, 1, "Трохи нудно...", "cea8bf62-2d0a-4ba7-b2ad-7ea5d24921f5", new DateTime(2023, 11, 2, 17, 18, 41, 49, DateTimeKind.Local).AddTicks(6196) }
+                    { 1, 3, "Дуже цікава історія!", "4ddff3a6-fcbe-48a2-a275-96d1641e7926", new DateTime(2023, 12, 16, 14, 6, 45, 872, DateTimeKind.Local).AddTicks(3159) },
+                    { 2, 1, "Трохи нудно...", "70080728-b8bb-4198-86cf-64b9e03df115", new DateTime(2023, 12, 16, 14, 6, 45, 872, DateTimeKind.Local).AddTicks(3271) }
                 });
 
             migrationBuilder.InsertData(
@@ -385,8 +385,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "Author", "DatePubl", "Desc", "Edition", "Genre", "OwnerId", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Юлія Лабурнум", 0, null, null, null, "cea8bf62-2d0a-4ba7-b2ad-7ea5d24921f5", "Лабіринт часу" },
-                    { 2, "Андрій Землянський", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "2ecc7976-21eb-4ded-86d1-78e28c241088", "Спадщина Марса" }
+                    { 1, "Юлія Лабурнум", 0, null, null, null, "70080728-b8bb-4198-86cf-64b9e03df115", "Лабіринт часу" },
+                    { 2, "Андрій Землянський", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "4ddff3a6-fcbe-48a2-a275-96d1641e7926", "Спадщина Марса" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -469,13 +469,13 @@ namespace PageTurners.Core.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserBook_BookId",
-                table: "UserBook",
+                name: "IX_UserBooks_BookId",
+                table: "UserBooks",
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserBook_BookId1",
-                table: "UserBook",
+                name: "IX_UserBooks_BookId1",
+                table: "UserBooks",
                 column: "BookId1");
         }
 
@@ -507,7 +507,7 @@ namespace PageTurners.Core.Migrations
                 name: "Reviews");
 
             migrationBuilder.DropTable(
-                name: "UserBook");
+                name: "UserBooks");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -13,6 +13,11 @@
     <a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id" class="btn-custom-danger">Видалити</a>
 }
 
+<form asp-controller="UserBook" asp-action="LikeBook" method="post">
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <button type="submit" class="btn-custom">Лайкнути книгу</button>
+</form>
+
 <div class="container">
     <h1 class="display-4">Деталі про книгу</h1>
     <hr />

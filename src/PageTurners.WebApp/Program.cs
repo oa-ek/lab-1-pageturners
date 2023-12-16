@@ -29,6 +29,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 .AddSignInManager<SignInManager<User>>();
 
 
+builder.Services.AddScoped<IUserBookRepository, UserBookRepository>();
 
 
 /*builder.Services.AddScoped<UserManager<User>>();*/
