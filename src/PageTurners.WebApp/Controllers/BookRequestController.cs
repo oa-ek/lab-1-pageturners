@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PageTurners.Core.Context;
@@ -8,15 +9,17 @@ using PageTurners.Repositories.Repos;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
-
+using Microsoft.AspNetCore.Hosting;
 public class BookRequestController : Controller
 {
     private readonly IBookRepository bookRepository;
     private readonly IBookRequestRepository bookRequestRepository;
+    private readonly IWebHostEnvironment webHostEnvironment;
     public BookRequestController(IBookRepository bookRepository, IBookRequestRepository bookRequestRepository)
     {
         this.bookRepository = bookRepository;
         this.bookRequestRepository = bookRequestRepository;
+        this.webHostEnvironment = webHostEnvironment;
     }
 
 
@@ -65,18 +68,7 @@ public class BookRequestController : Controller
                 OwnerId = currentUserId
             };
 
-            if (image != null && image.Length > 0)
-            {
-                var filePath = Path.GetTempFileName(); // Отримати тимчасовий шлях для зберігання файлу
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await image.CopyToAsync(stream); // Зберегти файл на сервері
-                }
-
-                bookRequest.ImagePath = filePath; // Зберегти шлях до файлу в об'єкті
-                bookRequest.ImageMimeType = image.ContentType;
-            }
+            
             bookRequestRepository.Add(bookRequest);
 
             return RedirectToAction("Index", "Book");
@@ -105,18 +97,7 @@ public class BookRequestController : Controller
                 DatePubl = bookRequest.DatePubl,
             };
 
-            if (image != null && image.Length > 0)
-            {
-                var filePath = Path.GetTempFileName(); // Отримати тимчасовий шлях для зберігання файлу
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await image.CopyToAsync(stream); // Зберегти файл на сервері
-                }
-
-                bookRequest.ImagePath = filePath; // Зберегти шлях до файлу в об'єкті
-                bookRequest.ImageMimeType = image.ContentType;
-            }
+            
 
             bookRepository.Add(newBook);
             bookRequestRepository.Delete(bookRequestId);
