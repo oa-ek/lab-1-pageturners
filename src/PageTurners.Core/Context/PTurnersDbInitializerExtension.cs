@@ -196,8 +196,7 @@ namespace PageTurners.Core.Context
                         Id = 1,
                         Title = "Лабіринт часу",
                         Author = "Юлія Лабурнум",
-                        OwnerId = reqIds[1],
-                        ImagePath = "images/b1.jpg"
+                        OwnerId = reqIds[1]
                     },
                     new BookRequest
                     {
@@ -205,8 +204,7 @@ namespace PageTurners.Core.Context
                         Title = "Спадщина Марса",
                         Author = "Андрій Землянський",
                         Desc = "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.",
-                        OwnerId = reqIds[0],
-                        ImagePath = "images/b2.jpg"
+                        OwnerId = reqIds[0]
                     }
                     );
         }

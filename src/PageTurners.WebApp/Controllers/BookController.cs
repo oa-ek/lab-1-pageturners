@@ -181,9 +181,20 @@ namespace PageTurners.WebApp.Controllers
         }
 
 
-       
-        
-        
+
+        public IActionResult IndexSearch(string searchString)
+        {
+            var books = bookRepository.GetAll();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(b => b.Title.Contains(searchString)).ToList();
+            }
+
+            return View(books);
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> RateBook(int id, int ratingValue)

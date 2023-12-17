@@ -13,8 +13,16 @@
 </style>
 
 
+<form asp-controller="Book" asp-action="IndexSearch" method="get">
+    <div class="form-group">
+        <label for="search">Пошук за назвою книги:</label>
+        <input type="text" id="search" name="searchString" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Пошук</button>
+</form>
 
 <div class="container">
+
     <h1 class="display-4"><b>Книги для обговорення</b></h1>
     <hr />
 

@@ -1,0 +1,31 @@
+﻿@using PageTurners.Core.Entities
+@model IEnumerable<Book>
+
+<h1>Результати пошуку</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Назва</th>
+                <th>Автор</th>
+                <th>Опис</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Desc</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Книги за вашим запитом не знайдено.</p>
+}
