@@ -12,13 +12,12 @@
     }
 </style>
 
-
 <form asp-controller="Book" asp-action="IndexSearch" method="get">
     <div class="form-group">
-        <label for="search">Пошук за назвою книги:</label>
+        <label for="search"><b>Пошук за назвою книги:</b></label>
         <input type="text" id="search" name="searchString" class="form-control" />
     </div>
-    <button type="submit" class="btn-custom-details"><b>Пошук</b></button>
+    <button type="submit" class="btn-custom-details">Пошук</button>
 </form>
 
 <div class="container">
@@ -48,8 +47,6 @@
             <a asp-controller="BookRequest" asp-action="Create" class="btn-custom">Додати книгу</a>
 
         }
-
-
     </div>
 </div>
 
