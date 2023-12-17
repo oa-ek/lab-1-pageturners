@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@book.Title</h5>
                         <h6 class="card-subtitle mb-2 text-muted">@book.Author</h6>
-                        
+
 
                         <a href="/Book/Details/@book.Id" class="btn-custom-details">Детальніше</a>
                     </div>
@@ -25,3 +25,56 @@
         }
     </div>
 </div>
+<style>
+
+    body {
+        background-image: url('/images/back.jpg');
+        background-size: cover; /* Масштабування зображення, щоб воно покривало всю сторінку */
+        background-repeat: no-repeat; /* Вимкнення повторення зображення */
+        background-attachment: fixed; /* Фон залишається фіксованим під час прокручування сторінки */
+    }
+
+    /* Основний стиль кнопок */
+    .btn-custom {
+        background-color: #FFA500; /* Оранжевий колір */
+        color: #fff; /* Колір тексту */
+        border: none;
+        box-shadow: 2px 2px 4px #888888; /* Тінь */
+        padding: 10px 20px; /* Відступи */
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex; /* Використовуємо Flexbox для розтягування */
+        align-items: center; /* Вирівнюємо по вертикалі */
+    }
+
+        /* Стиль кнопок при наведенні */
+        .btn-custom:hover {
+            background-color: #FF6600; /* Змінений колір при наведенні */
+            transform: scale(1.05); /* Збільшує розмір кнопки на наведенні */
+        }
+
+    /* CSS для зменшення розміру зображення */
+    img {
+        max-width: 100%; /* Максимальна ширина зображення буде 100% від контейнера */
+        height: auto; /* Автоматична висота, щоб зберегти пропорції */
+        max-height: 100px; /* Максимальна висота зображення */
+    }
+
+
+    .btn-custom-details {
+        background-color: #ebc334;
+        color: #fff;
+        border: none;
+        box-shadow: 2px 2px 4px #000000;
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.2s; /* Плавне зміна кольору та інтерактив на наведенні */
+        display: inline-flex;
+        align-items: center;
+    }
+
+
+        .btn-custom-details:hover {
+            background-color: #c99e00;
+            transform: scale(1.05);
+        }
+
+</style>
