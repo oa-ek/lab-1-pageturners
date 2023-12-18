@@ -1,7 +1,6 @@
 ﻿@model List<PageTurners.Core.Entities.BookRequest>
 @using PageTurners.Core.Entities
 
-
 @{
     ViewData["Title"] = "Книги з запитами";
 }
@@ -16,27 +15,24 @@
             {
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="card mb-4">
+                        <img src="@book.CoverPath" class="card-img-top" alt="Book Cover">
                         <div class="card-body">
                             <h5 class="card-title">@book.Title</h5>
                             <h6 class="card-subtitle mb-2 text-muted">@book.Author</h6>
                             <p class="card-text">@book.Desc</p>
-                            
-                            
-                           
-                                <form asp-controller="BookRequest" asp-action="PublishBook" asp-route-bookRequestId="@book.Id" method="post">
-                                    <button type="submit" class="btn-custom">Опублікувати</button>
-                                </form>
 
-                                <form asp-controller="BookRequest" asp-action="DeleteBookRequest" asp-route-bookRequestId="@book.Id" method="post">
-                                    <button type="submit" class="btn-custom-danger">Видалити</button>
-                                </form>
-                               
-                           
+                            <form asp-controller="BookRequest" asp-action="PublishBook" asp-route-bookRequestId="@book.Id" method="post">
+                                <button type="submit" class="btn-custom">Опублікувати</button>
+                            </form>
+
+                            <form asp-controller="BookRequest" asp-action="DeleteBookRequest" asp-route-bookRequestId="@book.Id" method="post">
+                                <button type="submit" class="btn-custom-danger">Видалити</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
             }
-
         </div>
     </div>
 }
@@ -44,6 +40,7 @@ else
 {
     <p>На жаль, книги з запитами відсутні.</p>
 }
+
 
 
 
