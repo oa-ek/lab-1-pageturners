@@ -1,0 +1,16 @@
+﻿@model List<ForumTopic>
+
+<h1>Форум</h1>
+
+<a asp-action="CreateTopic">Створити нову тему</a>
+
+@foreach (var topic in Model)
+{
+    <h2>@topic.Title</h2>
+    <!-- Показати інформацію про тему -->
+    @foreach (var post in topic.Posts)
+    {
+        <p>@post.Content</p>
+        <!-- Показати інформацію про повідомлення -->
+    }
+}
