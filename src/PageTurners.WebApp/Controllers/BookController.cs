@@ -140,32 +140,22 @@ namespace PageTurners.WebApp.Controllers
                 existingBook.Desc = model.Desc;
                 existingBook.DatePubl = model.DatePubl;
 
-                if (model.CoverFile != null)
-                {
-                    try
-                    {
-                        // Оновити CoverPath та завантажити нову обкладинку, якщо вказано новий файл
-                        string wwwRootPath = webHostEnvironment.WebRootPath;
-                        string fileName = Path.GetFileNameWithoutExtension(model.CoverFile.FileName);
-                        string extension = Path.GetExtension(model.CoverFile.FileName);
-                        fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                        existingBook.CoverPath = "/img/book/" + fileName;
-                        string path = Path.Combine(wwwRootPath + "/img/book/", fileName);
+				if (model.CoverFile != null)
+				{
+                    string wwwRootPath = webHostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(model.CoverFile.FileName);
+                    string extension = Path.GetExtension(model.CoverFile.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    existingBook.CoverPath = "/img/book/" + fileName;
+                    string path = Path.Combine(wwwRootPath + "/img/book/", fileName);
 
-                        using (var fileStream = new FileStream(path, FileMode.Create))
-                        {
-                            model.CoverFile.CopyTo(fileStream);
-                        }
-                    }
-                    catch (Exception ex)
+                    using (var fileStream = new FileStream(path, FileMode.Create))
                     {
-                        ModelState.AddModelError("CoverFile", $"Помилка завантаження файлу: {ex.Message}");
-                        return View(model);
+                        model.CoverFile.CopyTo(fileStream);
                     }
-                }
+				}
 
-                // Оновити CoverPath та завантажити нову обкладинку, якщо вказано новий файл
-                bookRepository.Update(existingBook);
+				bookRepository.Update(existingBook);
 
                 return RedirectToAction("Index");
             }

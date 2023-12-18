@@ -51,19 +51,19 @@ namespace PageTurners.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "15ad53b9-b5e9-4a79-ad80-4f65e26e34ff",
+                            Id = "aec585e3-2bd5-4f60-8bae-7e13c2f72723",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "7cc06eb0-a0ac-40aa-8f3f-8c7725e5b83d",
+                            Id = "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "744803b6-44a1-4a19-aa06-e95e2c222d87",
+                            Id = "f5e913db-7831-4c7a-a654-2ad4c34e94ef",
                             Name = "Reader",
                             NormalizedName = "READER"
                         });
@@ -160,33 +160,33 @@ namespace PageTurners.Core.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "46f83f86-0d88-4b3f-9a7f-3828d8988d74",
-                            RoleId = "15ad53b9-b5e9-4a79-ad80-4f65e26e34ff"
+                            UserId = "5b58299f-2d1b-4162-9e77-4c9e74971352",
+                            RoleId = "aec585e3-2bd5-4f60-8bae-7e13c2f72723"
                         },
                         new
                         {
-                            UserId = "46f83f86-0d88-4b3f-9a7f-3828d8988d74",
-                            RoleId = "7cc06eb0-a0ac-40aa-8f3f-8c7725e5b83d"
+                            UserId = "5b58299f-2d1b-4162-9e77-4c9e74971352",
+                            RoleId = "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49"
                         },
                         new
                         {
-                            UserId = "1a35a818-1e50-48aa-b439-68cf70435268",
-                            RoleId = "7cc06eb0-a0ac-40aa-8f3f-8c7725e5b83d"
+                            UserId = "40ff546a-3c48-4ff4-9b05-e827b1c10c41",
+                            RoleId = "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49"
                         },
                         new
                         {
-                            UserId = "c7122dfe-a764-47be-a395-09441b81fa2c",
-                            RoleId = "7cc06eb0-a0ac-40aa-8f3f-8c7725e5b83d"
+                            UserId = "c98662b2-bcb8-41df-b8f5-2c1a833d7439",
+                            RoleId = "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49"
                         },
                         new
                         {
-                            UserId = "c7122dfe-a764-47be-a395-09441b81fa2c",
-                            RoleId = "15ad53b9-b5e9-4a79-ad80-4f65e26e34ff"
+                            UserId = "c98662b2-bcb8-41df-b8f5-2c1a833d7439",
+                            RoleId = "aec585e3-2bd5-4f60-8bae-7e13c2f72723"
                         },
                         new
                         {
-                            UserId = "c7122dfe-a764-47be-a395-09441b81fa2c",
-                            RoleId = "744803b6-44a1-4a19-aa06-e95e2c222d87"
+                            UserId = "c98662b2-bcb8-41df-b8f5-2c1a833d7439",
+                            RoleId = "f5e913db-7831-4c7a-a654-2ad4c34e94ef"
                         });
                 });
 
@@ -345,7 +345,7 @@ namespace PageTurners.Core.Migrations
                             Author = "Юлія Лабурнум",
                             CoverPath = "\\img\\book\\no_cover.jpg",
                             DatePubl = 0,
-                            OwnerId = "1a35a818-1e50-48aa-b439-68cf70435268",
+                            OwnerId = "40ff546a-3c48-4ff4-9b05-e827b1c10c41",
                             Title = "Лабіринт часу"
                         },
                         new
@@ -355,7 +355,7 @@ namespace PageTurners.Core.Migrations
                             CoverPath = "\\img\\book\\no_cover.jpg",
                             DatePubl = 0,
                             Desc = "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.",
-                            OwnerId = "46f83f86-0d88-4b3f-9a7f-3828d8988d74",
+                            OwnerId = "5b58299f-2d1b-4162-9e77-4c9e74971352",
                             Title = "Спадщина Марса"
                         });
                 });
@@ -396,16 +396,16 @@ namespace PageTurners.Core.Migrations
                             Id = 1,
                             BookId = 3,
                             Comment = "Дуже цікава історія!",
-                            CommentatorId = "46f83f86-0d88-4b3f-9a7f-3828d8988d74",
-                            Date = new DateTime(2023, 12, 19, 1, 27, 31, 762, DateTimeKind.Local).AddTicks(7305)
+                            CommentatorId = "5b58299f-2d1b-4162-9e77-4c9e74971352",
+                            Date = new DateTime(2023, 12, 18, 16, 26, 49, 339, DateTimeKind.Local).AddTicks(3702)
                         },
                         new
                         {
                             Id = 2,
                             BookId = 1,
                             Comment = "Трохи нудно...",
-                            CommentatorId = "1a35a818-1e50-48aa-b439-68cf70435268",
-                            Date = new DateTime(2023, 12, 19, 1, 27, 31, 762, DateTimeKind.Local).AddTicks(7430)
+                            CommentatorId = "40ff546a-3c48-4ff4-9b05-e827b1c10c41",
+                            Date = new DateTime(2023, 12, 18, 16, 26, 49, 339, DateTimeKind.Local).AddTicks(3813)
                         });
                 });
 
@@ -554,10 +554,10 @@ namespace PageTurners.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "46f83f86-0d88-4b3f-9a7f-3828d8988d74",
+                            Id = "5b58299f-2d1b-4162-9e77-4c9e74971352",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "47e99bab-5af7-44c5-a57a-891364d49a30",
-                            DateOfBirth = new DateTime(2052, 12, 19, 1, 27, 31, 517, DateTimeKind.Local).AddTicks(8826),
+                            ConcurrencyStamp = "d1ef7088-7d7f-4041-82bc-ed79b4993ee5",
+                            DateOfBirth = new DateTime(2052, 12, 18, 16, 26, 49, 71, DateTimeKind.Local).AddTicks(4247),
                             Email = "admin@pageturners.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -565,18 +565,18 @@ namespace PageTurners.Core.Migrations
                             Name = "Іван Сергійович",
                             NormalizedEmail = "ADMIN@PAGETURNERS.COM",
                             NormalizedUserName = "ADMIN@PAGETURNERS.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC2AXgBQF8dLq0XqhCpGoRldcLbnwhkbv/f1Nb1f+7/k/H0kjlK80uB9QZPL/wUUcw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGjeKHlgwk0OJDutQWEvpAuAQwLO7zJxjmrjz7HFIKp/EqC749CBnJpEH2QfWHXGvQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8d38b37b-4e07-4a96-a7b6-504d9254bb13",
+                            SecurityStamp = "2c1dfb81-6b5d-4676-aa7f-9276cd51300f",
                             TwoFactorEnabled = false,
                             UserName = "admin@pageturners.com"
                         },
                         new
                         {
-                            Id = "1a35a818-1e50-48aa-b439-68cf70435268",
+                            Id = "40ff546a-3c48-4ff4-9b05-e827b1c10c41",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "65ff28a7-c323-43f2-932e-b7ea4871910e",
-                            DateOfBirth = new DateTime(2044, 12, 19, 1, 27, 31, 517, DateTimeKind.Local).AddTicks(8896),
+                            ConcurrencyStamp = "f296ebeb-449f-474e-b8f9-99e3fdfd191a",
+                            DateOfBirth = new DateTime(2044, 12, 18, 16, 26, 49, 71, DateTimeKind.Local).AddTicks(4319),
                             Email = "moderator@pageturners.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -584,18 +584,18 @@ namespace PageTurners.Core.Migrations
                             Name = "Дарія Петрівна",
                             NormalizedEmail = "MODERATOR@PAGETURNERS.COM",
                             NormalizedUserName = "MODERATOR@PAGETURNERS.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECSq5ehUFsTdxXek4xIjSYQpCMrL8QiHxF9fCUIMnrD0y7IqXrFbWIkaMdW8JYgGiQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHDiPUbZp+xS536LFCNyLGlAo1TnpOTLwEuL27YDRWmWdE8+bnPEFCg8GkH66Y3VFA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3cababa1-ce8c-4543-a6be-b8fb36a3f0c0",
+                            SecurityStamp = "a4c86d82-c2ff-4cc2-9b4e-dd44df655037",
                             TwoFactorEnabled = false,
                             UserName = "moderator@pageturners.com"
                         },
                         new
                         {
-                            Id = "c7122dfe-a764-47be-a395-09441b81fa2c",
+                            Id = "c98662b2-bcb8-41df-b8f5-2c1a833d7439",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "add9d68c-9319-47f4-b5d7-f5437687fc6a",
-                            DateOfBirth = new DateTime(2044, 12, 19, 1, 27, 31, 517, DateTimeKind.Local).AddTicks(8906),
+                            ConcurrencyStamp = "c6b0406c-5f46-4176-be3e-2f8012aca67c",
+                            DateOfBirth = new DateTime(2044, 12, 18, 16, 26, 49, 71, DateTimeKind.Local).AddTicks(4332),
                             Email = "reader@pageturners.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -603,9 +603,9 @@ namespace PageTurners.Core.Migrations
                             Name = "Анна Олександрівна",
                             NormalizedEmail = "READER@PAGETURNERS.COM",
                             NormalizedUserName = "READER@PAGETURNERS.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHJY6No5wf2mr9JssrZWFBeHOr2EFgsHFwEIc/j+G1wp4d2F9R9ceJe9cQOGfzU+rQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMFEw2rM7In/2+tA9q6h39HzDDSILV1IcGttIHQb2aIc9oA0Mq1CGgIHVe2b/xAiZg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ea485f5b-16ce-4396-bcf2-ae1d53561312",
+                            SecurityStamp = "b287802c-566c-42a4-93e0-69b82c6439fe",
                             TwoFactorEnabled = false,
                             UserName = "reader@pageturners.com"
                         });
