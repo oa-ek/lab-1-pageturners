@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PageTurners.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -334,9 +334,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2b27b026-4b5b-4790-b2e4-c552f1f376f0", null, "Admin", "ADMIN" },
-                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", null, "Moderator", "MODERATOR" },
-                    { "95535132-44a8-4efb-914b-055e4e316b9b", null, "Reader", "READER" }
+                    { "68d8afd7-cea0-43f6-8c86-6d31c84a7da4", null, "Reader", "READER" },
+                    { "71faa60a-122e-4c25-8cde-219ac538bd8e", null, "Admin", "ADMIN" },
+                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", null, "Moderator", "MODERATOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -344,9 +344,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Login", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "38ab76af-ab5a-4de4-bf88-506515b242a7", 0, "a8effe84-f0a9-4e88-8bf7-47d6def7f42e", new DateTime(2044, 12, 18, 3, 39, 6, 278, DateTimeKind.Local).AddTicks(3328), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEL2o3gNaSo/AwEVUPKwIBORZfzdNum0t6fdD9eTJf+hWL+dhwcXGwts31gbZ9te9aA==", null, false, null, "55ca9df0-2b13-482a-aef2-b8f603153f81", false, "moderator@pageturners.com" },
-                    { "d783e938-6316-4bea-9105-1749431972d2", 0, "6b35a887-ea53-42cb-9d62-e7e3b1a55995", new DateTime(2044, 12, 18, 3, 39, 6, 278, DateTimeKind.Local).AddTicks(3343), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEOncc1L61VXzSrrpeeKiPdK5nToxcj3VwWWH41cHuSACueN2WMO/8rYsBTBzkOyA2g==", null, false, null, "01998465-8062-4ddd-adbe-1963fb2955d9", false, "reader@pageturners.com" },
-                    { "e74cd608-d604-41f0-868e-3cd458f33530", 0, "62e4799d-d747-429c-82c6-b0599a875a47", new DateTime(2052, 12, 18, 3, 39, 6, 278, DateTimeKind.Local).AddTicks(3252), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEBdagXmrAHRPB4wmmEXXyVPuiLwvr0K8H0lWiDKNFQ+cd/6KtCG5WYLsFP9HS9FyFA==", null, false, null, "1cbf7017-6c2f-4802-9dd4-1eaaa3bf5dd0", false, "admin@pageturners.com" }
+                    { "065655a4-3e2d-4637-b0a7-d6ea9f3c9724", 0, "17c7b6ea-a214-4f16-8e31-8812943d5cf1", new DateTime(2052, 12, 18, 9, 19, 42, 275, DateTimeKind.Local).AddTicks(5446), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEIqUCrKFLVuHnbIappzJ8PWucLRPRAbnwQ15bYkjjoTGOHf/VIj+Rs4ZuCTMYNNqYg==", null, false, null, "8cb70caa-a6f8-4576-abc3-c137e37dec54", false, "admin@pageturners.com" },
+                    { "6f08f118-dd03-4f35-a4f5-f025b3dd89d5", 0, "accff168-e269-44c8-b7be-d62f8135d34a", new DateTime(2044, 12, 18, 9, 19, 42, 275, DateTimeKind.Local).AddTicks(5536), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEJfrIlHx9C08m8lN0KLykgL/KsBqC9AXJeezdNIycjrojIdq9oWjdle8Fqk/bz9vlg==", null, false, null, "0e3861cb-3d78-4246-9f5e-7f7942601c8a", false, "moderator@pageturners.com" },
+                    { "d06989fc-83f9-46b7-9384-39379ed2566a", 0, "9c5fa2a9-eb16-445d-b2c9-239fcb4daed2", new DateTime(2044, 12, 18, 9, 19, 42, 275, DateTimeKind.Local).AddTicks(5557), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEEvNtibP5Xvur0A2v9RgXdWspocMSLNWlfgg5hRr4wzSQ1TEihp/sYR5DMXqqZmgRg==", null, false, null, "0c830dfc-a816-4ffb-aeaf-939de645ad90", false, "reader@pageturners.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -365,12 +365,12 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", "38ab76af-ab5a-4de4-bf88-506515b242a7" },
-                    { "2b27b026-4b5b-4790-b2e4-c552f1f376f0", "d783e938-6316-4bea-9105-1749431972d2" },
-                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", "d783e938-6316-4bea-9105-1749431972d2" },
-                    { "95535132-44a8-4efb-914b-055e4e316b9b", "d783e938-6316-4bea-9105-1749431972d2" },
-                    { "2b27b026-4b5b-4790-b2e4-c552f1f376f0", "e74cd608-d604-41f0-868e-3cd458f33530" },
-                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", "e74cd608-d604-41f0-868e-3cd458f33530" }
+                    { "71faa60a-122e-4c25-8cde-219ac538bd8e", "065655a4-3e2d-4637-b0a7-d6ea9f3c9724" },
+                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", "065655a4-3e2d-4637-b0a7-d6ea9f3c9724" },
+                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", "6f08f118-dd03-4f35-a4f5-f025b3dd89d5" },
+                    { "68d8afd7-cea0-43f6-8c86-6d31c84a7da4", "d06989fc-83f9-46b7-9384-39379ed2566a" },
+                    { "71faa60a-122e-4c25-8cde-219ac538bd8e", "d06989fc-83f9-46b7-9384-39379ed2566a" },
+                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", "d06989fc-83f9-46b7-9384-39379ed2566a" }
                 });
 
             migrationBuilder.InsertData(
@@ -378,8 +378,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "BookId", "Comment", "CommentatorId", "Date" },
                 values: new object[,]
                 {
-                    { 1, 3, "Дуже цікава історія!", "e74cd608-d604-41f0-868e-3cd458f33530", new DateTime(2023, 12, 18, 3, 39, 6, 543, DateTimeKind.Local).AddTicks(313) },
-                    { 2, 1, "Трохи нудно...", "38ab76af-ab5a-4de4-bf88-506515b242a7", new DateTime(2023, 12, 18, 3, 39, 6, 543, DateTimeKind.Local).AddTicks(516) }
+                    { 1, 3, "Дуже цікава історія!", "065655a4-3e2d-4637-b0a7-d6ea9f3c9724", new DateTime(2023, 12, 18, 9, 19, 42, 892, DateTimeKind.Local).AddTicks(2701) },
+                    { 2, 1, "Трохи нудно...", "6f08f118-dd03-4f35-a4f5-f025b3dd89d5", new DateTime(2023, 12, 18, 9, 19, 42, 892, DateTimeKind.Local).AddTicks(2818) }
                 });
 
             migrationBuilder.InsertData(
@@ -387,8 +387,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "Author", "CoverPath", "DatePubl", "Desc", "Edition", "Genre", "OwnerId", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Юлія Лабурнум", "\\images\\book\\no_cover.jpg", 0, null, null, null, "38ab76af-ab5a-4de4-bf88-506515b242a7", "Лабіринт часу" },
-                    { 2, "Андрій Землянський", "\\images\\book\\no_cover.jpg", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "e74cd608-d604-41f0-868e-3cd458f33530", "Спадщина Марса" }
+                    { 1, "Юлія Лабурнум", "\\images\\book\\no_cover.jpg", 0, null, null, null, "6f08f118-dd03-4f35-a4f5-f025b3dd89d5", "Лабіринт часу" },
+                    { 2, "Андрій Землянський", "\\images\\book\\no_cover.jpg", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "065655a4-3e2d-4637-b0a7-d6ea9f3c9724", "Спадщина Марса" }
                 });
 
             migrationBuilder.CreateIndex(
