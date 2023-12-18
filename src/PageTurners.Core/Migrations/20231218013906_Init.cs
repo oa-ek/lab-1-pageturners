@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PageTurners.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -69,8 +69,7 @@ namespace PageTurners.Core.Migrations
                     Edition = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AverageRating = table.Column<double>(type: "float", nullable: true),
                     DatePubl = table.Column<int>(type: "int", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImageMimeType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CoverPath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -196,8 +195,7 @@ namespace PageTurners.Core.Migrations
                     Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Edition = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImageMimeType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CoverPath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -336,9 +334,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "122211c0-5dba-49de-983f-129c5510a106", null, "Moderator", "MODERATOR" },
-                    { "1cfb1794-7d02-4a21-8370-3ddb93ac9166", null, "Reader", "READER" },
-                    { "d1b1f60b-a825-4736-8bcb-8e4f1a3912e8", null, "Admin", "ADMIN" }
+                    { "2b27b026-4b5b-4790-b2e4-c552f1f376f0", null, "Admin", "ADMIN" },
+                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", null, "Moderator", "MODERATOR" },
+                    { "95535132-44a8-4efb-914b-055e4e316b9b", null, "Reader", "READER" }
                 });
 
             migrationBuilder.InsertData(
@@ -346,20 +344,20 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Login", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "5765ac34-b87f-4d6d-b165-d74585de09bb", 0, "67be52b1-064d-4227-a763-a3f969f0aca3", new DateTime(2052, 12, 16, 14, 56, 7, 250, DateTimeKind.Local).AddTicks(2504), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEHEIXq9zy+SYILy6KbpiJNG6VLUT6fShyjINwgmrJ65NfwgfWNkpGnuk5MlY5Qu4Bw==", null, false, null, "1e0c54ed-0e9e-49b7-9f95-f71412a329d5", false, "admin@pageturners.com" },
-                    { "5b518b62-520b-475b-8415-0a901ce3784f", 0, "5933778f-780d-4434-9b98-0ae2a17a95e1", new DateTime(2044, 12, 16, 14, 56, 7, 250, DateTimeKind.Local).AddTicks(2648), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAENYRv5n98b+zIv8vTA3xG4Qo+fOuLKmgJwuZfnLbcshFGuTYAPWvmwce5B7gstWpIg==", null, false, null, "aed8eb45-cd07-4aef-9e2b-0f56a18fd03e", false, "reader@pageturners.com" },
-                    { "d35847bb-f6ca-4e21-8e4a-e4999d30a7f6", 0, "f2106892-8f2a-4b1d-963f-18d5c82f2a35", new DateTime(2044, 12, 16, 14, 56, 7, 250, DateTimeKind.Local).AddTicks(2617), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEBfV+a/3I7NvPJIFVMdaUA/C9+oduW5JhVF/kvl/LjmpOOPZ+WBKjJM60ZssprRIPA==", null, false, null, "f5f2d749-1ceb-40c2-9aa1-a5b7f6d6ab8e", false, "moderator@pageturners.com" }
+                    { "38ab76af-ab5a-4de4-bf88-506515b242a7", 0, "a8effe84-f0a9-4e88-8bf7-47d6def7f42e", new DateTime(2044, 12, 18, 3, 39, 6, 278, DateTimeKind.Local).AddTicks(3328), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEL2o3gNaSo/AwEVUPKwIBORZfzdNum0t6fdD9eTJf+hWL+dhwcXGwts31gbZ9te9aA==", null, false, null, "55ca9df0-2b13-482a-aef2-b8f603153f81", false, "moderator@pageturners.com" },
+                    { "d783e938-6316-4bea-9105-1749431972d2", 0, "6b35a887-ea53-42cb-9d62-e7e3b1a55995", new DateTime(2044, 12, 18, 3, 39, 6, 278, DateTimeKind.Local).AddTicks(3343), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEOncc1L61VXzSrrpeeKiPdK5nToxcj3VwWWH41cHuSACueN2WMO/8rYsBTBzkOyA2g==", null, false, null, "01998465-8062-4ddd-adbe-1963fb2955d9", false, "reader@pageturners.com" },
+                    { "e74cd608-d604-41f0-868e-3cd458f33530", 0, "62e4799d-d747-429c-82c6-b0599a875a47", new DateTime(2052, 12, 18, 3, 39, 6, 278, DateTimeKind.Local).AddTicks(3252), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEBdagXmrAHRPB4wmmEXXyVPuiLwvr0K8H0lWiDKNFQ+cd/6KtCG5WYLsFP9HS9FyFA==", null, false, null, "1cbf7017-6c2f-4802-9dd4-1eaaa3bf5dd0", false, "admin@pageturners.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "AverageRating", "DatePubl", "Desc", "Edition", "Genre", "ImageMimeType", "ImagePath", "Title" },
+                columns: new[] { "Id", "Author", "AverageRating", "CoverPath", "DatePubl", "Desc", "Edition", "Genre", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Роберт Грін", null, 1998, "Ця книга розглядає стратегії та тактики влади, використовуючи приклади з історії та сучасного бізнесу.", "Viking Press", "Психологія, бізнес", null, null, "Ігри влади" },
-                    { 2, "Френсіс Скотт Фіцджеральд", null, 1925, "Цей роман розповідає історію багатого і таємничого Джей Гетсбі та його пристрасті до недосяжної коханої Дейзі.", "Charles Scribner's Sons", "Класика, роман", null, null, "Великий Гетсбі" },
-                    { 3, "Анна Тодд", null, 2014, "Ця книга розповідає про складність переходу від підліткового життя до дорослого, з фокусом на романтичних відносинах.", "Gallery Books", "Роман, молодіжна література", null, null, "Після" },
-                    { 4, "Джордж Р. Р. Мартін", null, 1996, "Перша книга серії `Пісня льоду і полум'я` розповідає про боротьбу різних родів за трон Залізного Трону у міфічному світі Вестерос.", "Bantam Spectra", "Фентезі, пригоди", null, null, "Гра престолів" }
+                    { 1, "Роберт Грін", null, "\\images\\book\\no_cover.jpg", 1998, "Ця книга розглядає стратегії та тактики влади, використовуючи приклади з історії та сучасного бізнесу.", "Viking Press", "Психологія, бізнес", "Ігри влади" },
+                    { 2, "Френсіс Скотт Фіцджеральд", null, "\\images\\book\\no_cover.jpg", 1925, "Цей роман розповідає історію багатого і таємничого Джей Гетсбі та його пристрасті до недосяжної коханої Дейзі.", "Charles Scribner's Sons", "Класика, роман", "Великий Гетсбі" },
+                    { 3, "Анна Тодд", null, "\\images\\book\\no_cover.jpg", 2014, "Ця книга розповідає про складність переходу від підліткового життя до дорослого, з фокусом на романтичних відносинах.", "Gallery Books", "Роман, молодіжна література", "Після" },
+                    { 4, "Джордж Р. Р. Мартін", null, "\\images\\book\\no_cover.jpg", 1996, "Перша книга серії `Пісня льоду і полум'я` розповідає про боротьбу різних родів за трон Залізного Трону у міфічному світі Вестерос.", "Bantam Spectra", "Фентезі, пригоди", "Гра престолів" }
                 });
 
             migrationBuilder.InsertData(
@@ -367,12 +365,12 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "122211c0-5dba-49de-983f-129c5510a106", "5765ac34-b87f-4d6d-b165-d74585de09bb" },
-                    { "d1b1f60b-a825-4736-8bcb-8e4f1a3912e8", "5765ac34-b87f-4d6d-b165-d74585de09bb" },
-                    { "122211c0-5dba-49de-983f-129c5510a106", "5b518b62-520b-475b-8415-0a901ce3784f" },
-                    { "1cfb1794-7d02-4a21-8370-3ddb93ac9166", "5b518b62-520b-475b-8415-0a901ce3784f" },
-                    { "d1b1f60b-a825-4736-8bcb-8e4f1a3912e8", "5b518b62-520b-475b-8415-0a901ce3784f" },
-                    { "122211c0-5dba-49de-983f-129c5510a106", "d35847bb-f6ca-4e21-8e4a-e4999d30a7f6" }
+                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", "38ab76af-ab5a-4de4-bf88-506515b242a7" },
+                    { "2b27b026-4b5b-4790-b2e4-c552f1f376f0", "d783e938-6316-4bea-9105-1749431972d2" },
+                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", "d783e938-6316-4bea-9105-1749431972d2" },
+                    { "95535132-44a8-4efb-914b-055e4e316b9b", "d783e938-6316-4bea-9105-1749431972d2" },
+                    { "2b27b026-4b5b-4790-b2e4-c552f1f376f0", "e74cd608-d604-41f0-868e-3cd458f33530" },
+                    { "82411a2c-a35a-44fb-8c2c-925a47aebf62", "e74cd608-d604-41f0-868e-3cd458f33530" }
                 });
 
             migrationBuilder.InsertData(
@@ -380,17 +378,17 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "BookId", "Comment", "CommentatorId", "Date" },
                 values: new object[,]
                 {
-                    { 1, 3, "Дуже цікава історія!", "5765ac34-b87f-4d6d-b165-d74585de09bb", new DateTime(2023, 12, 16, 14, 56, 7, 811, DateTimeKind.Local).AddTicks(1014) },
-                    { 2, 1, "Трохи нудно...", "d35847bb-f6ca-4e21-8e4a-e4999d30a7f6", new DateTime(2023, 12, 16, 14, 56, 7, 811, DateTimeKind.Local).AddTicks(1129) }
+                    { 1, 3, "Дуже цікава історія!", "e74cd608-d604-41f0-868e-3cd458f33530", new DateTime(2023, 12, 18, 3, 39, 6, 543, DateTimeKind.Local).AddTicks(313) },
+                    { 2, 1, "Трохи нудно...", "38ab76af-ab5a-4de4-bf88-506515b242a7", new DateTime(2023, 12, 18, 3, 39, 6, 543, DateTimeKind.Local).AddTicks(516) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Requests",
-                columns: new[] { "Id", "Author", "DatePubl", "Desc", "Edition", "Genre", "ImageMimeType", "ImagePath", "OwnerId", "Title" },
+                columns: new[] { "Id", "Author", "CoverPath", "DatePubl", "Desc", "Edition", "Genre", "OwnerId", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Юлія Лабурнум", 0, null, null, null, null, null, "d35847bb-f6ca-4e21-8e4a-e4999d30a7f6", "Лабіринт часу" },
-                    { 2, "Андрій Землянський", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, null, null, "5765ac34-b87f-4d6d-b165-d74585de09bb", "Спадщина Марса" }
+                    { 1, "Юлія Лабурнум", "\\images\\book\\no_cover.jpg", 0, null, null, null, "38ab76af-ab5a-4de4-bf88-506515b242a7", "Лабіринт часу" },
+                    { 2, "Андрій Землянський", "\\images\\book\\no_cover.jpg", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "e74cd608-d604-41f0-868e-3cd458f33530", "Спадщина Марса" }
                 });
 
             migrationBuilder.CreateIndex(

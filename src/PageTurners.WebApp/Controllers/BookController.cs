@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using PageTurners.Repositories.Repos;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 
 namespace PageTurners.WebApp.Controllers
@@ -19,14 +20,16 @@ namespace PageTurners.WebApp.Controllers
         private readonly ICommentsRepository commentsRepository;
         private readonly IRatingRepository ratingRepository;
         private readonly IUserRepository userRepository;
+        private readonly IWebHostEnvironment webHostEnvironment;
         /*private readonly PageTurnersContext _dbContext;*/
 
         public BookController(IBookRepository bookRepository, 
             ICommentsRepository commentsRepository,
             IRatingRepository ratingRepository,
             IUserRepository userRepository,
-            IUserBookRepository userBookRepository
-            /*PageTurnersContext dbContext*/)
+            IUserBookRepository userBookRepository,
+            /*PageTurnersContext dbContext*/
+            IWebHostEnvironment webHostEnvironment)
         {
             this.bookRepository = bookRepository;
             /*_dbContext = dbContext;*/
@@ -34,6 +37,7 @@ namespace PageTurners.WebApp.Controllers
             this.ratingRepository = ratingRepository;
             this.userRepository = userRepository;
             _userBookRepository = userBookRepository;
+            this.webHostEnvironment = webHostEnvironment;
         }
         private readonly IUserBookRepository _userBookRepository;
 
@@ -119,7 +123,7 @@ namespace PageTurners.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Book model)
+        public IActionResult Edit(Book model, IFormFile coverFile)
         {
             if (ModelState.IsValid)
             {
@@ -136,7 +140,13 @@ namespace PageTurners.WebApp.Controllers
                 existingBook.Desc = model.Desc;
                 existingBook.DatePubl = model.DatePubl;
 
-                bookRepository.Update(existingBook);
+				if (existingBook.CoverFile != null)
+				{
+					// Змінити шлях до фотографії книги
+					existingBook.CoverPath = UploadCover(coverFile);
+				}
+
+				bookRepository.Update(existingBook);
 
                 return RedirectToAction("Index");
             }
@@ -231,6 +241,22 @@ namespace PageTurners.WebApp.Controllers
             }
         }
 
-    }
+		private string UploadCover(IFormFile coverFile)
+		{
+			string wwwRootPath = webHostEnvironment.WebRootPath;
+
+			string fileName = Path.GetFileNameWithoutExtension(coverFile.FileName);
+			string extension = Path.GetExtension(coverFile.FileName);
+			fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+			string path = Path.Combine(wwwRootPath + "/images/book/", fileName);
+
+			using (var fileStream = new FileStream(path, FileMode.Create))
+			{
+				coverFile.CopyTo(fileStream);
+			}
+
+			return "/images/book/" + fileName;
+		}
+	}
 }
 

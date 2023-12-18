@@ -15,7 +15,7 @@ public class BookRequestController : Controller
     private readonly IBookRepository bookRepository;
     private readonly IBookRequestRepository bookRequestRepository;
     private readonly IWebHostEnvironment webHostEnvironment;
-    public BookRequestController(IBookRepository bookRepository, IBookRequestRepository bookRequestRepository)
+    public BookRequestController(IBookRepository bookRepository, IBookRequestRepository bookRequestRepository, IWebHostEnvironment webHostEnvironment)
     {
         this.bookRepository = bookRepository;
         this.bookRequestRepository = bookRequestRepository;
@@ -51,7 +51,7 @@ public class BookRequestController : Controller
     */
 
     [HttpPost]
-    public async Task<IActionResult> Create(BookRequest model, List<int> selectedCategories, IFormFile image)
+    public async Task<IActionResult> Create(BookRequest model, List<int> selectedCategories, IFormFile coverFile)
     {
         var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -65,10 +65,16 @@ public class BookRequestController : Controller
                 Genre = model.Genre,
                 Desc = model.Desc,
                 Edition = model.Edition,
-                OwnerId = currentUserId
+                OwnerId = currentUserId,
+                CoverFile = coverFile
             };
 
-            
+            if (coverFile != null)
+            {
+                // Змінити шлях до фотографії книги
+                bookRequest.CoverPath = UploadCover(coverFile);
+            }
+
             bookRequestRepository.Add(bookRequest);
 
             return RedirectToAction("Index", "Book");
@@ -82,7 +88,7 @@ public class BookRequestController : Controller
 
 
     [HttpPost]
-    public async Task<IActionResult> PublishBook(int bookRequestId, IFormFile image)
+    public async Task<IActionResult> PublishBook(int bookRequestId, IFormFile coverFile)
     {
         var bookRequest = await bookRequestRepository.GetByIdA(bookRequestId);
         if (bookRequest != null)
@@ -95,6 +101,7 @@ public class BookRequestController : Controller
                 Desc = bookRequest.Desc,
                 Edition = bookRequest.Edition,
                 DatePubl = bookRequest.DatePubl,
+                CoverFile = coverFile
             };
 
             
@@ -119,6 +126,23 @@ public class BookRequestController : Controller
         }
 
         return NotFound();
+    }
+
+    private string UploadCover(IFormFile coverFile)
+    {
+        string wwwRootPath = webHostEnvironment.WebRootPath;
+
+        string fileName = Path.GetFileNameWithoutExtension(coverFile.FileName);
+        string extension = Path.GetExtension(coverFile.FileName);
+        fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+        string path = Path.Combine(wwwRootPath + "/images/book/", fileName);
+
+        using (var fileStream = new FileStream(path, FileMode.Create))
+        {
+            coverFile.CopyTo(fileStream);
+        }
+
+        return "/images/book/" + fileName;
     }
 }
 

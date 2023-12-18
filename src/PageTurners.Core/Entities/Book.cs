@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace PageTurners.Core.Entities
 {
@@ -20,8 +21,9 @@ namespace PageTurners.Core.Entities
         public string Edition { get; set; }
         public double? AverageRating { get; set; }
         public int DatePubl { get; set; }
-        public string? ImagePath { get; set; } // Шлях до файлу зображення у файловій системі
-        public string? ImageMimeType { get; set; } // MIME-тип зображення
+        public string? CoverPath { get; set; } = "\\images\\book\\no_cover.jpg";
+        [NotMapped]
+        public IFormFile? CoverFile { get; set; }
 
         public virtual ICollection<Comments> Comment { get; set; }
     //    [InverseProperty("UsersReadBooks")]

@@ -13,7 +13,7 @@
     <a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id" class="btn-custom-danger">Видалити</a>
 }
 
-<form asp-controller="UserBook" asp-action="LikeBook" method="post">
+<form asp-controller="UserBook" asp-action="LikeBook" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="Id" value="@Model.Id" />
     <button type="submit" class="btn-custom">Лайкнути книгу</button>
 </form>
@@ -21,14 +21,13 @@
     <h1 class="display-4">Деталі про книгу</h1>
     <hr />
 
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-6">
-            
-
+            <img src="@Model.CoverPath" alt="Обкладинка книги" class="img-fluid" />
+        </div>
+        <div class="col-md-6">
+            <h1 class="display-4">@Model.Title</h1>
             <dl class="row">
-                <dt class="col-sm-4">Назва:</dt>
-                <dd class="col-sm-8">@Model.Title</dd>
-
                 <dt class="col-sm-4">Автор:</dt>
                 <dd class="col-sm-8">@Model.Author</dd>
 
@@ -46,6 +45,7 @@
             </dl>
         </div>
     </div>
+
 
     <h4>
         Середній рейтинг:
