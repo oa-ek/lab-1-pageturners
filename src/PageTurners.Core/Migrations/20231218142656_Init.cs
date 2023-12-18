@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PageTurners.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -334,9 +334,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "68d8afd7-cea0-43f6-8c86-6d31c84a7da4", null, "Reader", "READER" },
-                    { "71faa60a-122e-4c25-8cde-219ac538bd8e", null, "Admin", "ADMIN" },
-                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", null, "Moderator", "MODERATOR" }
+                    { "aec585e3-2bd5-4f60-8bae-7e13c2f72723", null, "Admin", "ADMIN" },
+                    { "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49", null, "Moderator", "MODERATOR" },
+                    { "f5e913db-7831-4c7a-a654-2ad4c34e94ef", null, "Reader", "READER" }
                 });
 
             migrationBuilder.InsertData(
@@ -344,9 +344,9 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Login", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "065655a4-3e2d-4637-b0a7-d6ea9f3c9724", 0, "17c7b6ea-a214-4f16-8e31-8812943d5cf1", new DateTime(2052, 12, 18, 9, 19, 42, 275, DateTimeKind.Local).AddTicks(5446), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEIqUCrKFLVuHnbIappzJ8PWucLRPRAbnwQ15bYkjjoTGOHf/VIj+Rs4ZuCTMYNNqYg==", null, false, null, "8cb70caa-a6f8-4576-abc3-c137e37dec54", false, "admin@pageturners.com" },
-                    { "6f08f118-dd03-4f35-a4f5-f025b3dd89d5", 0, "accff168-e269-44c8-b7be-d62f8135d34a", new DateTime(2044, 12, 18, 9, 19, 42, 275, DateTimeKind.Local).AddTicks(5536), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEJfrIlHx9C08m8lN0KLykgL/KsBqC9AXJeezdNIycjrojIdq9oWjdle8Fqk/bz9vlg==", null, false, null, "0e3861cb-3d78-4246-9f5e-7f7942601c8a", false, "moderator@pageturners.com" },
-                    { "d06989fc-83f9-46b7-9384-39379ed2566a", 0, "9c5fa2a9-eb16-445d-b2c9-239fcb4daed2", new DateTime(2044, 12, 18, 9, 19, 42, 275, DateTimeKind.Local).AddTicks(5557), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEEvNtibP5Xvur0A2v9RgXdWspocMSLNWlfgg5hRr4wzSQ1TEihp/sYR5DMXqqZmgRg==", null, false, null, "0c830dfc-a816-4ffb-aeaf-939de645ad90", false, "reader@pageturners.com" }
+                    { "40ff546a-3c48-4ff4-9b05-e827b1c10c41", 0, "f296ebeb-449f-474e-b8f9-99e3fdfd191a", new DateTime(2044, 12, 18, 16, 26, 49, 71, DateTimeKind.Local).AddTicks(4319), "moderator@pageturners.com", true, false, null, "daria684", "Дарія Петрівна", "MODERATOR@PAGETURNERS.COM", "MODERATOR@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEHDiPUbZp+xS536LFCNyLGlAo1TnpOTLwEuL27YDRWmWdE8+bnPEFCg8GkH66Y3VFA==", null, false, null, "a4c86d82-c2ff-4cc2-9b4e-dd44df655037", false, "moderator@pageturners.com" },
+                    { "5b58299f-2d1b-4162-9e77-4c9e74971352", 0, "d1ef7088-7d7f-4041-82bc-ed79b4993ee5", new DateTime(2052, 12, 18, 16, 26, 49, 71, DateTimeKind.Local).AddTicks(4247), "admin@pageturners.com", true, false, null, "ivan123", "Іван Сергійович", "ADMIN@PAGETURNERS.COM", "ADMIN@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEGjeKHlgwk0OJDutQWEvpAuAQwLO7zJxjmrjz7HFIKp/EqC749CBnJpEH2QfWHXGvQ==", null, false, null, "2c1dfb81-6b5d-4676-aa7f-9276cd51300f", false, "admin@pageturners.com" },
+                    { "c98662b2-bcb8-41df-b8f5-2c1a833d7439", 0, "c6b0406c-5f46-4176-be3e-2f8012aca67c", new DateTime(2044, 12, 18, 16, 26, 49, 71, DateTimeKind.Local).AddTicks(4332), "reader@pageturners.com", true, false, null, "anna456", "Анна Олександрівна", "READER@PAGETURNERS.COM", "READER@PAGETURNERS.COM", "AQAAAAIAAYagAAAAEMFEw2rM7In/2+tA9q6h39HzDDSILV1IcGttIHQb2aIc9oA0Mq1CGgIHVe2b/xAiZg==", null, false, null, "b287802c-566c-42a4-93e0-69b82c6439fe", false, "reader@pageturners.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -354,10 +354,10 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "Author", "AverageRating", "CoverPath", "DatePubl", "Desc", "Edition", "Genre", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Роберт Грін", null, "\\images\\book\\no_cover.jpg", 1998, "Ця книга розглядає стратегії та тактики влади, використовуючи приклади з історії та сучасного бізнесу.", "Viking Press", "Психологія, бізнес", "Ігри влади" },
-                    { 2, "Френсіс Скотт Фіцджеральд", null, "\\images\\book\\no_cover.jpg", 1925, "Цей роман розповідає історію багатого і таємничого Джей Гетсбі та його пристрасті до недосяжної коханої Дейзі.", "Charles Scribner's Sons", "Класика, роман", "Великий Гетсбі" },
-                    { 3, "Анна Тодд", null, "\\images\\book\\no_cover.jpg", 2014, "Ця книга розповідає про складність переходу від підліткового життя до дорослого, з фокусом на романтичних відносинах.", "Gallery Books", "Роман, молодіжна література", "Після" },
-                    { 4, "Джордж Р. Р. Мартін", null, "\\images\\book\\no_cover.jpg", 1996, "Перша книга серії `Пісня льоду і полум'я` розповідає про боротьбу різних родів за трон Залізного Трону у міфічному світі Вестерос.", "Bantam Spectra", "Фентезі, пригоди", "Гра престолів" }
+                    { 1, "Роберт Грін", null, "\\img\\book\\no_cover.jpg", 1998, "Ця книга розглядає стратегії та тактики влади, використовуючи приклади з історії та сучасного бізнесу.", "Viking Press", "Психологія, бізнес", "Ігри влади" },
+                    { 2, "Френсіс Скотт Фіцджеральд", null, "\\img\\book\\no_cover.jpg", 1925, "Цей роман розповідає історію багатого і таємничого Джей Гетсбі та його пристрасті до недосяжної коханої Дейзі.", "Charles Scribner's Sons", "Класика, роман", "Великий Гетсбі" },
+                    { 3, "Анна Тодд", null, "\\img\\book\\no_cover.jpg", 2014, "Ця книга розповідає про складність переходу від підліткового життя до дорослого, з фокусом на романтичних відносинах.", "Gallery Books", "Роман, молодіжна література", "Після" },
+                    { 4, "Джордж Р. Р. Мартін", null, "\\img\\book\\no_cover.jpg", 1996, "Перша книга серії `Пісня льоду і полум'я` розповідає про боротьбу різних родів за трон Залізного Трону у міфічному світі Вестерос.", "Bantam Spectra", "Фентезі, пригоди", "Гра престолів" }
                 });
 
             migrationBuilder.InsertData(
@@ -365,12 +365,12 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "71faa60a-122e-4c25-8cde-219ac538bd8e", "065655a4-3e2d-4637-b0a7-d6ea9f3c9724" },
-                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", "065655a4-3e2d-4637-b0a7-d6ea9f3c9724" },
-                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", "6f08f118-dd03-4f35-a4f5-f025b3dd89d5" },
-                    { "68d8afd7-cea0-43f6-8c86-6d31c84a7da4", "d06989fc-83f9-46b7-9384-39379ed2566a" },
-                    { "71faa60a-122e-4c25-8cde-219ac538bd8e", "d06989fc-83f9-46b7-9384-39379ed2566a" },
-                    { "fe6f5fc7-384e-4b77-953f-35a362f1cc6e", "d06989fc-83f9-46b7-9384-39379ed2566a" }
+                    { "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49", "40ff546a-3c48-4ff4-9b05-e827b1c10c41" },
+                    { "aec585e3-2bd5-4f60-8bae-7e13c2f72723", "5b58299f-2d1b-4162-9e77-4c9e74971352" },
+                    { "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49", "5b58299f-2d1b-4162-9e77-4c9e74971352" },
+                    { "aec585e3-2bd5-4f60-8bae-7e13c2f72723", "c98662b2-bcb8-41df-b8f5-2c1a833d7439" },
+                    { "e8c45a4a-20a1-4a13-b8a7-62e7ffc6bf49", "c98662b2-bcb8-41df-b8f5-2c1a833d7439" },
+                    { "f5e913db-7831-4c7a-a654-2ad4c34e94ef", "c98662b2-bcb8-41df-b8f5-2c1a833d7439" }
                 });
 
             migrationBuilder.InsertData(
@@ -378,8 +378,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "BookId", "Comment", "CommentatorId", "Date" },
                 values: new object[,]
                 {
-                    { 1, 3, "Дуже цікава історія!", "065655a4-3e2d-4637-b0a7-d6ea9f3c9724", new DateTime(2023, 12, 18, 9, 19, 42, 892, DateTimeKind.Local).AddTicks(2701) },
-                    { 2, 1, "Трохи нудно...", "6f08f118-dd03-4f35-a4f5-f025b3dd89d5", new DateTime(2023, 12, 18, 9, 19, 42, 892, DateTimeKind.Local).AddTicks(2818) }
+                    { 1, 3, "Дуже цікава історія!", "5b58299f-2d1b-4162-9e77-4c9e74971352", new DateTime(2023, 12, 18, 16, 26, 49, 339, DateTimeKind.Local).AddTicks(3702) },
+                    { 2, 1, "Трохи нудно...", "40ff546a-3c48-4ff4-9b05-e827b1c10c41", new DateTime(2023, 12, 18, 16, 26, 49, 339, DateTimeKind.Local).AddTicks(3813) }
                 });
 
             migrationBuilder.InsertData(
@@ -387,8 +387,8 @@ namespace PageTurners.Core.Migrations
                 columns: new[] { "Id", "Author", "CoverPath", "DatePubl", "Desc", "Edition", "Genre", "OwnerId", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Юлія Лабурнум", "\\images\\book\\no_cover.jpg", 0, null, null, null, "6f08f118-dd03-4f35-a4f5-f025b3dd89d5", "Лабіринт часу" },
-                    { 2, "Андрій Землянський", "\\images\\book\\no_cover.jpg", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "065655a4-3e2d-4637-b0a7-d6ea9f3c9724", "Спадщина Марса" }
+                    { 1, "Юлія Лабурнум", "\\img\\book\\no_cover.jpg", 0, null, null, null, "40ff546a-3c48-4ff4-9b05-e827b1c10c41", "Лабіринт часу" },
+                    { 2, "Андрій Землянський", "\\img\\book\\no_cover.jpg", 0, "Спадщина Марса - це захоплюючий науково-фантастичний роман, який перенося читача у далеке майбутнє, на таємничу і загадкову планету Марс. Автор, Андрій Землянський, розповідає історію групи вчених і дослідників, які вирушають на Марс, щоб розкрити його давні таємниці.", null, null, "5b58299f-2d1b-4162-9e77-4c9e74971352", "Спадщина Марса" }
                 });
 
             migrationBuilder.CreateIndex(

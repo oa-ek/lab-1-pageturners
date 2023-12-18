@@ -21,7 +21,7 @@ namespace PageTurners.Core.Entities
         public string Edition { get; set; }
         public double? AverageRating { get; set; }
         public int DatePubl { get; set; }
-        public string? CoverPath { get; set; } = "\\images\\book\\no_cover.jpg";
+        public string? CoverPath { get; set; } = "\\img\\book\\no_cover.jpg";
         [NotMapped]
         public IFormFile? CoverFile { get; set; }
 

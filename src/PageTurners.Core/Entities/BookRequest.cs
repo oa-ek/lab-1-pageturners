@@ -24,7 +24,7 @@ namespace PageTurners.Core.Entities
         public virtual ICollection<ModeratorReview> Reviews { get; set; }
         [ForeignKey("OwnerId")]
         public User Owner { get; set; }
-		public string? CoverPath { get; set; } = "\\images\\book\\no_cover.jpg";
+		public string? CoverPath { get; set; } = "\\img\\book\\no_cover.jpg";
 		[NotMapped]
 		public IFormFile? CoverFile { get; set; }
 	}

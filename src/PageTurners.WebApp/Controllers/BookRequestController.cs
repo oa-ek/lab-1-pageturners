@@ -69,10 +69,19 @@ public class BookRequestController : Controller
                 CoverFile = coverFile
             };
 
-            if (coverFile != null)
+            if (model.CoverFile != null)
             {
-                // Змінити шлях до фотографії книги
-                bookRequest.CoverPath = UploadCover(coverFile);
+                string wwwRootPath = webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(model.CoverFile.FileName);
+                string extension = Path.GetExtension(model.CoverFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                bookRequest.CoverPath = "/img/book/" + fileName;
+                string path = Path.Combine(wwwRootPath + "/img/book/", fileName);
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    model.CoverFile.CopyTo(fileStream);
+                }
             }
 
             bookRequestRepository.Add(bookRequest);
@@ -128,7 +137,7 @@ public class BookRequestController : Controller
         return NotFound();
     }
 
-    private string UploadCover(IFormFile coverFile)
+    /*private string UploadCover(IFormFile coverFile)
     {
         string wwwRootPath = webHostEnvironment.WebRootPath;
 
@@ -143,6 +152,6 @@ public class BookRequestController : Controller
         }
 
         return "/images/book/" + fileName;
-    }
+    }*/
 }
 

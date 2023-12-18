@@ -123,7 +123,7 @@ namespace PageTurners.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Book model, IFormFile coverFile)
+        public IActionResult Edit(Book model)
         {
             if (ModelState.IsValid)
             {
@@ -140,10 +140,19 @@ namespace PageTurners.WebApp.Controllers
                 existingBook.Desc = model.Desc;
                 existingBook.DatePubl = model.DatePubl;
 
-				if (existingBook.CoverFile != null)
+				if (model.CoverFile != null)
 				{
-					// Змінити шлях до фотографії книги
-					existingBook.CoverPath = UploadCover(coverFile);
+                    string wwwRootPath = webHostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(model.CoverFile.FileName);
+                    string extension = Path.GetExtension(model.CoverFile.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    existingBook.CoverPath = "/img/book/" + fileName;
+                    string path = Path.Combine(wwwRootPath + "/img/book/", fileName);
+
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        model.CoverFile.CopyTo(fileStream);
+                    }
 				}
 
 				bookRepository.Update(existingBook);
@@ -241,7 +250,7 @@ namespace PageTurners.WebApp.Controllers
             }
         }
 
-		private string UploadCover(IFormFile coverFile)
+		/*private string UploadCover(IFormFile coverFile)
 		{
 			string wwwRootPath = webHostEnvironment.WebRootPath;
 
@@ -256,7 +265,7 @@ namespace PageTurners.WebApp.Controllers
 			}
 
 			return "/images/book/" + fileName;
-		}
+		}*/
 	}
 }
 
