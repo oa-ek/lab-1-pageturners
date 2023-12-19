@@ -14,7 +14,8 @@ namespace PageTurners.Core.Context
         /*public DbSet<User> Users => Set<User>();*/
         public DbSet<Comments> Comment => Set<Comments>();
         public DbSet<UserBook> UserBooks { get; set; }
-
+        public DbSet<ForumTopic> ForumTopics { get; set; }
+        public DbSet<ForumPost> ForumPosts { get; set; }
 
         public PageTurnersContext(DbContextOptions<PageTurnersContext> options)
             : base(options)
