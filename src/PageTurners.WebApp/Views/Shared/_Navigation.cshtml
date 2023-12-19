@@ -24,12 +24,5 @@
         </li>
 
     }
-    @if (User.IsInRole("Moderator") || User.IsInRole("Admin") || User.IsInRole("Reader"))
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Topic">Форум</a>
-        </li>
-
-    }
 </ul>
 
