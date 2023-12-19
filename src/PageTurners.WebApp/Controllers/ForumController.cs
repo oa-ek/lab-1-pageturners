@@ -47,7 +47,29 @@ namespace PageTurners.WebApp.Controllers
             return View(topic);
         }
 
-        // Додати інші методи для перегляду конкретної теми та додавання повідомлень
-    }
+        [HttpGet]
+        public IActionResult CreatePost(int topicId)
+        {
+            var topic = _topicRepository.GetTopicById(topicId);
 
-}
+            if (topic == null)
+            {
+                return NotFound();
+            }
+
+            return View(new ForumPost { ForumTopicId = topicId });
+        }
+
+        [HttpPost]
+        public IActionResult CreatePost(ForumPost post)
+        {
+            if (ModelState.IsValid)
+            {
+                _postRepository.AddPost(post);
+                return RedirectToAction("ViewTopic", new { topicId = post.ForumTopicId });
+            }
+            return View(post);
+        }
+
+
+    }

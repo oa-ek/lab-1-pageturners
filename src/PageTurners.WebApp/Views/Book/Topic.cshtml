@@ -1,5 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model PageTurners.Core.Entities.ForumTopic
+
+<h1>@Model.Title</h1>
+
+<div class="forum-posts">
+    @foreach (var post in Model.Posts)
+    {
+        <div class="forum-post">
+            <p>@post.Content</p>
+            <p>Автор: @post.User.UserName</p>
+            <p>Дата створення: @post.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")</p>
+        </div>
+    }
+</div>
+
+<div class="forum-actions">
+    <a asp-action="CreatePost" asp-route-topicId="@Model.Id">Додати повідомлення</a>
+    <a asp-action="Index">Повернутися до форуму</a>
+</div>
